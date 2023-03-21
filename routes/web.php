@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Ruangan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,10 @@ Route::get('/createRuangan', function(){
 })->name('createRuangan');
 
 Route::get('/listUser',function(){
-    return User::where('id_user','1');
+    
+    $ruangan = Ruangan::all();
+    return $ruangan[1]->user()->get();
+    // return User::where('id_user','1')->get();
     // return view('admin.pages.User.listUser',[
     //     'users' => User::all(),
     // ]);
