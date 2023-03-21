@@ -14,13 +14,13 @@ class CreateRuangansTable extends Migration
     public function up()
     {
         Schema::create('ruangans', function (Blueprint $table) {
-            $table->id('id_ruangan');
-            $table->unsignedBigInteger('id_user')->nullable();
+            $table->id();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('nama_ruangan');
             $table->enum('status', ['aktif', 'tidak aktif']);
             $table->string('no_telephone');
             $table->timestamps();
-            $table->foreign('id_user')->references('id_user')->on('users.id_user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

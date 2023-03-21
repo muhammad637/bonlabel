@@ -29,8 +29,8 @@ Route::get('/createRuangan', function(){
 
 Route::get('/listUser',function(){
     
-    $ruangan = Ruangan::all();
-    return $ruangan[1]->user()->get();
+    $user = User::all();
+    return $user[0]->ruangan()->get();
     // return User::where('id_user','1')->get();
     // return view('admin.pages.User.listUser',[
     //     'users' => User::all(),
