@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Models\Ruangan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,6 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// admin
+// product
+Route::resource('product',ProductController::class);
+Route::put('product/{product:id}/nonaktif',[ ProductController::class,'nonaktif']);
+Route::put('product/{product:id}/aktif',[ ProductController::class,'aktif']);
+
+
 
 Route::get('/createRuangan', function(){
     return view('admin.pages.Ruangan.createRuangan',[
@@ -45,5 +54,7 @@ Route::post('/createRuangan',function(Request $request){
 // Route::get('/lisUser',function(){
 //     return ;
 // });
+
+
 
 
