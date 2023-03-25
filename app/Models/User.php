@@ -17,12 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'username',
-        'password',
-        'no_telfon',
-    ];
+
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
+
+    protected $guarded = ['id_user'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,5 +43,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        // 'ruangans' => 'array,'
     ];
+
+
+    public function ruangan(){
+       return $this->hasMany(Ruangan::class);
+    }
 }

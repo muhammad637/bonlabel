@@ -10,8 +10,12 @@ class Ruangan extends Model
     use HasFactory;
 
 
-    protected $fillable = [
-        'nama_ruangan',
-        'no_telfon',
-    ];
+    protected $guarded = ['id'];
+
+    protected $primaryKey = 'id';
+
+    public function user(){
+       return $this->belongsTo(User::class, 'user_id');
+    }
+    
 }

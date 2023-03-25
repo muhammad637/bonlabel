@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Models\Ruangan;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +22,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard');
 });
+
+//  route admin
+// product
+Route::resource('product',ProductController::class);
+Route::put('product/{product:id}/nonaktif',[ ProductController::class,'nonaktif']);
+Route::put('product/{product:id}/aktif',[ ProductController::class,'aktif']);
+// user
+Route::resource('user',UserController::class);
+Route::put('user/{user:id}/nonaktif',[ UserController::class,'nonaktif']);
+Route::put('user/{user:id}/aktif',[ UserController::class,'aktif']);
+
+
+
+
+
