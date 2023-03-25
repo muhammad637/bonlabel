@@ -17,7 +17,7 @@ class RuanganFactory extends Factory
             'nama_ruangan' => $this->faker->name(). " ruangan", 
             'no_telephone' => $this->faker->phoneNumber(),
             'status' => 'aktif',
-            'user_id' => 1
+            // 'user_id' => 1
         ];
     }
 }

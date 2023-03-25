@@ -18,10 +18,12 @@ class UserFactory extends Factory
             'nama' => $this->faker->name(),
             'userName' => $this->faker->userName(),
             // 'email_verified_at' => now(),
-            'no_telephone' => $this->faker->nik(),
+            'no_telephone' => $this->faker->phoneNumber(),
+            'status' => 'aktif',
             'cekLevel' => 'user',
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
+            // 'ruangans' => [1,2,3,4]
         ];
     }
 

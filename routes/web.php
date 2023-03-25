@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use App\Models\Ruangan;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -22,38 +23,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// admin
+//  route admin
 // product
 Route::resource('product',ProductController::class);
 Route::put('product/{product:id}/nonaktif',[ ProductController::class,'nonaktif']);
 Route::put('product/{product:id}/aktif',[ ProductController::class,'aktif']);
+// user
+Route::resource('user',UserController::class);
+Route::put('user/{user:id}/nonaktif',[ UserController::class,'nonaktif']);
+Route::put('user/{user:id}/aktif',[ UserController::class,'aktif']);
 
-
-
-Route::get('/createRuangan', function(){
-    return view('admin.pages.Ruangan.createRuangan',[
-        'user' => User::where('')
-    ]);
-})->name('createRuangan');
-
-Route::get('/listUser',function(){
-    
-    $user = User::all();
-    return $user[0]->ruangan()->get();
-    // return User::where('id_user','1')->get();
-    // return view('admin.pages.User.listUser',[
-    //     'users' => User::all(),
-    // ]);
-});
-
-Route::post('/createRuangan',function(Request $request){
-    // dd($request);
-    return $request->all();
-})->name('postUser');
-
-// Route::get('/lisUser',function(){
-//     return ;
-// });
 
 
 
