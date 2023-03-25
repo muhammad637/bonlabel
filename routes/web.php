@@ -23,6 +23,14 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+// login
+Route::get('/login', function(){
+    return view('login');
+})->name('login');
+Route::post('/login', function(Request $request){
+    return $request->all();
+});
+
 //  route admin
 // product
 Route::resource('product',ProductController::class);
