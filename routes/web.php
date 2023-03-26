@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
-use App\Models\Ruangan;
+use App\Http\Controllers\LoginController;
 use App\Models\User;
+use App\Models\Ruangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -19,29 +21,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard');
+// Auth::routes();
+Route::get('/login', function () {
+    return view('login');
+});
+Route::post('/login/post', [LoginController::class, 'authenticate']);
+
+Route::middleware(['auth', 'user-level:admin'])->group(function () {
+    Route::get('/dashboardAdmin', function () {
+        return [auth()->user(), 'level' => auth()->user()->cekLevel];
+    });
+    // product
+    Route::resource('product', ProductController::class);
+    Route::put('product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
+    Route::put('product/{product:id}/aktif', [ProductController::class, 'aktif']);
+    // user
+    Route::resource('user', UserController::class);
+    Route::put('user/{user:id}/nonaktif', [UserController::class, 'nonaktif']);
+    Route::put('user/{user:id}/aktif', [UserController::class, 'aktif']);
+
+    // logout
+    Route::get('/logout', function(Request $request){
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+ 
+        $request->session()->regenerateToken();
+     
+        return redirect('/login');
+    });
+});
+
+Route::middleware(['auth', 'user-level:user'])->group(function () {
+    Route::get('/dashauser', function () {
+        return [auth()->user(), 'level' => auth()->user()->status];
+    });
 });
 
 // login
-Route::get('/login', function(){
+Route::get('/login', function () {
     return view('login');
 })->name('login');
-Route::post('/login', function(Request $request){
+Route::post('/login', function (Request $request) {
     return $request->all();
 });
-
-//  route admin
-// product
-Route::resource('product',ProductController::class);
-Route::put('product/{product:id}/nonaktif',[ ProductController::class,'nonaktif']);
-Route::put('product/{product:id}/aktif',[ ProductController::class,'aktif']);
-// user
-Route::resource('user',UserController::class);
-Route::put('user/{user:id}/nonaktif',[ UserController::class,'nonaktif']);
-Route::put('user/{user:id}/aktif',[ UserController::class,'aktif']);
-
-
-
-
-
