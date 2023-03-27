@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+
+class LoginController extends Controller
+{
+    //
+
+    public function authenticate(Request $request){
+        try {
+            //code...
+            $credential = $request->validate([
+                'username' => 'required',
+                'password' => 'required',
+            ]);
+            // dd($credential);
+            if(Auth::attempt($credential)){
+                // $request->session()->regenerate();
+                if (auth()->user()->cekLevel == "admin" && auth()->user()->status == 'aktif') {
+                    # code...
+                    return redirect()->intended('/dashboardAdmin');
+                } elseif(auth()->user->cekLevel == "user" && auth()->user()->status == 'aktif'){
+                    # code...
+                    return auth()->user();
+                }
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return "maaf user anda di nonaktifkan";
+        }
+
+        return "salah";
+    }
+}
