@@ -19,7 +19,7 @@ class LoginController extends Controller
             ]);
             // dd($credential);
             if(Auth::attempt($credential)){
-                // $request->session()->regenerate();
+                $request->session()->regenerate();
                 if (auth()->user()->cekLevel == "admin" && auth()->user()->status == 'aktif') {
                     # code...
                     return redirect()->intended('/dashboardAdmin');
