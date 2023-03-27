@@ -22,7 +22,7 @@ class UserCekLevelMiddleware
             return $next($request);
         }
 
-        return response(response()->json(['you dont have permission to access']));
+        return response()->json(['you dont have permission to access']);
         
     }
 }

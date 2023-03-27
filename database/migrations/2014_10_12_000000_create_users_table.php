@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('nama');
             $table->enum('cekLevel',['admin','user'])->default('admin');
+            // $table->tinyInteger('cekLevel')->default(0);
             $table->enum('status',['aktif','nonaktif']);
             // $table->json('ruangans')->nullable();
             $table->string('no_telephone');
