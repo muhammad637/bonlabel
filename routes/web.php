@@ -48,7 +48,9 @@ Route::middleware(['auth', 'user-level:user'])->group(function () {
     Route::get('/dashauser', function () {
         return [auth()->user(), 'level' => auth()->user()->status];
     });
+    Route::get('/logout', [LoginController::class,'logout']);
 });
+
 
 // login
 Route::get('/login', function () {

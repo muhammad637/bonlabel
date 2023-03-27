@@ -23,14 +23,16 @@ class LoginController extends Controller
                 if (auth()->user()->cekLevel == "admin" && auth()->user()->status == 'aktif') {
                     # code...
                     return redirect()->intended('/dashboardAdmin');
-                } elseif(auth()->user->cekLevel == "user" && auth()->user()->status == 'aktif'){
+                } elseif(auth()->user()->cekLevel == "user" && auth()->user()->status == "aktif"){
                     # code...
                     return auth()->user();
+                }else{
+                    return "maaf";
                 }
             }
         } catch (\Throwable $th) {
             //throw $th;
-            return "maaf user anda di nonaktifkan";
+            return $th->getMessage();
         }
 
         return "salah";
