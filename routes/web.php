@@ -41,15 +41,7 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
     Route::put('user/{user:id}/aktif', [UserController::class, 'aktif']);
 
     // logout
-    Route::get('/logout', function(Request $request){
-        Auth::logout();
- 
-        $request->session()->invalidate();
- 
-        $request->session()->regenerateToken();
-     
-        return redirect('/login');
-    });
+    Route::get('/logout', [LoginController::class,'logout']);
 });
 
 Route::middleware(['auth', 'user-level:user'])->group(function () {
