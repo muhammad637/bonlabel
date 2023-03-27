@@ -1,3 +1,6 @@
+@extends('admin.parts.navbar')
+
+@section('container')
 <!doctype html>
 <html lang="en">
 
@@ -19,3 +22,4 @@
 </body>
 
 </html>
+@endsection
