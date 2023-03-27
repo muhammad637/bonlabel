@@ -29,7 +29,8 @@ Route::post('/login/post', [LoginController::class, 'authenticate']);
 
 Route::middleware(['auth', 'user-level:admin'])->group(function () {
     Route::get('/dashboardAdmin', function () {
-        return [auth()->user(), 'level' => auth()->user()->cekLevel];
+        return view('admin.dashboard');
+        // return [auth()->user(), 'level' => auth()->user()->cekLevel];
     });
     // product
     Route::resource('product', ProductController::class);

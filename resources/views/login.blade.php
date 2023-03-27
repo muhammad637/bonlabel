@@ -1,4 +1,4 @@
-@extends('admin.index')
+
 @section('container')
 <!doctype html>
 <html lang="en">
