@@ -35,5 +35,3 @@ Route::put('user/{user:id}/aktif',[ UserController::class,'aktif']);
 
 
 
-
-
