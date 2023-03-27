@@ -1,3 +1,5 @@
+
+@section('container')
 <!doctype html>
 <html lang="en">
 
@@ -10,6 +12,8 @@
 </head>
 
 <body>
+    @include('admin.parts.navbar')
+    @include('admin.parts.sidebar')
     <div class="container mt-5">
         @yield('container')
     </div>
