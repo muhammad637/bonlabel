@@ -9,12 +9,10 @@
           <div class="card-body">
             <h5 class="card-title">Datatables</h5>
             <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
-            
             <a href="{{route('product.create')}}">
                 <button type="button" class="btn btn-primary">Create Product</button>
             </a> 
             <br>
-
             <!-- Table with stripped rows -->
             <table class="table datatable">
               <thead>
@@ -36,9 +34,14 @@
                     <td>{{ $data->jenis_product }}</td>
                     <td>{{ $data->limit_order }}</td>
                     <td>{{ $data->jumlah_stock }}</td>
-                    <td>{{ $data->status_product }}</td>
+                    <td> @if ($data->status_product == 'aktif')
+                        <button type="button" class="btn btn-success">{{ $data->status_product }}</button>
+                    @endif
+                    @if ($data->status_product == 'nonaktif')
+                        <button type="button" class="btn btn-danger">{{ $data->status_product }}</button>
+                    @endif</td>
                     <td><button type="button"  href="/product/{{ $data->id }}/edit" class="btn btn-primary">
-                        edit</button>
+                        Edit</button>
                     @if ($data->status_product == 'aktif' )
                         <form action="/product/{{ $data->id }}/nonaktif" method="post" class="inline-block">
                             @method('put')
@@ -57,17 +60,14 @@
               </tbody>
             </table>
             <!-- End Table with stripped rows -->
-
           </div>
         </div>
 
       </div>
     </div>
   </section>
-
 </main><!-- End #main -->
 @section('container')
-
     {{-- <div class="container">
         <a href="{{route('product.create')}}">
             <h1>create product</h1>
@@ -104,5 +104,4 @@
             <h1>data product kosong</h1>
         @endif
     </div> --}}
-    
 @endsection

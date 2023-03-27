@@ -7,7 +7,7 @@
 <table id="example" class="table table-striped mt-2" style="width:100%">
     <thead>
         <tr>
-            <th>#</th>
+            <th>No</th>
             <th>Nama Ruangan</th>
             <th>Status</th>
             <th>No Telephone</th>
