@@ -24,7 +24,7 @@ use App\Http\Controllers\RuanganController;
 Route::middleware('guest')->group(function(){
     Route::get('/login', function () {
         return view('login');
-    })->middleware('guest');
+    });
     Route::post('/login/post', [LoginController::class, 'authenticate']);
 });
 
@@ -46,8 +46,8 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
     
     // ruangan 
     Route::resource('/ruangan',RuanganController::class);
-    Route::put('ruangan/{ruangan:id}/nonaktif', [UserController::class, 'nonaktif']);
-    Route::put('ruangan/{ruangan:id}/aktif', [UserController::class, 'aktif']);
+    Route::put('ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
+    Route::put('ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
 
     // logout
     Route::get('/logout', [LoginController::class,'logout']);

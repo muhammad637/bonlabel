@@ -1,7 +1,10 @@
 @extends('admin.index')
 
 @section('container')
-<table id="example" class="table table-striped" style="width:100%">
+<div class="mb-2">
+<a href="{{route('ruangan.create')}}" class="btn btn-primary">Create Ruangan</a>
+</div>
+<table id="example" class="table table-striped mt-2" style="width:100%">
     <thead>
         <tr>
             <th>#</th>
@@ -14,7 +17,26 @@
     <tbody>
         @foreach ($ruangans as $ruangan)
         <tr>
-            <td>{{}}</td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$ruangan->nama_ruangan}}</td>
+            <td>{{$ruangan->status}}</td>
+            <td>{{$ruangan->no_telephone}}</td>
+            <td>
+                <a href="/ruangan/{{ $ruangan->id }}/edit" class="badge bg-info text-transform-none">
+                    edit</a> |
+                @if ($ruangan->status == 'aktif' )
+                    <form action="/ruangan/{{ $ruangan->id }}/nonaktif" method="post" class="inline-block">
+                        @method('put')
+                        @csrf
+                        <button type="submit" class="badge bg-danger inline-block">nonaktifkan</button>
+                    </form>
+                @else
+                    <form action="/ruangan/{{ $ruangan->id }}/aktif" method="post">
+                        @method('put')
+                        @csrf
+                        <button type="submit" class="badge bg-success">aktifkan</button>
+                    </form>
+                @endif
         </tr>
         @endforeach
     </tbody>
