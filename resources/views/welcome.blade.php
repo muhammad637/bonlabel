@@ -9,56 +9,46 @@
     <link rel="stylesheet" href="assets/landingpage.css">
   </head>
   <body>
-    <div class="bg">
-      
-    </div>
-   <div class="logo">
-      <img src="img/Logo.png" alt="" height="144px" width="133">
-      <h1>SiBONLABEL</h1>
-   </div>
-   <div class="vector">
-      <img src="img/display.png" align= "right" alt="" height="800px" width="900px" style="display: fixed; padding: 50px; margin-top: -11rem">
-   </div>
-   <div class="container">
-    <div class="row justify-content-between" >
-      <div class="col">
-        <h2>SiBONLABEL</h2>
-       </div>
-    </div>
-      <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-      Login
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    <div class="container">
+      <header class="masthead bg-gradient-primary-to-secondary">
+        <div class="container">
+          <div class="row align-items-center justify-content-center mr-2">
+            <div class="col-lg-5">
+              <!-- Mashead text and app badges-->
+              <div class="mt-5 mb-5 mb-lg-0 text-center text-lg-start">
+                <h1 class="display-1 lh-1 mb-3">
+                  Showcase your app beautifully.
+                </h1>
+                <p class="lead fw-normal text-muted mb-5">
+                  Launch your mobile app landing page faster with this free, open
+                  source theme from Start Bootstrap!
+                </p>
+                <div class="d-flex flex-column flex-lg-row align-items-center">
+                  <a class="me-lg-3 mb-4 mb-lg-0" href="#!"
+                    ><img
+                      class="app-badge"
+                      src="assets/img/google-play-badge.svg"
+                      alt="..."
+                  /></a>
+                  <a href="#!"
+                    ><img
+                      class="app-badge"
+                      src="assets/img/app-store-badge.svg"
+                      alt="..."
+                  /></a>
+                </div>
               </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="col-lg-6">
+              <!-- Masthead device mockup feature-->
+              <img src="../img/display.png" alt="#">
+              
               </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
           </div>
         </div>
+      </header>      
       </div>
-    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
   </body>
 </html>
