@@ -1,42 +1,53 @@
-<!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Popup Login Form Design | CodingNepal</title>
-      <link rel="stylesheet" href="assets/landingpage.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-   </head>
-   <body>
-      <div class="center">
-         <input type="checkbox" id="show">
-         <label for="show" class="show-btn">Login Now</label>
-         <div class="container">
-            <label for="show" class="close-btn fas fa-times" title="close"></label>
-            <div class="text">
-               Login Form
-            </div>
-            <form action="#">
-               <div class="data">
-                  <label>Email or Phone</label>
-                  <input type="text" required>
-               </div>
-               <div class="data">
-                  <label>Password</label>
-                  <input type="password" required>
-               </div>
-               <div class="forgot-pass">
-                  <a href="#">Forgot Password?</a>
-               </div>
-               <div class="btn">
-                  <div class="inner"></div>
-                  <button type="submit">login</button>
-               </div>
-               <div class="signup-link">
-                  Not a member? <a href="#">Signup now</a>
-               </div>
-            </form>
-         </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/landingpage.css">
+  </head>
+  <body>
+    <div class="bg">
+      
+    </div>
+   <div class="logo">
+      <img src="img/Logo.png" alt="" height="144px" width="133">
+      <h1>SiBONLABEL</h1>
+   </div>
+   <div class="vector">
+      <img src="img/display.png" align= "right" alt="" height="800px" width="900px" style="display: fixed; padding: 50px; margin-top: -11rem">
+   </div>
+   <div class="container">
+    <div class="row justify-content-between" >
+      <div class="col">
+        <h2>SiBONLABEL</h2>
+       </div>
+    </div>
+      <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Login
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
       </div>
-   </body>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  </body>
 </html>
