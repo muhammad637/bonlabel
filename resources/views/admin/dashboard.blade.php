@@ -1,7 +1,7 @@
 @extends('admin.index')
 <main id="main" class="main">
 
-    <div class="pagetitle">x
+    <div class="pagetitle">
       <h1>Welcome to Admin </h1>
       <nav class="shadow-sm bg-body rounded" style="width: 98%;">
         <ol class="breadcrumb">
@@ -17,19 +17,61 @@
         <!-- Left side columns -->
         <!-- <div class="col-lg-8"> untuk memperkecil body-->
           <div class="row">
-
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card shadow">
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Nama Produk</h5>
                   <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
+                   
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <span>Stock :</span>
+                      <h6>500</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Sales Card -->
+
+             <!-- Sales Card -->
+             <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Nama Produk</h5>
+                  <div class="d-flex align-items-center">
+                   
+                    <div class="ps-3">
+                      <span>Stock :</span>
+                      <h6>500</h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End Sales Card -->
+              <!-- Sales Card -->
+              <div class="col-xxl-4 col-md-6">
+                <div class="card info-card sales-card shadow">
+                  <div class="card-body">
+                    <h5 class="card-title">Nama Produk</h5>
+                    <div class="d-flex align-items-center"> 
+                      <div class="ps-3">
+                        <span>Stock :</span>
+                        <h6>500</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- End Sales Card -->
+                <!-- Sales Card -->
+            <div class="col-xxl-4 col-md-6">
+              <div class="card info-card sales-card shadow">
+                <div class="card-body">
+                  <h5 class="card-title">Ruangan Aktif</h5>
+                  <div class="d-flex align-items-center">
+                   
+                    <div class="ps-3">
+                      <span></span>
+                      <h6>2</h6>
                     </div>
                   </div>
                 </div>
@@ -40,56 +82,31 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card shadow">
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">User Aktif</h5>
                   <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
+                   
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6>100</h6>
                     </div>
                   </div>
                 </div>
               </div>
             </div><!-- End Sales Card -->
+
 
             <!-- Sales Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card shadow">
                 <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
+                  <h5 class="card-title">Produk Aktif</h5>
                   <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6>5</h6>
                     </div>
                   </div>
                 </div>
               </div>
             </div><!-- End Sales Card -->
-
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-              <div class="card info-card sales-card shadow">
-                <div class="card-body">
-                  <h5 class="card-title">Sales <span>| Today</span></h5>
-                  <div class="d-flex align-items-center">
-                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                      <i class="bi bi-cart"></i>
-                    </div>
-                    <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Sales Card -->
-
             <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
