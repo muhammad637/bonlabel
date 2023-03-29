@@ -28,12 +28,12 @@
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
             <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Produk</span>
+              <i class="bi bi-people"></i><span>User</span>
             </a>
           </li>
           <li>
             <a href="components-alerts.html">
-              <i class="bi bi-circle"></i><span>Ruangan</span>
+              <i class="bi bi-tag"></i><span>Product</span>
             </a>
           </li>
           <li>
