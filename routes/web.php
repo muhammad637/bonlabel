@@ -28,6 +28,7 @@ use App\Http\Controllers\RuanganController;
     });
     Route::post('/login/post', [LoginController::class, 'authenticate']);
 // =======
+
 // // Auth::routes();
 // Route::get('/', function () {
 //     return view('');
@@ -46,7 +47,7 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
         return view('admin.pages.dashboard');
     });
     Route::get('/dashboardUser', function () {
-        return view('user.dashboard');
+        return view('user.page.dashboard');
     });
 
     // product
