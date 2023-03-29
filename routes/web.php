@@ -35,6 +35,9 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
         return view('admin.dashboard');
         // return [auth()->user(), 'level' => auth()->user()->cekLevel];
     });
+    Route::get('/dashboardUser', function () {
+        return view('user.dashboard');
+    });
 
     // product
     Route::resource('product', ProductController::class);
