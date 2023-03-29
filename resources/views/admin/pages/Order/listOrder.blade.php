@@ -1,15 +1,8 @@
 @extends('admin.index')
-
+@section('pagetitle')
+    <li class="breadcrumb-item active fs-5">Orderan</li>
+@endsection
 @section('container')
-    <div class="pagetitle">
-        <h1 class="mb-2 fs-2">Welcome to Admin </h1>
-        <nav class="shadow-sm bg-body rounded pt-2 px-2 " style="width: 98%;">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item fs-5"><a href="/dashboardAdmin">Home</a></li>
-                <li class="breadcrumb-item active fs-5">Orderan</li>
-            </ol>
-        </nav>
-    </div>
     <!-- End Page Title -->
     <div class="mb-3">
 
@@ -66,7 +59,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                               ini order ke {{$order->id}}
+                                ini order ke {{ $order->id }}
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
