@@ -1,16 +1,8 @@
-@extends('admin.index')
-<main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Welcome to Admin </h1>
-      <nav class="shadow-sm bg-body rounded" style="width: 98%;">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
+@extends('user.index')
+@section('pagetitle')
+<li class="breadcrumb-item active fs-5">Dashboard</li>
+@endsection
+@section('container')
     <section class="section dashboard">
       <div class="row">
 
@@ -128,5 +120,4 @@
 
       </div>
     </section>
-
-  </main><!-- End #main -->
+@endsection

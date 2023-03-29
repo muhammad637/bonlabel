@@ -25,7 +25,7 @@ class LoginController extends Controller
                     return redirect()->intended('/dashboardAdmin');
                 } elseif(auth()->user()->cekLevel == "user" && auth()->user()->status == "aktif"){
                     # code...
-                    return auth()->user();
+                    return redirect('/dashboardUser');
                 }else{
                     return "maaf";
                 }
