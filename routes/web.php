@@ -23,7 +23,6 @@ use App\Http\Controllers\RuanganController;
 */
 
 // <<<<<<< HEAD
-Route::middleware('guest')->group(function () {
     Route::get('/login', function () {
         return view('login');
     });
@@ -37,7 +36,6 @@ Route::middleware('guest')->group(function () {
 // Route::get('/login', function () {
 //     return view('login');
 // >>>>>>> fiturLogin
-});
 Route::get('/logout', [LoginController::class, 'logout']);
 
 
