@@ -22,11 +22,21 @@ use App\Http\Controllers\RuanganController;
 |
 */
 
+// <<<<<<< HEAD
 Route::middleware('guest')->group(function () {
     Route::get('/login', function () {
         return view('login');
     });
     Route::post('/login/post', [LoginController::class, 'authenticate']);
+// =======
+// // Auth::routes();
+// Route::get('/', function () {
+//     return view('');
+// });
+
+// Route::get('/login', function () {
+//     return view('login');
+// >>>>>>> fiturLogin
 });
 Route::get('/logout', [LoginController::class, 'logout']);
 
@@ -65,9 +75,9 @@ Route::middleware(['auth', 'user-level:user'])->group(function () {
 
 
 // login
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-Route::post('/login', function (Request $request) {
-    return $request->all();
-});
+// Route::get('/login', function () {
+//     return view('login');
+// })->name('login');
+// Route::post('/login', function (Request $request) {
+//     return $request->all();
+// });
