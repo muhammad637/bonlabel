@@ -28,7 +28,6 @@ use App\Http\Controllers\RuanganController;
     });
     Route::post('/login/post', [LoginController::class, 'authenticate']);
 // =======
-
 // // Auth::routes();
 // Route::get('/', function () {
 //     return view('');
@@ -46,10 +45,7 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
     Route::get('/dashboardAdmin', function () {
         return view('admin.pages.dashboard');
     });
-    Route::get('/dashboardUser', function () {
-        return view('user.page.dashboard');
-    });
-
+ 
     // product
     Route::resource('product', ProductController::class);
     Route::put('product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
@@ -70,7 +66,7 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
 
 // USER
 Route::middleware(['auth', 'user-level:user'])->group(function () {
-    Route::get('/dashauser', function () {
+    Route::get('/dashboardUser', function () {
         return [auth()->user(), 'level' => auth()->user()->status];
     });
 });
