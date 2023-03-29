@@ -3,11 +3,11 @@
     <html lang="en">
 
     {{-- tag head --}}
-    @include('admin.parts.head')
+    @include('user.parts.head')
 
     <body>
-        @include('admin.parts.navbar')
-        @include('admin.parts.sidebar')
+        @include('user.parts.navbar')
+        @include('user.parts.sidebar')
         <main id="main" class="main">
             <div class="pagetitle">
                 <h1 class="mb-2 fs-2">Welcome to Dashboard </h1>
@@ -33,7 +33,7 @@
         <!-- End Footer -->
 
         {{--  tag script --}}
-        @include('admin.parts.script')
+        @include('user.parts.script')
 
     </body>
 

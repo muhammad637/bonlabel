@@ -67,7 +67,7 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
 // USER
 Route::middleware(['auth', 'user-level:user'])->group(function () {
     Route::get('/dashboardUser', function () {
-        return [auth()->user(), 'level' => auth()->user()->status];
+        return view('user.page.dashboard');
     });
 });
 
