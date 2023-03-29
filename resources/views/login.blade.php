@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+@section('container')
+>>>>>>> 09a23bef8bc206688bacad3069512f73ca93c35e
 <!doctype html>
 <html lang="en">
 
