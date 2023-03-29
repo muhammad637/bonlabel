@@ -1,6 +1,6 @@
 @extends('admin.index')
-<main id="main" class="main">
 
+@section('container')
     <div class="pagetitle">
       <h1>Welcome to Admin </h1>
       <nav class="shadow-sm bg-body rounded" style="width: 98%;">
@@ -148,5 +148,4 @@
 
       </div>
     </section>
-
-  </main><!-- End #main -->
+@endsection

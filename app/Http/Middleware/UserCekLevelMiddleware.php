@@ -22,7 +22,6 @@ class UserCekLevelMiddleware
             return $next($request);
         }
 
-        return response()->json(['you dont have permission to access']);
-        
+        return redirect('/login');   
     }
 }
