@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
 use App\Models\User;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
@@ -21,19 +22,28 @@ use App\Http\Controllers\RuanganController;
 |
 */
 
-Route::middleware('guest')->group(function(){
+// <<<<<<< HEAD
     Route::get('/login', function () {
         return view('login');
     });
     Route::post('/login/post', [LoginController::class, 'authenticate']);
-});
+// =======
+// // Auth::routes();
+// Route::get('/', function () {
+//     return view('');
+// });
+
+// Route::get('/login', function () {
+//     return view('login');
+// >>>>>>> fiturLogin
+Route::get('/logout', [LoginController::class, 'logout']);
+
 
 
 // ADMIN
 Route::middleware(['auth', 'user-level:admin'])->group(function () {
     Route::get('/dashboardAdmin', function () {
-        return view('admin.dashboard');
-        // return [auth()->user(), 'level' => auth()->user()->cekLevel];
+        return view('admin.pages.dashboard');
     });
     Route::get('/dashboardUser', function () {
         return view('user.dashboard');
@@ -47,14 +57,14 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
     Route::resource('user', UserController::class);
     Route::put('user/{user:id}/nonaktif', [UserController::class, 'nonaktif']);
     Route::put('user/{user:id}/aktif', [UserController::class, 'aktif']);
-    
+
     // ruangan 
-    Route::resource('/ruangan',RuanganController::class);
+    Route::resource('/ruangan', RuanganController::class);
     Route::put('ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
     Route::put('ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
 
-    // logout
-    Route::get('/logout', [LoginController::class,'logout']);
+    // order
+    Route::resource('/orderan',OrderController::class);
 });
 
 // USER
@@ -62,14 +72,13 @@ Route::middleware(['auth', 'user-level:user'])->group(function () {
     Route::get('/dashauser', function () {
         return [auth()->user(), 'level' => auth()->user()->status];
     });
-    Route::get('/logout', [LoginController::class,'logout']);
 });
 
 
 // login
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-Route::post('/login', function (Request $request) {
-    return $request->all();
-});
+// Route::get('/login', function () {
+//     return view('login');
+// })->name('login');
+// Route::post('/login', function (Request $request) {
+//     return $request->all();
+// });

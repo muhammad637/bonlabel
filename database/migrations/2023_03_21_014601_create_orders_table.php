@@ -14,9 +14,19 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id('id_order');
-            $table->timestamps();
+            $table->id();
+            $table->foreignId('user_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade'); 
+            $table->foreignId('ruangan_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade'); 
+            $table->foreignId('product_id')->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade'); 
             $table->string('jumlah_order');
+            $table->enum('status',['terima','tolak'])->nullable();
+            $table->timestamps();
         });
     }
 
