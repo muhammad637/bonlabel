@@ -18,7 +18,9 @@
   line-height: 56px;
   color: #1E81CC;
 }
-
+#hero h2{
+  color: #1E81CC;
+}
 
 #hero .btn-get-started {
   font-family: 'Kanit';
@@ -42,3 +44,5 @@ a {
   color: #47b2e4;
   text-decoration: none;
 }
+
+

@@ -22,8 +22,8 @@ use App\Http\Controllers\ProductController;
 */
 
 // Auth::routes();
-Route::get('/landingpage', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('');
 });
 
 Route::get('/login', function () {
