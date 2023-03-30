@@ -38,21 +38,22 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 // ADMIN
 Route::middleware(['auth', 'user-level:admin'])->group(function () {
-    Route::get('/dashboardAdmin', [DashboardController::class,'dashboardAdmin']);
+    Route::get('/dashboardAdmin', [DashboardController::class,'dashboardAdmin'])->name('dashboard.admin');
 
+    // MASTER
     // product
-    Route::resource('product', ProductController::class);
-    Route::put('product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
-    Route::put('product/{product:id}/aktif', [ProductController::class, 'aktif']);
+    Route::resource('/master/product', ProductController::class);
+    Route::put('/master/product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
+    Route::put('/master/product/{product:id}/aktif', [ProductController::class, 'aktif']);
     // user
-    Route::resource('user', UserController::class);
-    Route::put('user/{user:id}/nonaktif', [UserController::class, 'nonaktif']);
-    Route::put('user/{user:id}/aktif', [UserController::class, 'aktif']);
+    Route::resource('/master/user', UserController::class);
+    Route::put('/master/user/{user:id}/nonaktif', [UserController::class, 'nonaktif']);
+    Route::put('/master/user/{user:id}/aktif', [UserController::class, 'aktif']);
 
     // ruangan 
-    Route::resource('/ruangan', RuanganController::class);
-    Route::put('ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
-    Route::put('ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
+    Route::resource('/master//ruangan', RuanganController::class);
+    Route::put('/master/ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
+    Route::put('/master/ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
 
     // order
     Route::resource('/orderan', OrderController::class);

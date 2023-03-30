@@ -41,7 +41,8 @@ class DashboardController extends Controller
             // 'productAktif' => $productAktif,
             'products' => $products,
             'aktif' => $aktif,
-            'orders' => $ordersTerakhir
+            'orders' => $ordersTerakhir,
+            'title' => 'dashboard'
 
         ]);
     }

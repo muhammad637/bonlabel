@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->enum('status',['aktif','nonaktif']);
             // $table->json('ruangans')->nullable();
             $table->string('no_telephone');
+            $table->string('gambar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

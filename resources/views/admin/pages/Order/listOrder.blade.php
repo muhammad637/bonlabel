@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('pagetitle')
-    <li class="breadcrumb-item active fs-5">Orderan</li>
+    <li class="breadcrumb-item active fs-6">Orderan</li>
 @endsection
 @section('container')
     <!-- End Page Title -->

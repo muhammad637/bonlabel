@@ -9,7 +9,7 @@
             <!-- Left side columns -->
             <!-- <div class="col-lg-8"> untuk memperkecil body-->
             <div class="row">
-                <h1 class="fw-bold font-poppins">Daftar Produk</h1>
+                <h1 class="fw-bold font-poppins color-black">Daftar Produk</h1>
                 @foreach ($products as $product)
                     <!-- Product Card -->
                     <div class="col-xxl-6 col-md-6">
@@ -22,7 +22,7 @@
                                     <div class="col-md-6 col-12"></div>
                                     <div class="col-md-6 col-12">
                                         <h5 class="color-primary font-poppins">stock</h5>
-                                        <div class="size-number font-poppins mb-n3">{{ $product->jumlah_stock }}</div>
+                                        <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div>
                                     </div>
                                 </div>
                                 <div class="">
@@ -35,7 +35,7 @@
                 @endforeach
 
                 <div class="col-12 mt-5">
-                    <div class="row text-center">
+                    <div class="row text-center font-poppins">
                         @foreach ($aktif as $item)
                             <a href="{{ $item['route'] }}" class="col-md-4">
                                 <div class="card info-card sales-card shadow">
