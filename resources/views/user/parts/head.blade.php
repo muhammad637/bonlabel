@@ -14,5 +14,51 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .font-poppins {
+            font-family: "Poppins", sans-serif;
+
+        }
+
+        .color-primary {
+            color: #146C94;
+        }
+
+        .size-number {
+            font-size: 96px;
+        }
+
+        /* negatif margin */
+        .mt-n1 {
+            margin-top: -0.25rem !important;
+        }
+        .mt-n2 {
+            margin-top: -0.5rem !important;
+        }
+        .mt-n3 {
+            margin-top: -0.75rem !important;
+        }
+        .mt-n4 {
+            margin-top: -0.1rem !important;
+        }
+        .mt-n5 {
+            margin-top: -0.5rem !important;
+        }
+        .mb-n1 {
+            margin-top: -0.25rem !important;
+        }
+        .mb-n2 {
+            margin-top: -0.5rem !important;
+        }
+        .mb-n3 {
+            margin-top: -0.75rem !important;
+        }
+        .mb-n4 {
+            margin-top: -0.1rem !important;
+        }
+        .mb-n5 {
+            margin-top: -0.5rem !important;
+        }
+    </style>
 
 </head>
