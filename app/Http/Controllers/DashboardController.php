@@ -22,15 +22,18 @@ class DashboardController extends Controller
         $aktif = [
             [
                 'title' => 'User Aktif',
-                'jumlah' => $userAktif
+                'jumlah' => $userAktif,
+                'route' => '/user'
             ],
             [
                 'title' => 'Produk Aktif',
-                'jumlah' => $productAktif
+                'jumlah' => $productAktif,
+                'route' => '/product'
             ],
             [
                 'title' => 'Ruangan Aktif',
-                'jumlah' => $ruanganAktif
+                'jumlah' => $ruanganAktif,
+                'route' => '/ruangan'
             ]
         ];
         return view('admin.pages.dashboard', [
