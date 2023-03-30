@@ -23,10 +23,10 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <h2>Aan Triambudi</h2>
-              <h3>Dokter Mata</h3>
+              <h2>{{ auth()->user()->nama }}</h2>
+              <h3>{{ auth()->user()->cekLevel}}</h3>
               <div class="social-links mt-2">
-                <a href="#" class="facebook"><i class="bi bi-whatsapp"></i></a>
+                <a href="" class="facebook"><i class="bi bi-whatsapp"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-envelope-at"></i></a>
                 <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
               </div>
@@ -73,7 +73,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Name</div>
-                    <div class="col-lg-9 col-md-8">Aan Triambudi</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->nama }}</div>
                   </div>
 
                   <div class="row">
@@ -98,7 +98,7 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">No.Telp</div>
-                    <div class="col-lg-9 col-md-8">088xxxxxxxxxxx</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->no_telephone }}</div>
                   </div>
 
                   <div class="row">
@@ -128,7 +128,7 @@
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Aan Triambudi">
+                        <input name="fullName" type="text" class="form-control" id="fullName" value="{{ auth()->user()->nama }}">
                       </div>
                     </div>
 
@@ -151,7 +151,7 @@
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Pekerjaan</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="Dokter Mata">
+                        <input name="job" type="text" class="form-control" id="Job" value="{{ auth()->user()->cekLevel }}">
                       </div>
                     </div>
 

@@ -10,6 +10,18 @@
           <!-- End Logo -->
 
 
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                <i class="bi bi-gear"></i>
+                <span>Account Settings</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
           <nav class="header-nav ms-auto ">
               <ul class="d-flex align-items-center">
