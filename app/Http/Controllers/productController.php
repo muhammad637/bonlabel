@@ -140,8 +140,8 @@ class ProductController extends Controller
 
         try {
             //code...
-            $status_product = 'nonaktif';
-            Product::where('id', $product->id)->update(['status_product' => $status_product]);
+            $status = 'nonaktif';
+            Product::where('id', $product->id)->update(['status' => $status]);
             return redirect()->back();
         } catch (\Exception $e) {
             //throw $th;
@@ -152,8 +152,8 @@ class ProductController extends Controller
     {
         try {
             //code...
-            $status_product = 'aktif';
-            Product::where('id', $product->id)->update(['status_product' => $status_product]);
+            $status = 'aktif';
+            Product::where('id', $product->id)->update(['status' => $status]);
             return  redirect()->back();
         } catch (\Exception $e) {
             //throw $th;

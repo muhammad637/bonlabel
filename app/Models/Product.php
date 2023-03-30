@@ -17,7 +17,7 @@ class Product extends Model
     protected $guarded = ['id'];
 
     protected $attributes = [
-        'status_product' => 'aktif',
+        'status' => 'aktif',
     ];
      
     

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuanganController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,30 +24,19 @@ use App\Http\Controllers\RuanganController;
 |
 */
 
-// <<<<<<< HEAD
-    Route::get('/login', function () {
-        return view('login');
-    });
-    Route::post('/login/post', [LoginController::class, 'authenticate']);
-// =======
-// // Auth::routes();
-// Route::get('/', function () {
-//     return view('');
-// });
-
-// Route::get('/login', function () {
-//     return view('login');
-// >>>>>>> fiturLogin
+Route::get('/login', function () {
+    return view('login');
+});
+Route::get('/', function () {
+    return redirect('/login');
+});
+Route::post('/login/post', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
-
-
 
 // ADMIN
 Route::middleware(['auth', 'user-level:admin'])->group(function () {
-    Route::get('/dashboardAdmin', function () {
-        return view('admin.pages.dashboard');
-    });
- 
+    Route::get('/dashboardAdmin', [DashboardController::class,'dashboardAdmin']);
+
     // product
     Route::resource('product', ProductController::class);
     Route::put('product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
@@ -61,7 +52,7 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
     Route::put('ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
 
     // order
-    Route::resource('/orderan',OrderController::class);
+    Route::resource('/orderan', OrderController::class);
 });
 
 // USER

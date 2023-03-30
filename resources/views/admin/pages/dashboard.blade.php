@@ -1,6 +1,6 @@
 @extends('admin.index')
 @section('pagetitle')
-<li class="breadcrumb-item active fs-5">Dashboard</li>
+    <li class="breadcrumb-item active fs-5">Dashboard</li>
 @endsection
 @section('container')
     <section class="section dashboard">
@@ -9,67 +9,23 @@
             <!-- Left side columns -->
             <!-- <div class="col-lg-8"> untuk memperkecil body-->
             <div class="row">
-                <!-- Sales Card -->
+                @foreach ($products as $product)
                 <div class="col-xxl-6 col-md-6">
                     <div class="card info-card sales-card shadow">
                         <div class="card-body">
-                            <h5 class="card-title">Nama Produk</h5>
+                            <h5 class="card-title">{{$product->nama_product}}</h5>
                             <div class="d-flex align-items-center">
-
                                 <div class="ps-3">
                                     <span>Stock :</span>
-                                    <h6>500</h6>
+                                    <h6>{{$product->jumlah_stock}}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div><!-- End Sales Card -->
-
-                <!-- Sales Card -->
-                <div class="col-xxl-6 col-md-6">
-                    <div class="card info-card sales-card shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Nama Produk</h5>
-                            <div class="d-flex align-items-center">
-
-                                <div class="ps-3">
-                                    <span>Stock :</span>
-                                    <h6>500</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Sales Card -->
-                <!-- Sales Card -->
-                <div class="col-xxl-6 col-md-6">
-                    <div class="card info-card sales-card shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Nama Produk</h5>
-                            <div class="d-flex align-items-center">
-
-                                <div class="ps-3">
-                                    <span>Stock :</span>
-                                    <h6>500</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Sales Card -->
-                <!-- Sales Card -->
-                <div class="col-xxl-6 col-md-6">
-                    <div class="card info-card sales-card shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Ruangan Aktif</h5>
-                            <div class="d-flex align-items-center">
-                                <div class="ps-3">
-                                    <span>Stock :</span>
-                                    <h6>500</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- End Sales Card -->
-                <!-- Recent Sales -->
+                </div>
+                @endforeach
+                <!-- Product Card -->
+                <!-- End Product Card -->
                 <div class="col-12">
                     <div class="card recent-sales overflow-auto">
 

@@ -34,15 +34,15 @@
                     <td>{{ $data->jenis_product }}</td>
                     <td>{{ $data->limit_order }}</td>
                     <td>{{ $data->jumlah_stock }}</td>
-                    <td> @if ($data->status_product == 'aktif')
-                        <button type="button" class="btn btn-success">{{ $data->status_product }}</button>
+                    <td> @if ($data->status == 'aktif')
+                        <button type="button" class="btn btn-success">{{ $data->status }}</button>
                     @endif
-                    @if ($data->status_product == 'nonaktif')
-                        <button type="button" class="btn btn-danger">{{ $data->status_product }}</button>
+                    @if ($data->status == 'nonaktif')
+                        <button type="button" class="btn btn-danger">{{ $data->status }}</button>
                     @endif</td>
                     <td><button type="button"  href="/product/{{ $data->id }}/edit" class="btn btn-primary">
                         Edit</button>
-                    @if ($data->status_product == 'aktif' )
+                    @if ($data->status == 'aktif' )
                         <form action="/product/{{ $data->id }}/nonaktif" method="post" class="inline-block">
                             @method('put')
                             @csrf
@@ -80,10 +80,10 @@
                         <p>jenis product : {{ $data->jenis_product }}</p>
                         <p>limit order : {{ $data->limit_order }}</p>
                         <p>jumlha stock : {{ $data->jumlah_stock }}</p>
-                        <p>status produk : {{ $data->status_product }}</p>
+                        <p>status produk : {{ $data->status }}</p>
                         <p>aksi : <a href="/product/{{ $data->id }}/edit" class="badge bg-info text-transform-none">
                                 edit</a> |
-                            @if ($data->status_product == 'aktif' )
+                            @if ($data->status == 'aktif' )
                                 <form action="/product/{{ $data->id }}/nonaktif" method="post" class="inline-block">
                                     @method('put')
                                     @csrf
