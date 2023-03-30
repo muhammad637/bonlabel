@@ -12,10 +12,10 @@
                 <label class="col-sm-3 col-form-label">Pilih Barang</label>
                 <div class="col-sm-9">
                   <select class="form-select" aria-label="Default select example">
+                    @foreach ($datas as $data)
                     <option selected>Pilih Produk</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option value="1">{{ $data->nama_product }}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>

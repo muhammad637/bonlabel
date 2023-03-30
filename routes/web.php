@@ -23,12 +23,14 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/user-profil', function(){
+    return view(('user.page.user-profil'));
+});
 Route::get('/history', function(){
     return view(('user.page.history'));
 });
-Route::get('/order', function(){
-    return view('user.page.order');
-});
+
 Route::get('/user-profil', function() {
     return view('user.page.user-profil');
 });
