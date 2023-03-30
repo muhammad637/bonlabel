@@ -23,4 +23,11 @@ class DashboardController extends Controller
             'ruanganAktif' => $ruanganAkif
         ]);
     }
+    public function dashboardUser(){
+        $userAktif = User::where('status', 'aktif')->count();
+        $productAktif = Product::where('status','aktif')->count();
+        $products = Product::all();
+        $ruanganAkif = Ruangan::where('status','aktif')->count();
+        return view('user.page.dashboard',compact('userAktif','productAktif','products','ruanganAkif',));
+    }
 }
