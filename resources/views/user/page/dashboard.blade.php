@@ -12,7 +12,7 @@
           <h1 class="fw-bold font-poppins">Daftar Produk</h1>
           @foreach ($products as $product)
               <!-- Product Card -->
-              <div class="col-xxl-6 col-md-6">
+              <div class="col-xxl-4 col-md-6">
                   <div class="card info-card sales-card shadow">
                       <div class="card-body">
                           <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}</h5>
@@ -75,8 +75,6 @@
                   </div>
                 </div>
               </div><!-- End Sales Card -->
-          
-
           </div>
         <!-- </div>End Left side columns -->
 
