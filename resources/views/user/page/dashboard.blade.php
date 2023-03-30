@@ -9,80 +9,37 @@
         <!-- Left side columns -->
         <!-- <div class="col-lg-8"> untuk memperkecil body-->
           <div class="row">
+            @foreach ($products as $product)
             <!-- Sales Card -->
             <div class="col-xxl-6 col-md-6">
               <div class="card info-card sales-card shadow">
                 <div class="card-body">
-                  <h5 class="card-title">Nama Produk</h5>
+                  <h5 class="card-title">{{$product->nama_product}}</h5>
                   <div class="d-flex align-items-center">
                    
                     <div class="ps-3">
                       <span>Stock :</span>
-                      <h6>500</h6>
+                      <h6>{{$product->jumlah_stock}}</h6>
                     </div>
                   </div>
                 </div>
               </div>
             </div><!-- End Sales Card -->
-
-             <!-- Sales Card -->
-             <div class="col-xxl-6 col-md-6">
-              <div class="card info-card sales-card shadow">
-                <div class="card-body">
-                  <h5 class="card-title">Nama Produk</h5>
-                  <div class="d-flex align-items-center">
-                   
-                    <div class="ps-3">
-                      <span>Stock :</span>
-                      <h6>500</h6>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Sales Card -->
-              <!-- Sales Card -->
-              <div class="col-xxl-6 col-md-6">
-                <div class="card info-card sales-card shadow">
-                  <div class="card-body">
-                    <h5 class="card-title">Nama Produk</h5>
-                    <div class="d-flex align-items-center">
-                     
-                      <div class="ps-3">
-                        <span>Stock :</span>
-                        <h6>500</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End Sales Card -->
+              @endforeach
                   <!-- Sales Card -->
-                  <div class="col-xxl-6 col-md-6">
+                  <div class="col-xxl-4 col-md-6">
                     <div class="card info-card sales-card shadow">
                       <div class="card-body">
                         <h5 class="card-title">Ruangan Aktif</h5>
                         <div class="d-flex align-items-center">
                           <div class="ps-3">
                             <span>Stock :</span>
-                            <h6>500</h6>
+                            <h6>{{$ruanganAkif}}</h6>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div><!-- End Sales Card -->
-            <!-- Sales Card -->
-            <div class="col-xxl-4 col-md-6">
-                <div class="card info-card sales-card shadow">
-                  <div class="card-body">
-                    <h5 class="card-title">Ruangan Aktif</h5>
-                    <div class="d-flex align-items-center">
-                      <div class="ps-3">
-                        <span>Stock :</span>
-                        <h6>500</h6>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- End Sales Card -->
               <!-- Sales Card -->
               <div class="col-xxl-4 col-md-6">
                 <div class="card info-card sales-card shadow">
@@ -91,7 +48,7 @@
                     <div class="d-flex align-items-center">
                       <div class="ps-3">
                         <span>Stock :</span>
-                        <h6>500</h6>
+                        <h6>{{$userAktif}}</h6>
                       </div>
                     </div>
                   </div>
@@ -105,7 +62,7 @@
                     <div class="d-flex align-items-center">
                       <div class="ps-3">
                         <span>Stock :</span>
-                        <h6>500</h6>
+                        <h6>{{$productAktif}}</h6>
                       </div>
                     </div>
                   </div>

@@ -23,6 +23,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/user-profil', function() {
+    return view('user.page.user-profil');
+});
 
 Route::get('/login', function () {
     return view('login');
@@ -56,13 +59,15 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
 });
 
 // USER
+// Route::middleware(['auth', 'user-level:user'])->group(function () {
+//     Route::get('/dashboardUser', function () {
+//         return view('user.page.dashboard');
+//     });
+// });
 Route::middleware(['auth', 'user-level:user'])->group(function () {
-    Route::get('/dashboardUser', function () {
-        return view('user.page.dashboard');
-    });
+    Route::get('/dashboardUser', [DashboardController::class,'dashboardUser']);
+
 });
-
-
 // login
 // Route::get('/login', function () {
 //     return view('login');
