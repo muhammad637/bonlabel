@@ -9,9 +9,9 @@
           </div>
           <!-- End Logo -->
 
-
-           
-            
+            <li>
+              <hr class="dropdown-divider">
+            </li>
 
           <nav class="header-nav ms-auto ">
               <ul class="d-flex align-items-center">
