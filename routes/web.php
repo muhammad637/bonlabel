@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\OrderController;
 use App\Models\User;
@@ -37,11 +38,11 @@ Route::get('/user-profil', function() {
 
 Route::get('/login', function () {
     return view('login');
-});
+})->name('login');
 Route::get('/', function () {
     return redirect('/login');
 });
-Route::post('/login/post', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 // ADMIN
@@ -65,6 +66,9 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
 
     // order
     Route::resource('/orderan', OrderController::class);
+
+    // laporan
+    Route::get('/laporan',[LaporanController::class,'index']);
 });
 
 // USER

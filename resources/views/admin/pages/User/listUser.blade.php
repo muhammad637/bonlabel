@@ -8,69 +8,74 @@
         <button type="button" class="btn btn-primary mb-3 font-poppins"> <i class="bi bi-file-plus-fill fs-5"></i>
             Tambah</button>
     </a>
-    <table class="table font-poppins " id="dataTable">
-        <thead>
-            <tr>
-                <th scope="col">no</th>
-                <th scope="col">Nama</th>
-                <th scope="col">User</th>
-                <th scope="col">No Hp</th>
-                <th scope="col">ruangan</th>
-                <th scope="col">status</th>
-                <th>aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($users as $user)
-            @if ($user->id != auth()->user()->id)    
-            <tr>
-                <th>{{ $loop->iteration }}</th>
-                <td>{{ $user->nama }}</td>
-                <td>{{ $user->username }}</td>
-                <td><a href="https://wa.me/{{$user->no_telephone}}" class="badge bg-info p-2">{{ $user->no_telephone }}</a></td>
-                <td>
-                    @if (count($user->ruangan) <= 0)
-                        -
-                    @endif
-                    @foreach ($user->ruangan as $r)
-                        @if ($r->status == 'aktif')
-                            <a href="" class="btn btn-success ml-2 my-2"> {{ $r->nama_ruangan . ',' }}</a>
-                        @endif
-                    @endforeach
-                </td>
-                <td>
-                    @if ($user->status == 'aktif')
-                    <div class="badge bg-success"><i class="bi bi-check-circle"></i> {{ $user->status }}</div> 
-                    @else
-                    <div class="badge bg-secondary"><i class="bi bi-dash-circle"></i> {{ $user->status }}</div> 
-                        
-                    @endif
-                </td>
-                <td>
-                    <div class="row justify-content-center">
-                        <div class="col-4">
-                            <a class="btn btn-info" href="/master/user/{{ $user->id }}/edit">edit</a> 
-                        </div>
-                        <div class="col-4">
-                            @if ($user->status == 'aktif')
-                                <form action="/master/user/{{ $user->id }}/nonaktif" method="post" class="inline-block">
-                                    @method('put')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger inline-block">nonaktifkan</button>
-                                </form>
-                            @else
-                                <form action="/master/user/{{ $user->id }}/aktif" method="post">
-                                    @method('put')
-                                    @csrf
-                                    <button type="submit" class="btn btn-success">aktifkan</button>
-                                </form>
-                            @endif
-                        </div>
-                    </div>
-            </tr>
-            @endif
-            @endforeach
+    <div class="table-responsive">
+        <table class="table font-poppins" id="example">
+            <thead>
+                <tr>
+                    <th scope="col">no</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">User</th>
+                    <th scope="col">No Hp</th>
+                    <th scope="col">ruangan</th>
+                    <th scope="col">status</th>
+                    <th>aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($users as $user)
+                    @if ($user->id != auth()->user()->id)
+                        <tr>
+                            <th>{{ $loop->iteration }}</th>
+                            <td>{{ $user->nama }}</td>
+                            <td>{{ $user->username }}</td>
+                            <td><a href="https://wa.me/{{ $user->no_telephone }}"
+                                    class="badge bg-info p-2">{{ $user->no_telephone }}</a></td>
+                            <td>
+                                @if (count($user->ruangan) <= 0)
+                                    -
+                                @endif
+                                @foreach ($user->ruangan as $r)
+                                    @if ($r->status == 'aktif')
+                                        <a href="" class="btn btn-success ml-2 my-2">
+                                            {{ $r->nama_ruangan . ',' }}</a>
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @if ($user->status == 'aktif')
+                                    <div class="badge bg-success"><i class="bi bi-check-circle"></i> {{ $user->status }}
+                                    </div>
+                                @else
+                                    <div class="badge bg-secondary"><i class="bi bi-dash-circle"></i> {{ $user->status }}
+                                    </div>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="/master/user/{{ $user->id }}/edit " class="mb-2">
+                                    <div class=" btn btn-info"><i class="bi bi-pencil-square"></i></div>
+                                </a>
+                                @if ($user->status == 'aktif')
+                                    <form action="/master/user/{{ $user->id }}/nonaktif" method="post"
+                                        class="inline-block">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger inline-block"><i
+                                                class="bi bi-x-circle"></i></button>
+                                    </form>
+                                @else
+                                    <form action="/master/user/{{ $user->id }}/aktif" method="post">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="btn btn-success"><i
+                                                class="bi bi-check2-circle"></i></button>
+                                    </form>
+                                @endif
 
-        </tbody>
-    </table>
+                        </tr>
+                    @endif
+                @endforeach
+
+            </tbody>
+        </table>
+    </div>
 @endsection

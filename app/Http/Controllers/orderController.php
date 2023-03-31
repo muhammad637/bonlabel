@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Contracts\Support\ValidatedData;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -16,9 +18,10 @@ class OrderController extends Controller
     public function index()
     {
         //
-        
-        return view('admin.pages.Order.listOrder',[
-            'orders' => Order::all(),
+
+        return view('admin.pages.Order.listOrder', [
+            'orders' => Order::where('status', null)->orderBy('created_at', 'asc')->get(),
+            'products' => Product::all(),
             'title' => 'Orderan'
         ]);
     }
@@ -64,6 +67,7 @@ class OrderController extends Controller
     public function edit(Order $order)
     {
         //
+        return view('coba');
     }
 
     /**
@@ -75,7 +79,31 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+
+        // dd($order->order_id);
+        try {
+            //code...
+            $dataOrder = Order::where('id', $request->order_id)->first();
+            $productOrder = Product::where('id', $request->product_id)->first();
+            $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
+            $validatedData = $request->validate(
+                [
+                    'product_id' => '',
+                    'jumlah_order' => '',
+                    'status' => '',
+                ]
+            );
+            if ($validatedData['jumlah_order'] > $productOrder->jumlah_stock) {
+                # code...
+                return "gagal karena melebihi kapasitas product $productOrder->nama_product = ". $productOrder->jumlah_stock;
+            }
+            Order::where('id', $request->order_id)->update($validatedData);
+            Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th->getMessage();
+        }
     }
 
     /**
@@ -93,7 +121,7 @@ class OrderController extends Controller
     // public function indexuser()
     // {
     //     //
-        
+
     //     return view('user.page.order',[
     //         'orders' => Order::all(),
     //         'title' => 'Orderan'

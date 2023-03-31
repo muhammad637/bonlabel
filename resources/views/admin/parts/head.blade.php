@@ -1,33 +1,68 @@
 <head>
-    <!-- Favicons -->
-    <link href="../img/logo.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin | {{ $title }}</title>
-    <!-- cdn css bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- cdn css jsquery -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <title>Inner Page - Techie Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css">
-    <!-- cdn css datatabel -->
+    <!-- Favicons -->
+    <link href="../../img/logo.png" rel="icon">
+    <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="../../../../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../../../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../../../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../../../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="icon" href="asstes/img/logo.png">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
 
+    <!-- Vendor CSS Files -->
+    <link href="../../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    @if (Request::is('login'))
+        <link href="../../../assets/css/landingPage.css" rel="stylesheet">
+    @else
+        <link href="../../../../../assets/css/style.css" rel="stylesheet">
+    @endif
+
+    <!-- =======================================================
+    * Template Name: Techie
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/techie-free-skin-bootstrap-3/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
     <style>
+        .tolak:checked~label .badge {
+            transform: scale(1.2);
+            /* border-radius: 50%; */
+            transition: .1s;
+        }
+
+        .terima:checked~label .badge {
+            transform: scale(1.2);
+            /* border-radius: 50%; */
+            transition: .1s;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
         .font-poppins {
             font-family: "Poppins", sans-serif;
 
@@ -36,7 +71,8 @@
         .color-primary {
             color: rgb(3, 41, 90);
         }
-        .color-black{
+
+        .color-black {
             color: black;
         }
 
@@ -87,6 +123,7 @@
 
         ::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -99,5 +136,4 @@
             background: rgba(48, 48, 192, 0.13);
         }
     </style>
-
 </head>
