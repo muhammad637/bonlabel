@@ -31,9 +31,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createorder()
     {
-        //
+        return view('user.page.order', [
+            $producs = Product::all(),
+        ]);
     }
 
     /**

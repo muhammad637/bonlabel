@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuanganController;
+use App\Models\Order;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -24,6 +25,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::get('/user-profil', function(){
     return view(('user.page.user-profil'));
@@ -79,6 +82,9 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
 // });
 Route::middleware(['auth', 'user-level:user'])->group(function () {
     Route::get('/dashboardUser', [DashboardController::class,'dashboardUser']);
+    Route::get('/order',[OrderController::class,'createorder']);
+
+
 
 });
 // login

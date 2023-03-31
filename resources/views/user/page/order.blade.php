@@ -20,6 +20,19 @@
                 </div>
               </div>
         </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Pilih Ruangan</label>
+          <div class="col-sm-9">
+            <select class="form-select" aria-label="Default select example">
+              @foreach ($datas as $data)
+              <option selected>Pilih Ruangan</option>
+              <option value="1">{{ $data->nama_product }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+
         <div class="col-6">
             <form>
                 <div class="row mb-3">
