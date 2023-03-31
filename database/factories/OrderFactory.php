@@ -18,7 +18,7 @@ class OrderFactory extends Factory
             'jumlah_order' => rand(1,10),
             'user_id' => rand(1,10),
             'ruangan_id'=> rand(1,10),
-            'product_id'=> rand(1,10),
+            'product_id'=> rand(1,4),
             // $table->string('jumlah_order');
             // $table->foreignId('user_id')->constrained()
             // ->onUpdate('cascade')

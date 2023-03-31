@@ -68,7 +68,7 @@
                                 <tbody>
                                     @foreach ($orders as $order)
                                         <tr>
-                                            <th scope="row"><a href="#">{{ $loop->iteration }}</a></th>
+                                            <th scope="row">{{ $loop->iteration }}</th>
                                             <td>{{ $order->user->nama }}</td>
                                         </tr>
                                     @endforeach
