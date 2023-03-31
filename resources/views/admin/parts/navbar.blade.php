@@ -8,10 +8,7 @@
               </a>
           </div>
           <!-- End Logo -->
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
+        
           <nav class="header-nav ms-auto ">
               <ul class="d-flex align-items-center">
                   <li class="nav-item dropdown">
@@ -105,6 +102,7 @@
                       <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                           <li class="dropdown-header">
                               {{ auth()->user()->nama }}
+                              <br></br>
                               <span>{{ auth()->user()->cekLevel }}</span>
                           </li>
                           <li>
