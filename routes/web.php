@@ -82,9 +82,11 @@ Route::middleware(['auth', 'user-level:admin'])->group(function () {
 // });
 Route::middleware(['auth', 'user-level:user'])->group(function () {
     Route::get('/dashboardUser', [DashboardController::class,'dashboardUser']);
-    Route::get('/order',[OrderController::class,'createorder']);
-
-
+    Route::get('/order',[OrderController::class,'createOrder'])->name('user.createOrder');
+    Route::post('/order',[OrderController::class,'storeOrder'])->name('user.storeOrder');
+    Route::get('/history',function(){
+        return Order::where('user_id',auth()->user()->id)->orderBy('updated_at','desc')->get();
+    });
 
 });
 // login

@@ -18,7 +18,8 @@ class RuanganController extends Controller
     {
         //
         return view('admin.pages.Ruangan.listRuangan', [
-            'ruangans' => Ruangan::all()
+            'ruangans' => Ruangan::all(),
+            'title' => 'ruangan'
         ]);
     }
 

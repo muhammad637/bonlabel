@@ -13,20 +13,33 @@
                 @foreach ($products as $product)
                     <!-- Product Card -->
                     <div class="col-xxl-6 col-md-6">
-                        <div class="card info-card sales-card shadow">
-                            <div class="card-body">
-                                <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}</h5>
-                                <h5 class="fs-6 color-primary font-poppins fw-semibold mb-n3">{{ $product->jenis_product }}
-                                </h5>
-                                <div class="row ">
-                                    <div class="col-md-6 col-12"></div>
-                                    <div class="col-md-6 col-12">
-                                        <h5 class="color-primary font-poppins">stock</h5>
-                                        <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div>
+                        <div data-aos="zoom-in-left">
+                            <div class="card info-card sales-card shadow">
+                                <div class="card-body">
+                                    <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}
+                                    </h5>
+                                    <h5 class="fs-6 color-primary font-poppins fw-semibold mb-n3">
+                                        {{ $product->jenis_product }}
+                                    </h5>
+                                    <div class="row ">
+                                        <div class="col-md-6 col-12"></div>
+                                        <div class="col-md-6 col-12">
+                                            <h5 class="color-primary font-poppins">stock</h5>
+                                            {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
+                                            <span class="color-black size-number  font-poppins mb-n3 purecounter"
+                                                data-purecounter-start="0"
+                                                data-purecounter-end="{{ $product->jumlah_stock }}"
+                                                data-purecounter-duration="1"></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="">
-                                    <h5 class="color-primary font-poppins">limit order : {{$product->limit_order}}</h5>
+                                    <div class="">
+
+                                        <h5 class="color-primary font-poppins">limit order :
+                                            <span class="  font-poppins mb-n3 purecounter" data-purecounter-start="0"
+                                                data-purecounter-end="{{ $product->limit_order }}"
+                                                data-purecounter-duration="1"></span>
+                                        </h5>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -38,12 +51,16 @@
                     <div class="row text-center font-poppins">
                         @foreach ($aktif as $item)
                             <a href="{{ $item['route'] }}" class="col-md-4">
-                                <div class="card info-card sales-card shadow">
-                                    <div class="card-body">
-                                        <h5 class="card-title fw-bold text-dark fs-3">
-                                            {{ $item['title'] }}
-                                        </h5>
-                                        <span class="color-primary size-number fw-bold pureconunter" data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" ></span>
+                                <div data-aos="zoom-out-up">
+                                    <div class="card info-card sales-card shadow">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold text-dark fs-3">
+                                                {{ $item['title'] }}
+                                            </h5>
+                                            <span class="color-primary size-number fw-bold purecounter"
+                                                data-purecounter-start="0" data-purecounter-end="{{ $item['jumlah'] }}"
+                                                data-purecounter-duration="1"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </a>

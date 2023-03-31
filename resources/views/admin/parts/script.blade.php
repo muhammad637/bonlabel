@@ -17,11 +17,8 @@
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <!-- Template Main JS File -->
 
-@if (Request::is('login'))
 <script src="../../assets/js/landingPage.js"></script>
-@else
 <script src="../../assets/js/main.js"></script>    
-@endif
 
 <!-- Template Main JS File -->
 <script>

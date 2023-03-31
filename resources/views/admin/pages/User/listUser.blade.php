@@ -51,26 +51,27 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="/master/user/{{ $user->id }}/edit " class="mb-2">
-                                    <div class=" btn btn-info"><i class="bi bi-pencil-square"></i></div>
-                                </a>
-                                @if ($user->status == 'aktif')
-                                    <form action="/master/user/{{ $user->id }}/nonaktif" method="post"
-                                        class="inline-block">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger inline-block"><i
-                                                class="bi bi-x-circle"></i></button>
-                                    </form>
-                                @else
-                                    <form action="/master/user/{{ $user->id }}/aktif" method="post">
-                                        @method('put')
-                                        @csrf
-                                        <button type="submit" class="btn btn-success"><i
-                                                class="bi bi-check2-circle"></i></button>
-                                    </form>
-                                @endif
-
+                                <div class="d-flex gap-2">
+                                    <a href="/master/user/{{ $user->id }}/edit " class="mb-2">
+                                        <div class=" btn btn-info"><i class="bi bi-pencil-square"></i></div>
+                                    </a>
+                                    @if ($user->status == 'aktif')
+                                        <form action="/master/user/{{ $user->id }}/nonaktif" method="post"
+                                            class="inline-block">
+                                            @method('put')
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger inline-block"><i
+                                                    class="bi bi-x-circle"></i></button>
+                                        </form>
+                                    @else
+                                        <form action="/master/user/{{ $user->id }}/aktif" method="post">
+                                            @method('put')
+                                            @csrf
+                                            <button type="submit" class="btn btn-success"><i
+                                                    class="bi bi-check2-circle"></i></button>
+                                        </form>
+                                    @endif
+                                </div>
                         </tr>
                     @endif
                 @endforeach

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Contracts\Support\ValidatedData;
+use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Contracts\Support\ValidatedData;
 
 class OrderController extends Controller
 {
@@ -31,13 +32,33 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    //  user
     public function createorder()
     {
-        return view('user.page.order', [
-            $producs = Product::all(),
+        // return  Ruangan::where('user_id',auth()->user()->id)->get();
+        return view('user.page.order',[
+            'products' => Product::all(),
+            'ruangans' => Ruangan::where('user_id',auth()->user()->id)->get()
         ]);
     }
-
+    public function storeOrder(Request $request)
+    {
+        $validatedData = $request->validate([
+            'user_id' => '',
+            'product_id' => '',
+            'jumlah_order' => '',
+            'ruangan_id' => ''
+        ]);
+        $produk = Product::where('id',$validatedData['product_id'])->first();
+        $validatedData['user_id'] = auth()->user()->id;
+        if ($validatedData['jumlah_order'] > $produk->limit_order) {
+            # code...
+            return "jumlah order melebihi limit";
+        }
+        Order::create($validatedData);
+        return redirect()->back();
+    }
     /**
      * Store a newly created resource in storage.
      *

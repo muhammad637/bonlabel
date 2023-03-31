@@ -36,6 +36,7 @@ class UserController extends Controller
         $ruangan = Ruangan::all();
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
+            'title' => 'create - user'
         ]));
     }
 
@@ -102,6 +103,7 @@ class UserController extends Controller
         return response(view('admin.pages.User.editUser', [
             'ruangans' => Ruangan::all(),
             'user' => $user,
+            'title' => 'edit - user'
         ]));
     }
 

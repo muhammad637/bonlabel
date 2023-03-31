@@ -18,7 +18,7 @@ class DashboardController extends Controller
         $productAktif = Product::where('status', 'aktif')->count();
         $products = Product::all();
         $ruanganAktif = Ruangan::where('status', 'aktif')->count();
-        $ordersTerakhir=Order::orderBy('updated_at','desc')->limit(5)->get();
+        $ordersTerakhir = Order::orderBy('updated_at', 'desc')->limit(5)->get();
         $aktif = [
             [
                 'title' => 'User Aktif',
@@ -46,11 +46,13 @@ class DashboardController extends Controller
 
         ]);
     }
-    public function dashboardUser(){
+    public function dashboardUser()
+    {
         $userAktif = User::where('status', 'aktif')->count();
-        $productAktif = Product::where('status','aktif')->count();
+        $productAktif = Product::where('status', 'aktif')->count();
         $products = Product::all();
-        $ruanganAkif = Ruangan::where('status','aktif')->count();
-        return view('user.page.dashboard',compact('userAktif','productAktif','products','ruanganAkif',));
+        $ruanganAkif = Ruangan::where('status', 'aktif')->count();
+
+        return view('user.page.dashboard', compact('userAktif', 'productAktif', 'products', 'ruanganAkif', ['title' => 'dashboard']));
     }
 }
