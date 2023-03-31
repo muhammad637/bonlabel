@@ -43,7 +43,7 @@
                                         <h5 class="card-title fw-bold text-dark fs-3">
                                             {{ $item['title'] }}
                                         </h5>
-                                        <h1 class="color-primary size-number fw-bold">{{ $item['jumlah'] }}</h1>
+                                        <span class="color-primary size-number fw-bold pureconunter" data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" ></span>
                                     </div>
                                 </div>
                             </a>
