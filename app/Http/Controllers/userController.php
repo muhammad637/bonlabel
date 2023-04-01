@@ -35,7 +35,6 @@ class UserController extends Controller
         $ruangan = Ruangan::all();
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
-            'title' => 'create - user'
         ]));
     }
 
@@ -197,19 +196,6 @@ class UserController extends Controller
         } catch (\Exception $e) {
             //throw $th;
             return  $e->getMessage();
-        }
-    }
-
-
-    // resetPassword
-    public function resetPassword(Request $request)
-    {
-        try {
-            //code...
-            return $request->all();
-        } catch (\Throwable $th) {
-            //throw $th;
-            return $th->getMessage();
         }
     }
 }
