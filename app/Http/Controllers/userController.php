@@ -116,7 +116,6 @@ class UserController extends Controller
         return response(view('admin.pages.User.editUser', [
             'ruangans' => Ruangan::all(),
             'user' => $user,
-            'title' => 'edit - user'
         ]));
     }
 
@@ -129,7 +128,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-
+        
         $validatedData = $request->validate([
             'nama' => 'required',
             'username' => 'required |' . Rule::unique('users')->ignore($user->id),
