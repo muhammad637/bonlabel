@@ -109,7 +109,7 @@ class RuanganController extends Controller
             );
             $validatedData['status'] = 'aktif';
             $ruangan->update($validatedData);
-            return redirect('/ruangan');
+            return redirect('/master/ruangan');
         } catch (\Exception $e) {
             //throw $th;
             return $e->getMessage();
