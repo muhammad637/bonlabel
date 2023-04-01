@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         //
         return response(view('admin.pages.User.listUser', [
-            'users' => User::all(),
+            'users' => User::orderBy('created_at', 'desc')->get(),
             'title' => 'user'
         ]));
     }
@@ -87,7 +87,22 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        $phoneNumber = '185156327536';
+       return $this->phoneGenerate($phoneNumber);
+    }
+
+    private function phoneGenerate($phoneNumber){
+        
+        $a = $phoneNumber;
+        $b = str_split($a);
+        $c = [];
+        if ($b[0] != '6') {
+            # code...
+            $b[0] = '62';
+            return implode('',$b);
+        }else{
+            return $a;
+        }
     }
 
     /**
@@ -116,17 +131,18 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+
         $validatedData = $request->validate([
             'nama' => 'required',
-            'username' => 'required |' .Rule::unique('users')->ignore($user->id),
+            'username' => 'required |' . Rule::unique('users')->ignore($user->id),
             'password' => '',
             'cekLevel' => 'required',
-            'no_telephone' => 'required',
+            'no_telephone' => 'required | min:8',
         ]);
-        if($validatedData['password']  == null ){
+           $validatedData['no_telephone'] = $this->phoneGenerate($validatedData['no_telephone']);
+        if ($validatedData['password']  == null) {
             $validatedData['password'] = $user->password;
-        }else{
+        } else {
             $validatedData['password'] = Hash::make($validatedData['password']);
         }
         $update = $user->update($validatedData);
@@ -137,15 +153,15 @@ class UserController extends Controller
         // }
         // return $p;
         foreach ($user->ruangan as $item) {
-            Ruangan::where('id',$item->id)->update(['user_id' => null]);
+            Ruangan::where('id', $item->id)->update(['user_id' => null]);
         }
-        if($request->ruangan !== null){
+        if ($request->ruangan !== null) {
             foreach ($request->ruangan as $index => $id) {
                 Ruangan::where('id', $id)->update(['user_id' => $user->id]);
                 // return Ruangan::where('id', $val)->get();
             }
         }
-        return response(redirect('/user'));
+        return redirect(route('user.index'));
     }
 
     /**
@@ -182,6 +198,19 @@ class UserController extends Controller
         } catch (\Exception $e) {
             //throw $th;
             return  $e->getMessage();
+        }
+    }
+
+
+    // resetPassword
+    public function resetPassword(Request $request)
+    {
+        try {
+            //code...
+            return $request->all();
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th->getMessage();
         }
     }
 }

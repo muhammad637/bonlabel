@@ -53,6 +53,8 @@ class DashboardController extends Controller
         $products = Product::all();
         $ruanganAkif = Ruangan::where('status', 'aktif')->count();
 
-        return view('user.page.dashboard', compact('userAktif', 'productAktif', 'products', 'ruanganAkif', ['title' => 'dashboard']));
+        return view('user.page.dashboard', [
+            'title'=>'dashboard'
+        ],compact('userAktif', 'productAktif', 'products', 'ruanganAkif'));
     }
 }

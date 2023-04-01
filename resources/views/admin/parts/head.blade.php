@@ -36,7 +36,13 @@
         <title>login | landing page</title>
     @else
         <link href="../../../../../assets/css/style.css" rel="stylesheet">
-        <title>{{auth()->user()->cekLevel == "admin" ? "admin | ". $title : "login | ". $title }}</title>
+        <title>
+            title
+            {{-- @if (auth()->user())
+                
+            @endif
+            {{auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title : (auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title  : 'errors')}} --}}
+        </title>
     @endif
 
     <!-- =======================================================
@@ -47,6 +53,9 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
     <style>
+        /* body{
+            background: black;
+        } */
         .tolak:checked~label .badge {
             transform: scale(1.2);
             /* border-radius: 50%; */
