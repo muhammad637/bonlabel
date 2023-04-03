@@ -94,6 +94,12 @@ Route::middleware('auth')->group(function () {
             return Order::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         });
     });
+
+    //Tes Pusher
+    Route::get('tesnotif', [DashboardController::class, 'tesnotifikasi']);
+
+
+
 });
 // login
 // Route::get('/login', function () {

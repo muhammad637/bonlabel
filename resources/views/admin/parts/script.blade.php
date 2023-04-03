@@ -26,3 +26,20 @@
         $('#example').DataTable();
     });
 </script>
+
+<!-- Pusher -->
+<script>
+
+    // Enable pusher logging - don't inclu
+    de this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('fdbd1095ce6a70dab902', {
+      cluster: 'ap1'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>

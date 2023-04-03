@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NotificationContent;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
@@ -56,5 +57,9 @@ class DashboardController extends Controller
         return view('user.page.dashboard', [
             'title'=>'dashboard'
         ],compact('userAktif', 'productAktif', 'products', 'ruanganAkif'));
+    }
+
+    public function tesnotifikasi(){
+        event(new NotificationContent('testing pusher'));
     }
 }

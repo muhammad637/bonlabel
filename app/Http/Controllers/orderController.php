@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Ruangan;
+use App\Notifications\NewItem;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Support\ValidatedData;
@@ -139,6 +141,15 @@ class OrderController extends Controller
     {
         //
     }
+
+    // // public function created(Order $order)
+    // // {
+    // //     $author = $order->user;
+    // //     $users = User::all();
+    // //     foreach ($users as $user) {
+    // //         $user->notify(new NewItem($order,$author));
+    // //     }
+    // }
 
     //user
     // public function indexuser()
