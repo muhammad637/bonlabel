@@ -142,14 +142,14 @@ class OrderController extends Controller
         //
     }
 
-    // // public function created(Order $order)
-    // // {
-    // //     $author = $order->user;
-    // //     $users = User::all();
-    // //     foreach ($users as $user) {
-    // //         $user->notify(new NewItem($order,$author));
-    // //     }
-    // }
+     public function created(Order $order)
+     {
+         $author = $order->user;
+         $users = User::all();
+         foreach ($users as $user) {
+             $user->notify(new NewItem($order,$author));
+         }
+    }
 
     //user
     // public function indexuser()

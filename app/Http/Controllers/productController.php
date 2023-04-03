@@ -58,7 +58,7 @@ class ProductController extends Controller
                 ]
             );
             Product::create($validatedData);
-            return response(redirect('/master/product'));
+            return response(redirect('/product'));
         } catch (\Exception $e) {
             return response($e->getMessage());
         }
@@ -141,7 +141,7 @@ class ProductController extends Controller
         try {
             //code...
             $status_product = 'nonaktif';
-            Product::where('id', $product->id)->update(['status' => $status_product]);
+            Product::where('id', $product->id)->update(['status_product' => $status_product]);
             return redirect()->back();
         } catch (\Exception $e) {
             //throw $th;
@@ -153,7 +153,7 @@ class ProductController extends Controller
         try {
             //code...
             $status_product = 'aktif';
-            Product::where('id', $product->id)->update(['status' => $status_product]);
+            Product::where('id', $product->id)->update(['status_product' => $status_product]);
             return  redirect()->back();
         } catch (\Exception $e) {
             //throw $th;
