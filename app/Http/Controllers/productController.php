@@ -118,7 +118,7 @@ class ProductController extends Controller
                 ]
             );
             Product::where('id', $product->id)->update($validatedData);
-            return response(redirect('/product'));
+            return redirect()->back();
         } catch (\Exception $e) {
             //throw $th;
             return response($e->getMessage());

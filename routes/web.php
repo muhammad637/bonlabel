@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\OrderController;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuanganController;
-use App\Models\Order;
+use Rap2hpoutre\FastExcel\Facades\FastExcel;
+use App\Http\Controllers\DashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -28,16 +29,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
 
-// Route::get('/user-profil', function(){
-//     return view(('user.page.user-profil'));
-// });
-// Route::get('/history', function(){
-//     return view(('user.page.history'));
-// });
-
-// Route::get('/user-profil', function() {
-//     return view('user.page.user-profil');
-// });
+Route::get('/coba',[LaporanController::class, 'index']
+);
 Route::get('/login', function () {
     return view('login');
 })->name('login')->middleware('guest');
