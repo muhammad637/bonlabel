@@ -58,7 +58,7 @@ class ProductController extends Controller
                 ]
             );
             Product::create($validatedData);
-            return response(redirect('/master/product'));
+            return response(redirect('/product'));
         } catch (\Exception $e) {
             return response($e->getMessage());
         }
