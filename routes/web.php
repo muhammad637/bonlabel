@@ -68,9 +68,11 @@ Route::middleware('auth')->group(function () {
 
         // order
         Route::resource('/orderan', OrderController::class);
-
+        
         // laporan
         Route::get('/laporan', [LaporanController::class, 'index']);
+        Route::get('/eksportLaporan',[LaporanController::class,'exportLaporan']);
+        Route::post('/bulananExcel',[LaporanController::class,'bulananExcel']);
     });
 
     // USER

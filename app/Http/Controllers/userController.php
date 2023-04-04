@@ -20,7 +20,7 @@ class UserController extends Controller
     {
         //
         return response(view('admin.pages.User.listUser', [
-            'users' => User::all(),
+            'users' => User::orderBy('created_at','desc')->get(),
         ]));
     }
 
@@ -69,7 +69,7 @@ class UserController extends Controller
                 # code...
                 Ruangan::where('id', $val)->update(['user_id' => $user->id]);
             }
-            return response(redirect('/user'));    //code...
+            return redirect('/master/user');    //code...
         } catch (\Throwable $th) {
             //throw $th;
             return $th->getMessage();

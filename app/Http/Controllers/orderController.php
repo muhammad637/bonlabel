@@ -8,6 +8,8 @@ use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Contracts\Support\ValidatedData;
+use App\Exports\OrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -21,7 +23,7 @@ class OrderController extends Controller
         //
 
         return view('admin.pages.Order.listOrder', [
-            'orders' => Order::where('status', null)->orderBy('created_at', 'asc')->get(),
+            'orders' => Order::where('status', null)->orderBy('updated_at', 'desc')->get(),
             'products' => Product::all(),
             'title' => 'Orderan'
         ]);
@@ -139,6 +141,7 @@ class OrderController extends Controller
     {
         //
     }
+
 
     //user
     // public function indexuser()
