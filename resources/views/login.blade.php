@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('admin.parts.head')
+@include('parts.head')
 
 <body>
 
@@ -119,7 +119,7 @@
             class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div> --}}
 
-    @include('admin.parts.script')
+    @include('parts.script')
 
     <!-- Template Main JS File -->
     <script src="assets/js/landingPage.js"></script>
