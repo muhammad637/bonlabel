@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CekRouteController;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Ruangan;
@@ -29,23 +30,17 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 
 
-Route::get('/coba',[LaporanController::class, 'index']
-);
-Route::get('/login', function () {
-    return view('login');
-})->name('login')->middleware('guest');
-Route::get('/', function () {
-    return redirect('/login');
-});
+Route::get('/', [CekRouteController::class, 'master']);
 Route::post('/login', [LoginController::class, 'authenticate']);
-
-Route::get('home',function(){
-        return "forbidden";
-});
+Route::get('/login', [LoginController::class, 'login'])->middleware('guest');
+Route::get('home',[CekRouteController::class,'home']);
+Route::get('cek',[CekRouteController::class, 'cekLevel']);
 
 // ADMIN
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
+
+    // admin
     Route::middleware('user-level:admin')->group(function () {
         Route::get('/dashboardAdmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboard.admin');
 
@@ -75,7 +70,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/bulananExcel',[LaporanController::class,'bulananExcel']);
     });
 
-  
+    // user
     Route::middleware('user-level:user')->group(function () {
         Route::get('/dashboardUser', [DashboardController::class, 'dashboardUser']);
         Route::get('/order', [OrderController::class, 'createOrder'])->name('user.createOrder');
