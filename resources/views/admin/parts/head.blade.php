@@ -28,7 +28,7 @@
 
     <!-- Vendor CSS Files -->
     <link href="../../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    {{-- <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet"> --}}
 
     <!-- Template Main CSS File -->
     @if (Request::is('login'))
@@ -37,11 +37,12 @@
     @else
         <link href="../../../../../assets/css/style.css" rel="stylesheet">
         <title>
-            title
-            {{-- @if (auth()->user())
-                
+            @if (auth()->user()->cekLevel == 'admin')
+                admin | {{ $title }}
+            @elseif(auth()->user()->cekLevel == 'user')
+                user | {{$title}}
             @endif
-            {{auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title : (auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title  : 'errors')}} --}}
+            {{-- {{ auth()->user()->cekLevel == 'admin' && $title ? 'admin | ' . $title : (auth()->user()->cekLevel == 'admin' && $title ? 'admin | ' . $title : 'errors') }} --}}
         </title>
     @endif
 

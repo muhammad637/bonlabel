@@ -2,7 +2,6 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Inner Page - Techie Bootstrap Template</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -11,7 +10,7 @@
     <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <!-- Google Fonts -->
@@ -29,13 +28,21 @@
 
     <!-- Vendor CSS Files -->
     <link href="../../../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    {{-- <link href="../../../assets/vendor/simple-datatables/style.css" rel="stylesheet"> --}}
 
     <!-- Template Main CSS File -->
     @if (Request::is('login'))
         <link href="../../../assets/css/landingPage.css" rel="stylesheet">
+        <title>login | landing page</title>
     @else
         <link href="../../../../../assets/css/style.css" rel="stylesheet">
+        <title>
+            title
+            {{-- @if (auth()->user())
+                
+            @endif
+            {{auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title : (auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title  : 'errors')}} --}}
+        </title>
     @endif
 
     <!-- =======================================================
@@ -46,6 +53,9 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
     <style>
+        /* body{
+            background: black;
+        } */
         .tolak:checked~label .badge {
             transform: scale(1.2);
             /* border-radius: 50%; */
@@ -81,6 +91,9 @@
         }
 
         /* negatif margin */
+        /* .pe-n5 {
+            padding-left: -1rem !important;
+        } */
         .mt-n1 {
             margin-top: -0.25rem !important;
         }

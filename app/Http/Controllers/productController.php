@@ -22,7 +22,8 @@ class ProductController extends Controller
 
         return response(
             view('admin.pages.Product.listProduct', [
-                'datas' => Product::all()
+                'datas' => Product::all(),
+                'title' => 'produk'
             ])
         );
     }
