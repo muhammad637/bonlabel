@@ -1971,8 +1971,6 @@
         },
         {
             "name": "maennchen/zipstream-php",
-<<<<<<< HEAD
-<<<<<<< HEAD
             "version": "v2.4.0",
             "source": {
                 "type": "git",
@@ -1989,12 +1987,8 @@
                 "ext-mbstring": "*",
                 "myclabs/php-enum": "^1.5",
                 "php": "^8.0",
-                "psr/http-message": "^1.0"
-=======
+                "psr/http-message": "^1.0",
             "version": "2.2.6",
-=======
-            "version": "v2.4.0",
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
             "source": {
                 "type": "git",
                 "url": "https://github.com/maennchen/ZipStream-PHP.git",
@@ -2009,15 +2003,9 @@
             "require": {
                 "ext-mbstring": "*",
                 "myclabs/php-enum": "^1.5",
-<<<<<<< HEAD
                 "php": "^7.4 || ^8.0",
                 "psr/http-message": "^1.0",
                 "symfony/polyfill-mbstring": "^1.0"
->>>>>>> cce6bfce1e845692748e51ba63d1b4a6315c8727
-=======
-                "php": "^8.0",
-                "psr/http-message": "^1.0"
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
             },
             "require-dev": {
                 "ext-zip": "*",
@@ -2026,15 +2014,8 @@
                 "mikey179/vfsstream": "^1.6",
                 "php-coveralls/php-coveralls": "^2.4",
                 "phpunit/phpunit": "^8.5.8 || ^9.4.2",
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "vimeo/psalm": "^5.0"
-=======
-                "vimeo/psalm": "^4.1"
->>>>>>> cce6bfce1e845692748e51ba63d1b4a6315c8727
-=======
-                "vimeo/psalm": "^5.0"
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
+
             },
             "type": "library",
             "autoload": {
@@ -2071,15 +2052,8 @@
             ],
             "support": {
                 "issues": "https://github.com/maennchen/ZipStream-PHP/issues",
-<<<<<<< HEAD
-<<<<<<< HEAD
                 "source": "https://github.com/maennchen/ZipStream-PHP/tree/v2.4.0"
-=======
-                "source": "https://github.com/maennchen/ZipStream-PHP/tree/2.2.6"
->>>>>>> cce6bfce1e845692748e51ba63d1b4a6315c8727
-=======
-                "source": "https://github.com/maennchen/ZipStream-PHP/tree/v2.4.0"
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
+
             },
             "funding": [
                 {
@@ -2091,15 +2065,7 @@
                     "type": "open_collective"
                 }
             ],
-<<<<<<< HEAD
-<<<<<<< HEAD
             "time": "2022-12-08T12:29:14+00:00"
-=======
-            "time": "2022-11-25T18:57:19+00:00"
->>>>>>> cce6bfce1e845692748e51ba63d1b4a6315c8727
-=======
-            "time": "2022-12-08T12:29:14+00:00"
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
         },
         {
             "name": "markbaker/complex",
@@ -3936,12 +3902,9 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0.2"
-=======
+                "php": ">=8.0.2",
             "version": "v5.4.21",
-=======
-            "version": "v6.2.7",
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
+
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3954,13 +3917,8 @@
                 "shasum": ""
             },
             "require": {
-<<<<<<< HEAD
                 "php": ">=7.2.5",
                 "symfony/polyfill-php80": "^1.16"
->>>>>>> cce6bfce1e845692748e51ba63d1b4a6315c8727
-=======
-                "php": ">=8.1"
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
             },
             "type": "library",
             "autoload": {
@@ -8768,8 +8726,6 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
             "name": "symfony/yaml",
             "version": "v6.0.19",
             "source": {
@@ -8785,7 +8741,6 @@
             },
             "require": {
                 "php": ">=8.0.2",
-=======
             "name": "symfony/yaml",
             "version": "v6.2.7",
             "source": {
@@ -8801,7 +8756,6 @@
             },
             "require": {
                 "php": ">=8.1",
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
@@ -8842,11 +8796,8 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-<<<<<<< HEAD
                 "source": "https://github.com/symfony/yaml/tree/v6.0.19"
-=======
-                "source": "https://github.com/symfony/yaml/tree/v6.2.7"
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
+
             },
             "funding": [
                 {
@@ -8862,17 +8813,10 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
             "time": "2023-01-11T11:50:03+00:00"
         },
         {
-=======
->>>>>>> cce6bfce1e845692748e51ba63d1b4a6315c8727
-=======
-            "time": "2023-02-16T09:57:23+00:00"
-        },
-        {
->>>>>>> c359d1487965571f6df0d77fc556555da8eb0a7b
+
             "name": "theseer/tokenizer",
             "version": "1.2.1",
             "source": {
