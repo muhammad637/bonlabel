@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Ruangan;
+
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -50,6 +51,7 @@ class DashboardController extends Controller
     {
         $products = Product::all();
         $orders = Order::where('user_id',auth()->user()->id)->latest()->get();
+        // Carbon::parse();
 
         return view('user.page.dashboard', [
             'title'=>'dashboard',

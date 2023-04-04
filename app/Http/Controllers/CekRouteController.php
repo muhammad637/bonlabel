@@ -8,7 +8,7 @@ class CekRouteController extends Controller
 {
     //
     public function master(){
-        return view('errors.403');
+        return redirect('/login');
     }
     public function home(){
         return "home";
