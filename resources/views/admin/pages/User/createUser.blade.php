@@ -51,7 +51,7 @@
                     <p class="form-label">Pilih Ruangan</p>
                     <div class="row mb-3 ms-1">
                         @foreach ($ruangans as $ruangan)
-                            @if ($ruangan->user_id == null)
+                            @if ($ruangan->user_id == null &&  $ruangan->status == 'aktif')
                                 <div class="form-check col-lg-6">
                                     <input type="checkbox" name="ruangan[]" class="form-check-input"
                                         id="{{ $ruangan->nama_ruangan }}" value="{{ $ruangan->id }}">
