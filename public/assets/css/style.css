@@ -731,7 +731,7 @@ h6 {
 #footer {
     color: #fff;
     font-size: 14px;
-    background: rgb(3, 41, 90);        ),
+    background: #0275d8;
         url("../img/hero-bg.jpg") center center no-repeat;
     background-size: cover;
 }

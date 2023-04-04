@@ -33,7 +33,7 @@
           </li>
           <li>
             <a href="{{route('product.index')}}">
-              <i class="bi bi-tag"></i><span>Product</span>
+              <i class="bi bi-tag"></i><span>Produk</span>
             </a>
           </li>
           <li>

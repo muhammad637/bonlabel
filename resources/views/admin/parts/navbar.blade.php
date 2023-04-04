@@ -1,5 +1,4 @@
   <!-- ======= Header ======= -->
-
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
         <a href="#"  class="logo d-flex align-items-center text-decoration-none">
@@ -17,7 +16,7 @@
                     <span class="badge bg-primary badge-number">4</span>
                 </a><!-- End Notification Icon -->
 
-                <ul class="dropdown-menu dropdown-menu dropdown-menu-arrow notifications">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                     <li class="dropdown-header">
                         You have 4 new notifications
                         <a href="#" class="text-decoration-none"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
