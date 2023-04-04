@@ -1,80 +1,53 @@
 @extends('user.index')
 @section('pagetitle')
-<li class="breadcrumb-item active fs-6">History</li>
+    <li class="breadcrumb-item active fs-6">Laporan</li>
 @endsection
+
 @section('container')
-
-<section class="section">
-  <div class="row">
-    <div class="col-lg-12">
-
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">History</h5>
-          <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
-
-          <!-- Table with stripped rows -->
-          <table class="table datatable">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Position</th>
-                <th scope="col">Age</th>
-                <th scope="col">Start Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Brandon Jacob</td>
-                <td>Designer</td>
-                <td>28</td>
-                <td>2016-05-25</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Bridie Kessler</td>
-                <td>Developer</td>
-                <td>35</td>
-                <td>2014-12-05</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Ashleigh Langosh</td>
-                <td>Finance</td>
-                <td>45</td>
-                <td>2011-08-12</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>Angus Grady</td>
-                <td>HR</td>
-                <td>34</td>
-                <td>2012-06-11</td>
-              </tr>
-              <tr>
-                <th scope="row">5</th>
-                <td>Raheem Lehner</td>
-                <td>Dynamic Division Officer</td>
-                <td>47</td>
-                <td>2011-04-19</td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- End Table with stripped rows -->
+    <!-- End Page Title -->
+    <div class="font-poppins" style="width: 98%">
+        <div class="d-flex mb-3 justify-content-between align-items-end">
+            <div class="fs-2 color-black">
+                List Laporan
+            </div>
+           
 
         </div>
-      </div>
-
+        <div class="table-responsive">
+            <table id="example" class="table table-striped border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nama User</th>
+                        <th>Nama Produk</th>
+                        <th>Nama Ruangan</th>
+                        <th>jumlah_order</th>
+                        <th>No Telp Ruangan</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $order->user->nama }}</td>
+                            <td>{{ $order->product->nama_product }}</td>
+                            <td>{{ $order->ruangan->nama_ruangan }}</td>
+                            <td>{{ $order->jumlah_order }}</td>
+                            <td>{{ $order->ruangan->no_telephone }}</td>
+                            <td>
+                                @if ($order->status == 'terima')
+                                    <div class="badge bg-success">{{ $order->status }}</div>
+                                @elseif($order->status == 'tolak')
+                                    <div class="badge bg-danger">{{ $order->status }}</div>
+                                @else
+                                    <div class="badge bg-warning">Pending</div>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-</section>
-
-</main><!-- End #main -->
-
-  <!-- Right side columns -->
-
-</div>
-</section>
 @endsection

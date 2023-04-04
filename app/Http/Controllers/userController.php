@@ -21,6 +21,7 @@ class UserController extends Controller
         //
         return response(view('admin.pages.User.listUser', [
             'users' => User::orderBy('created_at','desc')->get(),
+            'title' => 'user'
         ]));
     }
 
@@ -35,6 +36,7 @@ class UserController extends Controller
         $ruangan = Ruangan::all();
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
+            'title' => 'Create User'
         ]));
     }
 
@@ -101,6 +103,7 @@ class UserController extends Controller
         return response(view('admin.pages.User.editUser', [
             'ruangans' => Ruangan::all(),
             'user' => $user,
+            'title' => 'Edit User'
         ]));
     }
 

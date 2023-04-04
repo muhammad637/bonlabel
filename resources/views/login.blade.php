@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('admin.parts.head')
+@include('parts.head')
 
 <body>
 
@@ -53,7 +53,7 @@
                         <form action="/login" method="post" class="mt-5">
                             @csrf
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                <label for="exampleInputEmail1" class="form-label">Username</label>
                                 <input type="text" class="form-control" id="exampleInputEmail1"
                                     aria-describedby="emailHelp" name="username">
                             </div>
@@ -119,7 +119,7 @@
             class="bi bi-arrow-up-short"></i></a>
     <div id="preloader"></div> --}}
 
-    @include('admin.parts.script')
+    @include('parts.script')
 
     <!-- Template Main JS File -->
     <script src="assets/js/landingPage.js"></script>

@@ -3,10 +3,10 @@
     <html lang="en">
 
     {{-- tag head --}}
-    @include('admin.parts.head')
+    @include('parts.head')
 
     <body>
-        @include('admin.parts.navbar')
+        @include('parts.navbar')
         @include('admin.parts.sidebar')
         <main id="main" class="main">
             <div class="pagetitle">
@@ -23,15 +23,16 @@
         <footer id="footer" class="mt-5">
 
             <div class="footer-top">
-              <div class="container">
-                <div class="row">
+              <div class="px-5">
+                <div class="d-lg-flex justify-content-between"  style="margin-bottom: 0;">
         
                   <div class="col-lg-3 col-md-6 footer-contact">
                     <h3>SIBONLABEL</h3>
                     <p><strong>Alamat: </strong>
+                      Jl. Letkol Istiqlah No.49, Singonegaran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 6841
                        <br><br>
-                      <strong>Phone:</strong> (0333) 636780<br>
-                      <strong>Email:</strong> poliwangi.ac.id<br>
+                      <br>
+                      <br>
                     </p>
                   </div>
         
@@ -44,21 +45,12 @@
                     </ul>
                   </div>
         
-                  <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Our Services</h4>
+                  <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Contact Us</h4>
                     <ul>
-                      <li><i></i> <a>Web Design</a></li>
-                      <li><i></i> <a>Web Development</a></li>
-                      <li><i></i> <a>Graphic Design</a></li>
+                      <li><i class="bx"></i> <a href="#"><strong>Phone:</strong> (0333) 636780</a></li>
+                      <li><i class="bx"></i> <a href="#"><strong>Email:</strong> poliwangi.ac.id</a></li>
                     </ul>
-                  </div>
-        
-                  <div class="col-lg-4 col-md-6 footer-newsletter">
-                    <h4>Join Our Newsletter</h4>
-                    <p>Berlangganan Email</p>
-                    <form action="" method="post">
-                      <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
                   </div>
         
                 </div>
@@ -96,7 +88,7 @@
 
 
         {{--  tag script --}}
-        @include('admin.parts.script')
+        @include('parts.script')
 
     </body>
 
