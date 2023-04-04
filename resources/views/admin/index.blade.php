@@ -3,10 +3,10 @@
     <html lang="en">
 
     {{-- tag head --}}
-    @include('admin.parts.head')
+    @include('parts.head')
 
     <body>
-        @include('admin.parts.navbar')
+        @include('parts.navbar')
         @include('admin.parts.sidebar')
         <main id="main" class="main">
             <div class="pagetitle">
@@ -103,7 +103,7 @@
 
 
         {{--  tag script --}}
-        @include('admin.parts.script')
+        @include('parts.script')
 
     </body>
 
