@@ -42,7 +42,6 @@
             @elseif(auth()->user()->cekLevel == 'user')
                 user | {{ $title }}
             @endif
-            
         </title>
     @endif
 
