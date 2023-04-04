@@ -37,11 +37,12 @@
     @else
         <link href="../../../../../assets/css/style.css" rel="stylesheet">
         <title>
-            title
-            {{-- @if (auth()->user())
-                
+            @if (auth()->user()->cekLevel == 'admin')
+                admin | {{ $title }}
+            @elseif(auth()->user()->cekLevel == 'user')
+                user | {{ $title }}
             @endif
-            {{auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title : (auth()->user()->cekLevel == "admin" && $title ? "admin | ". $title  : 'errors')}} --}}
+            
         </title>
     @endif
 

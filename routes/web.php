@@ -83,7 +83,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/history', function () {
             $orders = Order::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
             return view('user.page.history',[
-                'orders' => $orders
+                'orders' => $orders,
+                'title' => 'history'
             ]);
         });
     });

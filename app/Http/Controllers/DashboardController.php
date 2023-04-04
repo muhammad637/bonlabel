@@ -55,7 +55,6 @@ class DashboardController extends Controller
             'title'=>'dashboard',
             'products' => $products,
             'orders' => $orders
-
         ]);
     }
 }

@@ -41,6 +41,7 @@ class OrderController extends Controller
         // return  Ruangan::where('user_id',auth()->user()->id)->get();
         return view('user.page.order',[
             'products' => Product::all(),
+            'title' => 'createOrder',
             'ruangans' => Ruangan::where('user_id',auth()->user()->id)->get()
         ]);
     }
