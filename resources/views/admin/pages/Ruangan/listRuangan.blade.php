@@ -5,7 +5,7 @@
 @endsection
 @section('container')
     <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#tambahRuangan"><i
-            class="bi bi-plus fs-5"></i> Tambah Ruangan </button>
+            class="bi bi-plus fs-5"></i> Tambah</button>
     <!-- Modal Tambah -->
     <div class="modal fade" id="tambahRuangan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

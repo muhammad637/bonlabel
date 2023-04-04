@@ -30,7 +30,7 @@ class RuanganController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.Ruangan.createRuangan');
+        // return view('admin.pages.Ruangan.createRuangan');
     }
 
     /**
@@ -81,9 +81,9 @@ class RuanganController extends Controller
     public function edit(Ruangan $ruangan)
     {
         //
-        return view('admin.pages.Ruangan.editRuangan',[
-            'ruangan' => $ruangan,
-        ]);
+        // return view('admin.pages.Ruangan.editRuangan',[
+        //     'ruangan' => $ruangan,
+        // ]);
         
     }
 

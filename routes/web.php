@@ -75,25 +75,16 @@ Route::middleware('auth')->group(function () {
         Route::post('/bulananExcel',[LaporanController::class,'bulananExcel']);
     });
 
-    // USER
-    // Route::middleware(['auth', 'user-level:user'])->group(function () {
-    //     Route::get('/dashboardUser', function () {
-    //         return view('user.page.dashboard');
-    //     });
-    // });
+  
     Route::middleware('user-level:user')->group(function () {
         Route::get('/dashboardUser', [DashboardController::class, 'dashboardUser']);
         Route::get('/order', [OrderController::class, 'createOrder'])->name('user.createOrder');
         Route::post('/order', [OrderController::class, 'storeOrder'])->name('user.storeOrder');
         Route::get('/history', function () {
-            return Order::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+            $orders = Order::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+            return view('user.page.history',[
+                'orders' => $orders
+            ]);
         });
     });
 });
-// login
-// Route::get('/login', function () {
-//     return view('login');
-// })->name('login');
-// Route::post('/login', function (Request $request) {
-//     return $request->all();
-// });

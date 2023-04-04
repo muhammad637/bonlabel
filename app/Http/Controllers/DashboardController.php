@@ -48,13 +48,14 @@ class DashboardController extends Controller
     }
     public function dashboardUser()
     {
-        $userAktif = User::where('status', 'aktif')->count();
-        $productAktif = Product::where('status', 'aktif')->count();
         $products = Product::all();
-        $ruanganAkif = Ruangan::where('status', 'aktif')->count();
+        $orders = Order::where('user_id',auth()->user()->id)->latest()->get();
 
         return view('user.page.dashboard', [
-            'title'=>'dashboard'
-        ],compact('userAktif', 'productAktif', 'products', 'ruanganAkif'));
+            'title'=>'dashboard',
+            'products' => $products,
+            'orders' => $orders
+
+        ]);
     }
 }

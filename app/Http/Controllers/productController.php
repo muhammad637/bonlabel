@@ -22,7 +22,8 @@ class ProductController extends Controller
 
         return response(
             view('admin.pages.Product.listProduct', [
-                'datas' => Product::all()
+                'datas' => Product::all(),
+                'title' => 'produk'
             ])
         );
     }
@@ -35,7 +36,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return response(view('admin.pages.Product.createProduct'));
+        // return response(view('admin.pages.Product.createProduct'));
     }
 
     /**
@@ -84,14 +85,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return response(
-            view(
-                'admin.pages.Product.editProduct',
-                [
-                    'dataProduk' =>  $product,
-                ]
-            )
-        );
+        // return response(
+        //     view(
+        //         'admin.pages.Product.editProduct',
+        //         [
+        //             'dataProduk' =>  $product,
+        //         ]
+        //     )
+        // );
         //
     }
 

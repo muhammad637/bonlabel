@@ -21,6 +21,7 @@ class UserController extends Controller
         //
         return response(view('admin.pages.User.listUser', [
             'users' => User::orderBy('created_at','desc')->get(),
+            'title' => 'user'
         ]));
     }
 
