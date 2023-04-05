@@ -180,9 +180,9 @@ class UserController extends Controller
     public function nonaktif(User $user)
     {
             $notif = Notifikasi::notif('user','user '.$user->nama.' berhasil dinonaktifkan','nonaktif', 'berhasil');
-            Notifikasi::create($notif);
             $status = 'nonaktif';
             User::where('id', $user->id)->update(['status' => $status]);
+            Notifikasi::create($notif);
             return redirect()->back()->with('toast_success',$notif['msg']);
     }
     public function aktif(User $user)

@@ -17,7 +17,7 @@ class Notifikasi extends Model
 
     public static function notif($tb,$msg,$jn,$st) {
         return [
-            'nama_tabel' => $tb,
+            'nama_table' => $tb,
             'msg' => $msg,
             'user_id' => auth()->user()->id,
             'jenis_notifikasi' => $jn,

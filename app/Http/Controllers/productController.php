@@ -51,7 +51,7 @@ class ProductController extends Controller
     {
 
         //
-        $notif = Notifikasi::notif('product', 'data produk berhasil ditambahkan', 'tambah', 'berhasil');
+        $notif = Notifikasi::notif('produk', 'data produk berhasil ditambahkan', 'tambah', 'berhasil');
         $validatedData = Validator::make($request->validate(
             [
                 'limit_order' => 'min:1',
@@ -111,7 +111,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $notif = Notifikasi::notif('product', 'data produk berhasil diupdate', 'update', 'berhasil');
+        $notif = Notifikasi::notif('produk', 'data produk berhasil diupdate', 'update', 'berhasil');
 
         //code...
         $validatedData = Validator::make($request->validate(
@@ -145,10 +145,8 @@ class ProductController extends Controller
     }
     public function nonaktif(Product $product)
     {
-
-
         //code...
-        $notif = Notifikasi::notif('product', 'produk ' . $product->nama_product . ' berhasil dinonaktifkan', 'nonaktif', 'berhasil');
+        $notif = Notifikasi::notif('produk', 'produk ' . $product->nama_product . ' berhasil dinonaktifkan', 'nonaktif', 'berhasil');
         $status = 'nonaktif';
         Notifikasi::create($notif);
         Product::where('id', $product->id)->update(['status' => $status]);
@@ -156,7 +154,8 @@ class ProductController extends Controller
     }
     public function aktif(Product $product)
     {
-        $notif = Notifikasi::notif('product', 'produk ' . $product->nama_product . ' berhasil diaktifkan', 'aktif', 'berhasil');
+        $tb = 'produk';
+        $notif = Notifikasi::notif($tb, 'produk ' . $product->nama_product . ' berhasil diaktifkan', 'aktif', 'berhasil');
         $status = 'aktif';
         Notifikasi::create($notif);
         Product::where('id', $product->id)->update(['status' => $status]);

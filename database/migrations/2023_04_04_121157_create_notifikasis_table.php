@@ -15,7 +15,7 @@ class CreateNotifikasisTable extends Migration
     {
         Schema::create('notifikasis', function (Blueprint $table) {
             $table->id();
-            $table->enum('nama_table',['user','product','ruangan','order']);
+            $table->string('nama_table')->nullable();
             $table->foreignId('user_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade'); 

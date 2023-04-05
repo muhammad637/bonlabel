@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Ruangan;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Contracts\Support\ValidatedData;
 use App\Exports\OrdersExport;
+use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Support\ValidatedData;
 
 class OrderController extends Controller
 {
@@ -107,8 +109,8 @@ class OrderController extends Controller
     {
 
         // dd($order->order_id);
-        try {
             //code...
+            $notif = Notifikasi::notif('order', 'data order berhasil diupdate', 'update', 'berhasil');            
             $dataOrder = Order::where('id', $request->order_id)->first();
             $productOrder = Product::where('id', $request->product_id)->first();
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
@@ -120,16 +122,17 @@ class OrderController extends Controller
                 ]
             );
             if ($validatedData['jumlah_order'] > $productOrder->jumlah_stock) {
-                # code...
-                return "gagal karena melebihi kapasitas product $productOrder->nama_product = ". $productOrder->jumlah_stock;
+                # code..
+                $notif['msg'] =  "gagal karena melebihi kapasitas product";
+                $notif['status'] = 'gagal';
+                Notifikasi::create($notif);
+                $productOrder->jumlah_stock;
+                return redirect()->back()->with('toast_error',$notif['msg'])->with('toast_error','data gagal diupdate');
             }
             Order::where('id', $request->order_id)->update($validatedData);
             Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
-            return redirect()->back();
-        } catch (\Throwable $th) {
-            //throw $th;
-            return $th->getMessage();
-        }
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_success',$notif['msg']);
     }
 
     /**

@@ -24,7 +24,7 @@
                       <ul class="dropdown-menu dropdown-menu-arrow dropdown-menu-end notifications">
                           <li class="dropdown-header">
                               You have {{ $notifikasiCount }} notifications
-                              <a href="#" class="text-decoration-none">
+                              <a href="/notifikasi" class="text-decoration-none">
                                   <span class="badge rounded-pill bg-primary p-2 ms-2">View all
                                   </span>
                               </a>
