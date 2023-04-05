@@ -75,22 +75,39 @@
                             <h5 class="fs-2 fw-bold font-poppins mt-2">List Order terakhir user</h5>
                             <hr class="mb-n2">
 
-                            <table class="table table-stripe font-poppins ">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama User</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($orders as $order)
+                            @if (count($orders) < 1)
+                            <h1 class="fs-5 font-poppins text-secondary">orderan masih kosong</h1> 
+                            @else
+                                <table class="table table-stripe font-poppins ">
+                                    <thead>
                                         <tr>
-                                            <th scope="row">{{ $loop->iteration }}</th>
-                                            <td>{{ $order->user->nama }}</td>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama Ruangan</th>
+                                            <th scope="col">Nama Produk</th>
+                                            <th scope="col">jumlah order</th>
+                                            <th scope="col">status</th>
+                                            <th scope="col">tanggal order</th>
+                                            
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($orders as $order)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $order->ruangan->nama_ruangan }}</td>
+                                                <td>{{ $order->product->nama_product }}</td>
+                                                <td>{{ $order->jumlah_order }}</td>
+                                                <td>
+                                                <div class="badge {{ !$order->status ? 'bg-warning' : ($order->status == 'terima' ? 'bg-success' : 'bg-danger')  }}" >
+                                                    {{ $order->status ?? 'pending'  }}
+                                                </div>
+                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('Y-M-d') }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
 
                         </div>
 

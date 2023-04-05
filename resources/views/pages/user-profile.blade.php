@@ -1,6 +1,6 @@
-@extends('user.index')
+@extends('pages.index')
 @section('pagetitle')
-<li class="breadcrumb-item active fs-5">Dashboard</li>
+<li class="breadcrumb-item active fs-6">User-Profile</li>
 @endsection
 @section('container')
   
@@ -22,7 +22,9 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                <div class="rounded-circle">
+                    <i class="bi bi-person-circle" style="font-size: 100px;"></i>
+                  </div>
               <h2>{{ auth()->user()->nama }}</h2>
               <h3>{{ auth()->user()->cekLevel}}</h3>
               <div class="social-links mt-2">
@@ -64,79 +66,33 @@
               <div class="tab-content pt-2">
 
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                  <h5 class="card-title">Tentang Saya</h5>
-                  <p class="small fst-italic">Sunt est soluta temporibus accusantium neque nam maiores cumque
-                    temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem
-                    eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</p>
-
                   <h5 class="card-title">Detail Profil</h5>
-
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Name</div>
                     <div class="col-lg-9 col-md-8">{{ auth()->user()->nama }}</div>
                   </div>
-
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Tempat Bekerja</div>
-                    <div class="col-lg-9 col-md-8">RSUD Blambangan</div>
+                    <div class="col-lg-3 col-md-4 label">Status</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->status }}</div>
                   </div>
-
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Pekerjaan</div>
-                    <div class="col-lg-9 col-md-8">Dokter Mata</div>
+                    <div class="col-lg-3 col-md-4 label">Level</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->cekLevel }}</div>
                   </div>
-
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Negara</div>
-                    <div class="col-lg-9 col-md-8">INDONESIA</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Alamat</div>
-                    <div class="col-lg-9 col-md-8">Genteng, Banyuwangi</div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">No.Telp</div>
+                    <div class="col-lg-3 col-md-4 label">No Telephone</div>
                     <div class="col-lg-9 col-md-8">{{ auth()->user()->no_telephone }}</div>
                   </div>
-
-                  <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Email</div>
-                    <div class="col-lg-9 col-md-8">aantri@gmail.com</div>
-                  </div>
-
                 </div>
-
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
                   <form>
-                    <div class="row mb-3">
-                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Gambar Profil</label>
-                      <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
-                        <div class="pt-2">
-                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i
-                              class="bi bi-upload"></i></a>
-                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i
-                              class="bi bi-trash"></i></a>
-                        </div>
-                      </div>
-                    </div>
-
+                
                     <div class="row mb-3">
                       <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="fullName" type="text" class="form-control" id="fullName" value="{{ auth()->user()->nama }}">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="about" class="col-md-4 col-lg-3 col-form-label">Tentang Saya</label>
-                      <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="about"
-                          style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                       </div>
                     </div>
 
@@ -149,46 +105,15 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Pekerjaan</label>
+                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Level</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="{{ auth()->user()->cekLevel }}">
+                        <input name="job" type="text" class="form-control" id="Job" placeholder="{{ auth()->user()->cekLevel }}" readonly>
                       </div>
                     </div>
-
-                    <div class="row mb-3">
-                      <label for="Country" class="col-md-4 col-lg-3 col-form-label">Negara</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="INDONESIA">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Address" class="col-md-4 col-lg-3 col-form-label">Alamat</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="address" type="text" class="form-control" id="Address"
-                          value="Genteng, Banyuwangi">
-                      </div>
-                    </div>
-
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">No.Telp / WA</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="088xxxxxxxxxxx">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="aantri@gmail.com">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin"
-                          value="https://linkedin.com/#">
+                        <input name="phone" type="text" class="form-control" id="Phone" value="{{ auth()->user()->no_telephone }}">
                       </div>
                     </div>
 
