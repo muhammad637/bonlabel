@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('pages.index')
 @section('pagetitle')
     <li class="breadcrumb-item fs-6">master</li>
     <li class="breadcrumb-item fs-6"><a href="{{ route('user.index') }}" class="text-decoration-none">user</a></li>

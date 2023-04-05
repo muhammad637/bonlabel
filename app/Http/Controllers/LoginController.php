@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -26,10 +27,10 @@ class LoginController extends Controller
                 $request->session()->regenerate();
                 if (auth()->user()->cekLevel == "admin" && auth()->user()->status == 'aktif') {
                     # code...
-                    return redirect()->intended('/dashboardAdmin');
+                    return redirect('/dashboardAdmin')->with('success','selamat datang '.auth()->user()->nama);
                 } elseif(auth()->user()->cekLevel == "user" && auth()->user()->status == "aktif"){
                     # code...
-                    return redirect('/dashboardUser');
+                    return redirect('/dashboardUser')->with('success','selamat datang '.auth()->user()->nama);
                 }else{
                     return "maaf";
                 }
@@ -38,8 +39,7 @@ class LoginController extends Controller
             //throw $th;
             return $th->getMessage();
         }
-
-        return "salah";
+        return redirect('/login')->with('toast_error', 'user atau password anda salah');
     }
     public function logout(Request $request){
         Auth::logout();
