@@ -24,9 +24,9 @@
 
             <div class="footer-top">
               <div class="px-5">
-                <div class="d-lg-flex justify-content-between"  style="margin-bottom: 0;">
+                <div class="row"  style="margin-bottom: 0;">
         
-                  <div class="col-lg-3 col-md-6 footer-contact">
+                  <div class="ps-5 col-lg-8 col-md-6 footer-contact">
                     <h3>SIBONLABEL</h3>
                     <p><strong>Alamat: </strong>
                       Jl. Letkol Istiqlah No.49, Singonegaran, Kec. Banyuwangi, Kabupaten Banyuwangi, Jawa Timur 6841
@@ -48,8 +48,8 @@
                   <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Contact Us</h4>
                     <ul>
-                      <li><i class="bx"></i> <a href="#"><strong>Phone:</strong> (0333) 636780</a></li>
-                      <li><i class="bx"></i> <a href="#"><strong>Email:</strong> poliwangi.ac.id</a></li>
+                      <li><i class="bx"></i> <a href="#"><strong>Phone:<br></strong> (0333) 636780</a></li>
+                      <li><i class="bx"></i> <a href="#"><strong>Email:<br></strong> poliwangi.ac.id</a></li>
                     </ul>
                   </div>
         
