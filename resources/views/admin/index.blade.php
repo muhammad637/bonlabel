@@ -10,7 +10,7 @@
         @include('admin.parts.sidebar')
         <main id="main" class="main">
             <div class="pagetitle">
-                <h1 class="mb-2 fs-2 font-poppins">Welcome to {{auth()->user()->nama}}</h1>
+                <h1 class="mb-2 fs-2 font-poppins">Welcome {{auth()->user()->nama}}</h1>
                 <nav class="shadow-sm bg-body rounded pt-2 px-2 " style="width: 98%;">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item fs-6"><a href="/dashboardAdmin" class="text-decoration-none">Home</a></li>
@@ -76,6 +76,7 @@
                   <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                   <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                   <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                  <a href="#" class="globe"><i class="bx bx-globe"></i></a>
                   <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
                 </div>
               </div>
