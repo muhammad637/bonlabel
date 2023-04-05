@@ -40,9 +40,8 @@
             @if (auth()->user()->cekLevel == 'admin')
                 admin | {{ $title }}
             @elseif(auth()->user()->cekLevel == 'user')
-                user | {{$title}}
+                user | {{ $title }}
             @endif
-            {{-- {{ auth()->user()->cekLevel == 'admin' && $title ? 'admin | ' . $title : (auth()->user()->cekLevel == 'admin' && $title ? 'admin | ' . $title : 'errors') }} --}}
         </title>
     @endif
 

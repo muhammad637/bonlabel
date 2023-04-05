@@ -10,6 +10,10 @@ class LoginController extends Controller
 {
     //
 
+    public function login(){
+        return view('login');
+    }
+
     public function authenticate(Request $request){
         try {
             //code...
