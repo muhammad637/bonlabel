@@ -35,8 +35,10 @@ Lalu cari file php.ini seperti gambar di bawah dan buka
 ![ss2](https://user-images.githubusercontent.com/67191961/229971296-e4e4ab75-ca66-416c-8c86-ede53f46378a.JPG)
 
 
-muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd dan enter. lalu hilahkan tanda titik koma didepan extension=gd.
+muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd dan enter. lalu hilangkan tanda titik koma didepan extension=gd.
+
 ![ss3](https://user-images.githubusercontent.com/67191961/229971301-5bdf406f-74c1-40cb-a205-7d23c98529d6.JPG)
+
 6. jalankan di terminal
 ```bash
    composer update
