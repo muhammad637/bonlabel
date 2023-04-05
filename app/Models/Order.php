@@ -12,10 +12,7 @@ class Order extends Model
     protected $guarded = [
         'id',
     ];
-    
-    
-
-
+    protected $with = ['user','ruangan','product'];
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }

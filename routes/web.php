@@ -42,17 +42,24 @@ Route::get('cek',[CekRouteController::class, 'cekLevel']);
 
 // ADMIN
 Route::middleware('auth')->group(function () {
+
     Route::get('/logout', [LoginController::class, 'logout']);
-    Route::get('/profil',[CekRouteController::class, 'profil']);
+    
+    // notifikasi
     Route::get('/notifikasi', [NotifikasiController::class, 'index']);
     Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
     Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll']);
-    Route::post('/user/{user:id}', [UserController::class, 'updatev2']);
+    
 
+    // profil
+    Route::post('/user/{user:id}', [UserController::class, 'updatev2']);
+    Route::get('/profile',[CekRouteController::class, 'profil']);
+    Route::post('/user/{user:id}/password', [UserController::class, 'passwordProfile']);
+    
     // admin
     Route::middleware('user-level:admin')->group(function () {
         Route::get('/dashboardAdmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboard.admin');
-
+        
         // MASTER
         // product
         Route::resource('/master/product', ProductController::class);

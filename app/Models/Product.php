@@ -21,11 +21,4 @@ class Product extends Model
     ];
      
     
-//    public static $rule = Validator::make($data, [
-//         'e' => [
-//             'required',
-//             Rule::unique('users')->ignore($user->id),
-//         ],
-//     ]);
-    
 }

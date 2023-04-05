@@ -1,21 +1,10 @@
 @extends('pages.index')
 @section('pagetitle')
-<li class="breadcrumb-item active fs-6">User-Profile</li>
+<li class="breadcrumb-item active fs-6">Profile</li>
 @endsection
 @section('container')
-  
-    {{-- <div class="pagetitle">
-      <h1>Profile</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Setting</li>
-          <li class="breadcrumb-item active">My Profil</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title --> --}}
 
-    <section class="section profile">
+    <section class="section profile font-poppins">
       <div class="row">
         <div class="col-xl-4">
 
@@ -53,9 +42,6 @@
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
                 </li>
 
-                <li class="nav-item">
-                  <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Pengaturan</button>
-                </li>
 
                 <li class="nav-item">
                   <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">ubah
@@ -70,6 +56,10 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Name</div>
                     <div class="col-lg-9 col-md-8">{{ auth()->user()->nama }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Username</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->username }}</div>
                   </div>
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Status</div>
@@ -88,19 +78,24 @@
 
                   <!-- Profile Edit Form -->
                   <form action="/user/{{auth()->user()->id}}" method="POST">
-                    @method('post')
                     @csrf
                     <div class="row mb-3">
-                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->nama }}">
+                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->username }}">
                       </div>
                     </div>
-
+                    <div class="row mb-3">
+                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="nama" type="text" class="form-control" id="nama" value="{{ auth()->user()->nama }}">
+                      </div>
+                    </div>
+                    
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Tempat Bekerja</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="company" type="text" class="form-control" id="company"
+                        <input  type="text" class="form-control" id="company"
                           value="RSUD Blambangan">
                       </div>
                     </div>
@@ -126,7 +121,7 @@
                 </div>
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form action="#" method="POST">
+                  <form action="/user/{{auth()->user()->id}}/password" method="POST">
                   @method('put')
                   @csrf
 
@@ -140,17 +135,9 @@
                     <div class="row mb-3">
                       <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password Baru</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        <input type="password" class="form-control" id="newPassword" name="newPassword">
                       </div>
                     </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Ulangi Password Baru</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                      </div>
-                    </div>
-
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Change Password</button>
                     </div>
