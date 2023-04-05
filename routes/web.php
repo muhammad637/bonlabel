@@ -1,15 +1,23 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CekRouteController;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Ruangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuanganController;
+use Rap2hpoutre\FastExcel\Facades\FastExcel;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotifikasiController;
+use App\Models\Notifikasi;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,60 +30,73 @@ use App\Http\Controllers\RuanganController;
 |
 */
 
-// <<<<<<< HEAD
-    Route::get('/login', function () {
-        return view('login');
-    });
-    Route::post('/login/post', [LoginController::class, 'authenticate']);
-// =======
-// // Auth::routes();
-// Route::get('/', function () {
-//     return view('');
-// });
 
-// Route::get('/login', function () {
-//     return view('login');
-// >>>>>>> fiturLogin
-Route::get('/logout', [LoginController::class, 'logout']);
+
+Route::get('/', [CekRouteController::class, 'master']);
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/login', [LoginController::class, 'login'])->middleware('guest');
+Route::get('home',[CekRouteController::class,'home']);
+Route::get('cek',[CekRouteController::class, 'cekLevel']);
 
 
 
 // ADMIN
-Route::middleware(['auth', 'user-level:admin'])->group(function () {
-    Route::get('/dashboardAdmin', function () {
-        return view('admin.pages.dashboard');
+Route::middleware('auth')->group(function () {
+
+    Route::get('/logout', [LoginController::class, 'logout']);
+    
+    // notifikasi
+    Route::get('/notifikasi', [NotifikasiController::class, 'index']);
+    Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
+    Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll']);
+    
+
+    // profil
+    Route::post('/user/{user:id}', [UserController::class, 'updatev2']);
+    Route::get('/profile',[CekRouteController::class, 'profil']);
+    Route::post('/user/{user:id}/password', [UserController::class, 'passwordProfile']);
+    
+    // admin
+    Route::middleware('user-level:admin')->group(function () {
+        Route::get('/dashboardAdmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboard.admin');
+        
+        // MASTER
+        // product
+        Route::resource('/master/product', ProductController::class);
+        Route::put('/master/product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
+        Route::put('/master/product/{product:id}/aktif', [ProductController::class, 'aktif']);
+        // user
+        Route::resource('/master/user', UserController::class);
+        Route::put('/master/user/{user:id}/nonaktif', [UserController::class, 'nonaktif']);
+        Route::put('/master/user/{user:id}/aktif', [UserController::class, 'aktif']);
+        // resetPasswordUser
+        Route::put('/master/user/resetPassword/{user:id}', [UserController::class, 'resetPassword']);
+
+        // ruangan 
+        Route::resource('/master//ruangan', RuanganController::class);
+        Route::put('/master/ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
+        Route::put('/master/ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
+
+        // order
+        Route::resource('/orderan', OrderController::class);
+        
+        // laporan
+        Route::get('/laporan', [LaporanController::class, 'index']);
+        Route::get('/eksportLaporan',[LaporanController::class,'exportLaporan']);
+        Route::post('/bulananExcel',[LaporanController::class,'bulananExcel']);
     });
- 
-    // product
-    Route::resource('product', ProductController::class);
-    Route::put('product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
-    Route::put('product/{product:id}/aktif', [ProductController::class, 'aktif']);
+
     // user
-    Route::resource('user', UserController::class);
-    Route::put('user/{user:id}/nonaktif', [UserController::class, 'nonaktif']);
-    Route::put('user/{user:id}/aktif', [UserController::class, 'aktif']);
-
-    // ruangan 
-    Route::resource('/ruangan', RuanganController::class);
-    Route::put('ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
-    Route::put('ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
-
-    // order
-    Route::resource('/orderan',OrderController::class);
-});
-
-// USER
-Route::middleware(['auth', 'user-level:user'])->group(function () {
-    Route::get('/dashboardUser', function () {
-        return view('user.page.dashboard');
+    Route::middleware('user-level:user')->group(function () {
+        Route::get('/dashboardUser', [DashboardController::class, 'dashboardUser']);
+        Route::get('/order', [OrderController::class, 'createOrder'])->name('user.createOrder');
+        Route::post('/order', [OrderController::class, 'storeOrder'])->name('user.storeOrder');
+        Route::get('/history', function () {
+            $orders = Order::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
+            return view('user.page.history',[
+                'orders' => $orders,
+                'title' => 'history'
+            ]);
+        });
     });
 });
-
-
-// login
-// Route::get('/login', function () {
-//     return view('login');
-// })->name('login');
-// Route::post('/login', function (Request $request) {
-//     return $request->all();
-// });

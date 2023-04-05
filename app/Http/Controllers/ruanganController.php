@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ruangan;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RuanganController extends Controller
 {
@@ -18,7 +20,8 @@ class RuanganController extends Controller
     {
         //
         return view('admin.pages.Ruangan.listRuangan', [
-            'ruangans' => Ruangan::all()
+            'ruangans' => Ruangan::all(),
+            'title' => 'ruangan'
         ]);
     }
 
@@ -29,7 +32,7 @@ class RuanganController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.Ruangan.createRuangan');
+        // return view('admin.pages.Ruangan.createRuangan');
     }
 
     /**
@@ -42,22 +45,25 @@ class RuanganController extends Controller
     {
         //
         // return $request->all();
-        try {
+        $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil ditambahkan', 'tambah', 'berhasil');
             //code...
-            $validatedData = $request->validate(
+            $validatedData = Validator::make($request->validate(
                 [
                     'nama_ruangan' => 'required',
                     'no_telephone' => 'required|unique:ruangans',
                     'status' => ''
                 ]
-            );
+            ));
+            if($validatedData->fails()){
+                $notif['msg'] = 'data ruangan gagal ditambahkan';
+                $notif['status'] = 'gagal';
+                Notifikasi::create($notif);
+                return redirect()->back()->with('toast_error',$notif['msg']);
+            }
             $validatedData['status'] = 'aktif';
             Ruangan::create($validatedData);
-            return redirect('/ruangan');
-        } catch (\Exception $e) {
-            //throw $th;
-            return $e->getMessage();
-        }
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_success',$notif['msg']);
     }
 
     /**
@@ -80,9 +86,9 @@ class RuanganController extends Controller
     public function edit(Ruangan $ruangan)
     {
         //
-        return view('admin.pages.Ruangan.editRuangan',[
-            'ruangan' => $ruangan,
-        ]);
+        // return view('admin.pages.Ruangan.editRuangan',[
+        //     'ruangan' => $ruangan,
+        // ]);
         
     }
 
@@ -97,22 +103,25 @@ class RuanganController extends Controller
     {
 
         //
-        try {
+        $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil diupdate', 'update', 'berhasil');
             //code...
-            $validatedData = $request->validate(
+            $validatedData = Validator::make($request->validate(
                 [
                     'nama_ruangan' => 'required',
                     'no_telephone' => 'required|'.Rule::unique('users')->ignore($ruangan->id),
                     'status' => ''
                 ]
-            );
+            ));
+            if($validatedData->fails()){
+                $notif['msg'] = 'data ruangan gagal diupdate';
+                $notif['status'] = 'gagal';
+                Notifikasi::create($notif);
+                return redirect()->back()->with('toast_error',$notif['msg']);
+            }
+            Notifikasi::create($notif);
             $validatedData['status'] = 'aktif';
-            $ruangan->update($validatedData);
-            return redirect('/ruangan');
-        } catch (\Exception $e) {
-            //throw $th;
-            return $e->getMessage();
-        }
+            Ruangan::where('id',$ruangan->id)->update($validatedData);
+            return redirect()->back()->with('toast_success',$notif['msg']);
     }
 
     /**
@@ -130,26 +139,21 @@ class RuanganController extends Controller
     {
 
         // return "tes";
-        try {
             //code...
+            $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil dinonaktifkan', 'nonaktif', 'berhasil');
+            Notifikasi::create($notif);
             $status = 'nonaktif';
             Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
-            return redirect()->back();
-        } catch (\Exception $e) {
-            //throw $th;
-            return $e->getMessage();
-        }
+            return redirect()->back()->with('toast_success',$notif['msg']);
     }
     public function aktif(Ruangan $ruangan)
     {
-        try {
             //code...
+            $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil diaktifkan', 'aktif', 'berhasil');
             $status = 'aktif';
             Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
-            return  redirect()->back();
-        } catch (\Exception $e) {
-            //throw $th;
-            return  $e->getMessage();
-        }
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_success',$notif['msg']);
+        
     }
 }

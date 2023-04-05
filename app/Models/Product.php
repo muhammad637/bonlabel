@@ -17,15 +17,8 @@ class Product extends Model
     protected $guarded = ['id'];
 
     protected $attributes = [
-        'status_product' => 'aktif',
+        'status' => 'aktif',
     ];
      
-    
-//    public static $rule = Validator::make($data, [
-//         'e' => [
-//             'required',
-//             Rule::unique('users')->ignore($user->id),
-//         ],
-//     ]);
     
 }

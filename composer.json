@@ -6,11 +6,19 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "composer/semver": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "illuminate/support": "*",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "maatwebsite/excel": "^3.1",
+        "phpoffice/phpspreadsheet": "^1.28",
+        "psr/simple-cache": "^1.0",
+        "rap2hpoutre/fast-excel": "^4.1",
+        "realrashid/sweet-alert": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

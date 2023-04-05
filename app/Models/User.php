@@ -48,6 +48,8 @@ class User extends Authenticatable
         // 'ruangans' => 'array,'
     ];
 
+    // protected $with = ['ruangan','notifikasi','order'];
+
     function data ($value) { ["user", "admin", "manager"][$value]; }
     protected function type(): Attribute
     {
@@ -56,9 +58,14 @@ class User extends Authenticatable
         );
 
     }
-
-
     public function ruangan(){
        return $this->hasMany(Ruangan::class);
+    }
+    public function order(){
+       return $this->hasMany(Order::class);
+    }
+    
+    public function notifikasi(){
+       return $this->hasMany(Notifikasi::class);
     }
 }
