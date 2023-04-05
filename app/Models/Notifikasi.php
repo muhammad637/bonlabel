@@ -10,7 +10,7 @@ class Notifikasi extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
-    protected $with = ['user'];
+    // protected $with = ['user'];
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }

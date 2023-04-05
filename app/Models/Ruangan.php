@@ -15,7 +15,7 @@ class Ruangan extends Model
     protected $primaryKey = 'id';
 
     protected $attributes =['status' => 'aktif'];
-    protected $with = ['user'];
+    // protected $with = ['user'];
     public function user(){
        return $this->belongsTo(User::class, 'user_id');
     }

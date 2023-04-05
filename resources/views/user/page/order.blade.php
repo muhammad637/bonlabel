@@ -1,4 +1,4 @@
-@extends('user.index')
+@extends('pages.index')
 @section('pagetitle')
     <li class="breadcrumb-item active fs-6">Order Produk</li>
 @endsection

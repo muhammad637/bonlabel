@@ -48,7 +48,7 @@ class User extends Authenticatable
         // 'ruangans' => 'array,'
     ];
 
-    protected $with = ['ruangan','notifikasi','order'];
+    // protected $with = ['ruangan','notifikasi','order'];
 
     function data ($value) { ["user", "admin", "manager"][$value]; }
     protected function type(): Attribute

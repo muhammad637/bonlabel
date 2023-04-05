@@ -17,17 +17,17 @@ class CekRouteController extends Controller
         return redirect('/login');
     }
 
-    // public function home(){
-    //     $path = '/login';
-    //     if(auth()->user()){
-    //         if (auth()->user()->cekLevel == 'admin') {
-    //             $path = '/dashboardAdmin';
-    //         }else{
-    //             $path= '/dashboardUser';
-    //         }
-    //     }
-    //     return redirect($path);
-    // }
+    public function home(){
+        $path = '/login';
+        if(auth()->user()){
+            if (auth()->user()->cekLevel == 'admin') {
+                $path = '/dashboardAdmin';
+            }else{
+                $path= '/dashboardUser';
+            }
+        }
+        return redirect($path);
+    }
     
     public function cekLevel(){
         $path = '/login';
