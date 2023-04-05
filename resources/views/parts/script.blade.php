@@ -26,3 +26,5 @@
         $('#example').DataTable();
     });
 </script>
+@include('sweetalert::alert')
+

@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Notifikasi extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public static function notif($tb,$msg,$jn,$st) {
+        return [
+            'nama_tabel' => $tb,
+            'msg' => $msg,
+            'user_id' => auth()->user()->id,
+            'jenis_notifikasi' => $jn,
+            'status' => $st
+        ];
+     }
 }

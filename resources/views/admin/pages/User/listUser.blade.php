@@ -4,10 +4,11 @@
     <li class="breadcrumb-item color-primary fs-6 fw-bold">User</li>
 @endsection
 @section('container')
-<div class="" style="width: 98%">
-    <div class="font-poppins fs-2 mb-3 color-black">
-        List User
-    </div>
+    <div class="" style="width: 98%">
+       
+        <div class="font-poppins fs-2 mb-3 color-black">
+            List User
+        </div>
         <a href="{{ route('user.create') }}">
             <button type="button" class="btn btn-primary mb-3 font-poppins"> <i class="bi bi-plus fs-5"></i>
                 Tambah</button>
@@ -40,7 +41,7 @@
                                     @endif
                                     @foreach ($user->ruangan as $r)
                                         @if ($r->status == 'aktif')
-                                        <a href="/master/ruangan" class="text-dark">
+                                            <a href="/master/ruangan" class="text-dark">
                                                 {{ $r->nama_ruangan . ',' }}
                                             </a>
                                         @endif
@@ -85,11 +86,11 @@
                                                 <i class="bi bi-key"></i>
                                             </button>
                                         </a> --}}
-    
+
                                     </div>
                             </tr>
                         @endif
-    
+
                         <!-- Modal -->
                         <div class="modal fade" id="resetPassword-{{ $user->id }}" tabindex="-1"
                             aria-labelledby="resetPasswordLabel-{{ $user->id }}" aria-hidden="true">
@@ -123,16 +124,17 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
                                         <button type="button" class="btn btn-primary">Save Password</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-    
+
                 </tbody>
             </table>
-        </div></div>
-
+        </div>
+    </div>
 @endsection
