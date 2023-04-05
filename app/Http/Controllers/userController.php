@@ -145,7 +145,20 @@ class UserController extends Controller
                 // return Ruangan::where('id', $val)->get();
             }
         }
-        return response(redirect('/user'));
+      
+    }
+
+    public function updatev2(Request $request, User $user){
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'username' => 'required |' .Rule::unique('users')->ignore($user->id),
+            'cekLevel' => 'required',
+            'no_telephone' => 'required',
+        ]);
+        $updatev2 = $user->update($validatedData);
+        $updatev2;
+        return redirect('/profil');
+      
     }
 
     /**
