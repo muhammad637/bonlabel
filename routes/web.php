@@ -41,6 +41,7 @@ Route::get('cek',[CekRouteController::class, 'cekLevel']);
 // ADMIN
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/profil',[CekRouteController::class, 'profil']);
 
     // admin
     Route::middleware('user-level:admin')->group(function () {

@@ -94,17 +94,18 @@
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                  
                     <li class="dropdown-header">
+                        <div class="div">
+                            <i class="bi bi-person-circle" style="font-size: 25px;"></i>
+                        </div>
                         {{ auth()->user()->nama }}
-                        <br></br>
-                        <span class="fw-semibold">{{ auth()->user()->cekLevel }}</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
+                        <br>
+                        <span class="fw-bold">{{ auth()->user()->cekLevel }}</span>
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="">
+                        <a class="dropdown-item d-flex align-items-center" href="/profil">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -112,27 +113,6 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="/logout">
                             <i class="bi bi-box-arrow-right"></i>
