@@ -17,7 +17,8 @@
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.28",
         "psr/simple-cache": "^1.0",
-        "rap2hpoutre/fast-excel": "^4.1"
+        "rap2hpoutre/fast-excel": "^4.1",
+        "realrashid/sweet-alert": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

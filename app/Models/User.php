@@ -48,17 +48,19 @@ class User extends Authenticatable
         // 'ruangans' => 'array,'
     ];
 
-    // function data ($value) { ["user", "admin", "manager"][$value]; }
-    // protected function type(): Attribute
-    // {
-    //     return new Attribute(
-    //         get: fn($value) => ["user","admin"],
-    //     );
+    function data ($value) { ["user", "admin", "manager"][$value]; }
+    protected function type(): Attribute
+    {
+        return new Attribute(
+            get: fn($value) => ["user","admin"],
+        );
 
-    // }
-
-
+    }
     public function ruangan(){
        return $this->hasMany(Ruangan::class);
+    }
+    
+    public function notifikasi(){
+       return $this->hasMany(Notifikasi::class);
     }
 }

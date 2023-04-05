@@ -15,6 +15,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RuanganController;
 use Rap2hpoutre\FastExcel\Facades\FastExcel;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\NotifikasiController;
+use App\Models\Notifikasi;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -42,6 +44,7 @@ Route::get('cek',[CekRouteController::class, 'cekLevel']);
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::get('/profil',[CekRouteController::class, 'profil']);
+    Route::get('/notifikasi', [NotifikasiController::class, 'index']);
 
     // admin
     Route::middleware('user-level:admin')->group(function () {

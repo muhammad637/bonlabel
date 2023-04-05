@@ -14,8 +14,9 @@
         @endif
 
         <main id="main" class="main">
+
             <div class="pagetitle">
-                <h1 class="mb-2 fs-2 font-poppins">Welcome to {{auth()->user()->nama}}</h1>
+                <h1 class="mb-2 fs-2 font-poppins">Welcome to {{ auth()->user()->nama }}</h1>
                 <nav class="shadow-sm bg-body rounded pt-2 px-2 " style="width: 98%;">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item fs-6"><a href="/dashboardAdmin" class="text-decoration-none">Home</a></li>
@@ -25,6 +26,7 @@
             </div>
             @yield('container')
         </main>
+       
         <footer id="footer" class="mt-5">
 
           <div class="footer-top">
@@ -88,9 +90,8 @@
           </div>
         </footer><!-- End Footer -->
       
-      <!-- End Footer -->
         
-        <!-- End Footer -->
+
 
 
 
