@@ -81,7 +81,22 @@ muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd d
 2. Pada halaman depan dashboard akan langsung menampilkan informasi mengenai jumla stock tersedia.
 Di bawahnya berisi  jumlah user, ruangan, dan produk yang masih aktif, Dan fitur terakhir dihalaman dashboard menampilkan List orderan dari User.
 
-3. 
+3. Pada halaman orderan akan menampilkan list user yang sedang merequest produk. 
+
+    terdapat beberapa fitur untuk admin yaitu pada Kolom Aksi, terdapat Button yg digunakan untuk admin "Mengedit jumlah pesanan dan jenis kertas" lalu fitur "terima dan tolak" permintaan user oleh Admin.
+
+4. Pada halaman laporan menampilkan data user yang telah proses.
+
+    Pada pojok kanan atas konten merupakan fitur ekspor untuk kita dapat mendownload data berekstensi exel.
+
+5. Berikut halaman Master dg 3 sub menu yaitu,
+- Master User berisi fitur Tambah User yang berupa tampilan button warna biru berada pas dibawah judul list user.
+
+    lalu terdapat 2 fitur pada kolom aksi yaitu fitur edit(button warna kuning) dan fitur active&nonActive user(button warna hijau jika user aktif dan warna merah bila user nonaktif).
+
+- Master Produk yang isi dan fiturnya tak jauh berbeda dengan Mater User.
+
+- Master Ruangan juga tidak berbeda dengan sub menu Master lainnya, fiturnya 2 yaitu edit dan active&nonaktif
 
 
 ## Demo For User
