@@ -43,6 +43,8 @@ Route::get('home',function(){
         return "forbidden";
 });
 
+
+
 // ADMIN
 Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
