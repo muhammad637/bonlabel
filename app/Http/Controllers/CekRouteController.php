@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 class CekRouteController extends Controller
 {
     //
+    public function profil(){
+        return view("admin.pages.user-profile",[
+            'title' => 'user-profile'
+        ]) ;
+    }
+
     public function master(){
         return redirect('/login');
     }
