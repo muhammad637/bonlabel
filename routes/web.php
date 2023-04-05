@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/notifikasi', [NotifikasiController::class, 'index']);
     Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
     Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll']);
+    Route::post('/user/{user:id}', [UserController::class, 'updatev2']);
 
     // admin
     Route::middleware('user-level:admin')->group(function () {

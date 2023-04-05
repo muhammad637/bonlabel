@@ -87,12 +87,13 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
-                
+                  <form action="/user/{{auth()->user()->id}}" method="POST">
+                    @method('post')
+                    @csrf
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="{{ auth()->user()->nama }}">
+                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->nama }}">
                       </div>
                     </div>
 
@@ -105,15 +106,15 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Job" class="col-md-4 col-lg-3 col-form-label">Level</label>
+                      <label for="cekLevel" class="col-md-4 col-lg-3 col-form-label">Level</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" placeholder="{{ auth()->user()->cekLevel }}" readonly>
+                        <input name="cekLevel" type="text" class="form-control" id="cekLevel" placeholder="{{ auth()->user()->cekLevel }}" readonly>
                       </div>
                     </div>
                     <div class="row mb-3">
-                      <label for="Phone" class="col-md-4 col-lg-3 col-form-label">No.Telp / WA</label>
+                      <label for="no_telephone" class="col-md-4 col-lg-3 col-form-label">No.Telp / WA</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="{{ auth()->user()->no_telephone }}">
+                        <input name="no_telephone" type="text" class="form-control" id="no_telephone" value="{{ auth()->user()->no_telephone }}">
                       </div>
                     </div>
 
@@ -123,40 +124,11 @@
                   </form><!-- End Profile Edit Form -->
 
                 </div>
-
-                <div class="tab-pane fade pt-3" id="profile-settings">
-
-                  <!-- Settings Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
-                      <div class="col-md-8 col-lg-9">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                          <label class="form-check-label" for="changesMade">
-                            Perubahan Akunmu.
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
-                          <label class="form-check-label" for="newProducts">
-                            Jumlah Kertas Label diperbaharui.
-                          </label>
-                        </div>         
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                  </form><!-- End settings Form -->
-
-                </div>
-
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
+                  <form action="#" method="POST">
+                  @method('put')
+                  @csrf
 
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>

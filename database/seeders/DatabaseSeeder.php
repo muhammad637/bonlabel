@@ -18,10 +18,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(30)->create();
-        Ruangan::factory(20)->create();
-        Product::factory(4)->create();
-        Order::factory(50)->create();
+        // User::factory(30)->create();
+        // Ruangan::factory(20)->create();
+        // Product::factory(4)->create();
+        // Order::factory(50)->create();
         User::create([
             'nama' => 'admin',
             'userName' => 'admin',
@@ -42,5 +42,6 @@ class DatabaseSeeder extends Seeder
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ]);
+
     }
 }
