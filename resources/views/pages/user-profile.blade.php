@@ -1,6 +1,6 @@
-@extends('admin.index')
+@extends('pages.index')
 @section('pagetitle')
-<li class="breadcrumb-item active fs-5">User-Profile</li>
+<li class="breadcrumb-item active fs-6">User-Profile</li>
 @endsection
 @section('container')
   

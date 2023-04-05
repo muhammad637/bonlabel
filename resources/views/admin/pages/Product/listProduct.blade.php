@@ -1,4 +1,4 @@
-@extends('admin.index')
+@extends('pages.index')
 @section('pagetitle')
     <li class="breadcrumb-item fs-6">Master</li>
     <li class="breadcrumb-item color-primary fs-6 fw-bold">Produk</li>

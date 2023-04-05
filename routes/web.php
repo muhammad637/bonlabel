@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout']);
     Route::get('/profil',[CekRouteController::class, 'profil']);
     Route::get('/notifikasi', [NotifikasiController::class, 'index']);
+    Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
+    Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll']);
 
     // admin
     Route::middleware('user-level:admin')->group(function () {
