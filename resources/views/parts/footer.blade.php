@@ -30,9 +30,9 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Contact Us</h4>
                     <ul>
-                        <li><i class="bx"></i> <a href="#"><strong>Phone:<br></strong> (0333) 636780</a>
+                        <li><i class="bx"></i> <a href="#"><strong>Phone:<br></strong> (0333) 421118</a>
                         </li>
-                        <li><i class="bx" style="font-size: 9px;"></i> <a href="#"><strong>Email:<br></strong>poliwangi@poliwangi.ac.id</a></li>
+                        <li><i class="bx" ></i> <a href="#" style="font-size: 12px;"><strong>Email:<br></strong>rusdblambangan.bwi@gmail.com</a></li>
                         </li>
                     </ul>
                 </div>
@@ -52,10 +52,9 @@
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://twitter.com/rsudblambangan" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://facebook.com/rsud.blambangan.9" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://instagram.com/rsudblambangan?igshid=YmMyMTA2M2Y=" class="instagram"><i class="bx bxl-instagram"></i></a>
             </div>
         </div>
     </div>

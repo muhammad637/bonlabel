@@ -47,7 +47,4 @@
                 <button class="btn btn-primary mt-5" type="submit"> kirim </button>
             </form>
         @endif
-
-
-
     @endsection
