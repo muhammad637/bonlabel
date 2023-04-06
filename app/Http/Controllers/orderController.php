@@ -36,33 +36,44 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     //  user
     public function createorder()
     {
         // return  Ruangan::where('user_id',auth()->user()->id)->get();
-        return view('user.page.order',[
+        return view('user.page.order', [
             'products' => Product::all(),
             'title' => 'createOrder',
-            'ruangans' => Ruangan::where('user_id',auth()->user()->id)->get()
+            'ruangans' => Ruangan::where('user_id', auth()->user()->id)->get()
         ]);
     }
     public function storeOrder(Request $request)
     {
-        $validatedData = $request->validate([
-            'user_id' => '',
-            'product_id' => '',
-            'jumlah_order' => '',
-            'ruangan_id' => ''
-        ]);
-        $produk = Product::where('id',$validatedData['product_id'])->first();
-        $validatedData['user_id'] = auth()->user()->id;
-        if ($validatedData['jumlah_order'] > $produk->limit_order) {
-            # code...
-            return "jumlah order melebihi limit";
+        $notif = Notifikasi::notif('order', 'data order berhasil diupdate', 'update', 'berhasil');
+        try {
+            //code...
+            $validatedData = $request->validate([
+                'user_id' => '',
+                'product_id' => '',
+                'jumlah_order' => '',
+                'ruangan_id' => ''
+            ]);
+            $produk = Product::where('id', $validatedData['product_id'])->first();
+            $validatedData['user_id'] = auth()->user()->id;
+            if ($validatedData['jumlah_order'] > $produk->limit_order) {
+                # code...
+                $notif['msg'] = "jumlah order melebihi limit" ;
+                $notif['status'] = "gagal";
+                Notifikasi::create($notif);
+                return redirect()->back()->with('toast_error', $notif['msg']);
+            }
+            Order::create($validatedData);
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_success', 'berhasil merngorder produk');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('toast_error', $th->getMessage);
         }
-        Order::create($validatedData);
-        return redirect()->back();
     }
     /**
      * Store a newly created resource in storage.
@@ -109,8 +120,10 @@ class OrderController extends Controller
     {
 
         // dd($order->order_id);
+        //code...
+        $notif = Notifikasi::notif('order', 'data order berhasil diupdate', 'update', 'berhasil');
+        try {
             //code...
-            $notif = Notifikasi::notif('order', 'data order berhasil diupdate', 'update', 'berhasil');            
             $dataOrder = Order::where('id', $request->order_id)->first();
             $productOrder = Product::where('id', $request->product_id)->first();
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
@@ -121,18 +134,21 @@ class OrderController extends Controller
                     'status' => '',
                 ]
             );
-            if ($validatedData['jumlah_order'] > $productOrder->jumlah_stock) {
+            
+            Order::where('id', $request->order_id)->update($validatedData);
+            Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_success', $notif['msg']);
+        } catch (\Throwable $th) {
+            //throw $th;
                 # code..
                 $notif['msg'] =  "gagal karena melebihi kapasitas product";
                 $notif['status'] = 'gagal';
                 Notifikasi::create($notif);
                 $productOrder->jumlah_stock;
-                return redirect()->back()->with('toast_error',$notif['msg'])->with('toast_error','data gagal diupdate');
-            }
-            Order::where('id', $request->order_id)->update($validatedData);
-            Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
-            Notifikasi::create($notif);
-            return redirect()->back()->with('toast_success',$notif['msg']);
+                return redirect()->back()->with('toast_error', $notif['msg'])->with('toast_error', 'data gagal diupdate');
+        }
+       
     }
 
     /**

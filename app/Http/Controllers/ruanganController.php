@@ -45,25 +45,31 @@ class RuanganController extends Controller
     {
         //
         // return $request->all();
-        $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil ditambahkan', 'tambah', 'berhasil');
+        try {
+            $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil ditambahkan', 'tambah', 'berhasil');
             //code...
-            $validatedData = Validator::make($request->validate(
+            $validatedData = $request->validate(
                 [
                     'nama_ruangan' => 'required',
                     'no_telephone' => 'required|unique:ruangans',
                     'status' => ''
                 ]
-            ));
-            if($validatedData->fails()){
-                $notif['msg'] = 'data ruangan gagal ditambahkan';
-                $notif['status'] = 'gagal';
-                Notifikasi::create($notif);
-                return redirect()->back()->with('toast_error',$notif['msg']);
-            }
+            );
+           
             $validatedData['status'] = 'aktif';
             Ruangan::create($validatedData);
             Notifikasi::create($notif);
             return redirect()->back()->with('toast_success',$notif['msg']);
+            //code...
+               
+        } catch (\Throwable $th) {
+            //throw $th;
+            $notif['msg'] = 'data ruangan gagal ditambahkan';
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_error',$notif['msg']);
+        }
+      
     }
 
     /**
@@ -105,23 +111,28 @@ class RuanganController extends Controller
         //
         $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil diupdate', 'update', 'berhasil');
             //code...
-            $validatedData = Validator::make($request->validate(
-                [
-                    'nama_ruangan' => 'required',
-                    'no_telephone' => 'required|'.Rule::unique('users')->ignore($ruangan->id),
-                    'status' => ''
-                ]
-            ));
-            if($validatedData->fails()){
-                $notif['msg'] = 'data ruangan gagal diupdate';
-                $notif['status'] = 'gagal';
+            try {
+                $validatedData = $request->validate(
+                    [
+                        'nama_ruangan' => 'required',
+                        'no_telephone' => 'required|'.Rule::unique('users')->ignore($ruangan->id),
+                        'status' => ''
+                    ]
+                );
+               
                 Notifikasi::create($notif);
-                return redirect()->back()->with('toast_error',$notif['msg']);
+                $validatedData['status'] = 'aktif';
+                Ruangan::where('id',$ruangan->id)->update($validatedData);
+                return redirect()->back()->with('toast_success',$notif['msg']);
+                //code...
+            } catch (\Throwable $th) {
+                //throw $th;
+                    $notif['msg'] = 'data ruangan gagal diupdate';
+                    $notif['status'] = 'gagal';
+                    Notifikasi::create($notif);
+                    return redirect()->back()->with('toast_error',$notif['msg']);
             }
-            Notifikasi::create($notif);
-            $validatedData['status'] = 'aktif';
-            Ruangan::where('id',$ruangan->id)->update($validatedData);
-            return redirect()->back()->with('toast_success',$notif['msg']);
+           
     }
 
     /**

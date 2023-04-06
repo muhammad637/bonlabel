@@ -55,32 +55,32 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $notif = Notifikasi::notif('user', 'data user berhasil ditambahkan', 'tambah', 'berhasil');
-        $validatedData = Validator::make($request->validate([
-            'nama' => 'required',
-            'username' => 'required|unique:users',
-            'password' => 'required',
-            'cekLevel' => 'required',
-            'no_telephone' => 'required',
-        ]));
-        $validatedData['password'] = Hash::make($validatedData['password']);
-        if ($validatedData->fails()) {
+        try {
+            $validatedData = $request->validate([
+                'nama' => 'required',
+                'username' => 'required|unique:users',
+                'password' => 'required',
+                'cekLevel' => 'required',
+                'no_telephone' => 'required',
+            ]);
+            $validatedData['password'] = Hash::make($validatedData['password']);
+            User::create($validatedData);
+            Notifikasi::create($notif);
+            $user = User::where('username', $request->username)->first();
+            foreach ($request->ruangan as $index => $val) {
+                // dd($val);
+                # code...
+                Ruangan::where('id', $val)->update(['user_id' => $user->id]);
+            }
+            return redirect('/master/user')->with('toast_success', $notif['msg']);
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
             $notif['msg'] = 'data user gagal ditambahkan';
             $notif['status'] = 'gagal';
             Notifikasi::create($notif);
             return redirect()->back()->with('toast_error', $notif['msg']);
         }
-        User::create($validatedData);
-        Notifikasi::create($notif);
-        $user = User::where('username', $request->username)->first();
-        foreach ($request->ruangan as $index => $val) {
-            // dd($val);
-            # code...
-            Ruangan::where('id', $val)->update(['user_id' => $user->id]);
-        }
-      
-        Notifikasi::create($notif);
-        return redirect('/master/user')->with('toast_success', $notif['msg']);    //code...
-
     }
 
 
@@ -123,36 +123,40 @@ class UserController extends Controller
     {
         //code...
         $notif = Notifikasi::notif('user', 'data user berhasil diupdate', 'update', 'berhasil');
-        $validatedData = Validator::make($request->validate([
-            'nama' => 'required',
-            'username' => 'required |' . Rule::unique('users')->ignore($user->id),
-            'password' => '',
-            'cekLevel' => 'required',
-            'no_telephone' => 'required',
-        ]));
-        if ($validatedData['password']  == null) {
-            $validatedData['password'] = $user->password;
-        } else {
-            $validatedData['password'] = Hash::make($validatedData['password']);
-        }
-        if ($validatedData->fails()) {
+        try {
+            //code...
+            $validatedData = $request->validate([
+                'nama' => 'required',
+                'username' => 'required |' . Rule::unique('users')->ignore($user->id),
+                'password' => '',
+                'cekLevel' => 'required',
+                'no_telephone' => 'required',
+            ]);
+            if ($validatedData['password']  == null) {
+                $validatedData['password'] = $user->password;
+            } else {
+                $validatedData['password'] = Hash::make($validatedData['password']);
+            }
+
+            User::where('id', $user->id)->update($validatedData);
+            Notifikasi::create($notif);
+            foreach ($user->ruangan as $item) {
+                Ruangan::where('id', $item->id)->update(['user_id' => null]);
+            }
+            if ($request->ruangan !== null) {
+                foreach ($request->ruangan as $index => $id) {
+                    Ruangan::where('id', $id)->update(['user_id' => $user->id]);
+                    // return Ruangan::where('id', $val)->get();
+                }
+            }
+            return redirect('/master/user')->with('toast_success', $notif['msg']);
+        } catch (\Throwable $th) {
+            //throw $th;
             $notif['msg'] = 'data user ' . $user->nama . ' gagal diupdate';
             $notif['status'] = 'gagal';
             Notifikasi::create($notif);
-            return redirect()->back()->with('toast_error', $notif['msg']);
+            return redirect()->back()->with('toast_error', $th->getMessage());
         }
-        User::where('id', $user->id)->update($validatedData);
-        Notifikasi::create($notif);
-        foreach ($user->ruangan as $item) {
-            Ruangan::where('id', $item->id)->update(['user_id' => null]);
-        }
-        if ($request->ruangan !== null) {
-            foreach ($request->ruangan as $index => $id) {
-                Ruangan::where('id', $id)->update(['user_id' => $user->id]);
-                // return Ruangan::where('id', $val)->get();
-            }
-        }
-        return redirect('/master/user')->with('toast_success', $notif['msg']);
     }
 
 
@@ -190,25 +194,6 @@ class UserController extends Controller
             $notif['status'] = 'gagal';
             return redirect()->back()->with('toast_error', $notif['msg']);
         }
-
-        // $msg = false;
-        // if ($validatedData['newPassword'] === $validatedData['renewPassword']) {
-        //     # code...
-        //     $msg = true;
-        //     if (Hash::make($validatedData['password']) === $user->password) {
-        //         # code...
-        //         $msg = true;
-        //     }else {
-        //         $msg = false;
-        //     }
-        // }
-        // if ($msg == true) {
-        //     # code...
-        //     Notifikasi::create($notif);
-        //     $user->update(['password' => Hash::make($validatedData['newPassword'])]);
-        //     return redirect()->back()->with('toast_success',$notif['msg']);
-        // }
-        // return redirect('/login');
     }
 
     /**
