@@ -69,7 +69,7 @@ class OrderController extends Controller
             }
             Order::create($validatedData);
             Notifikasi::create($notif);
-            return redirect()->back()->with('toast_success', 'berhasil merngorder produk');
+            return redirect()->back()->with('toast_success', 'berhasil mengorder produk');
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('toast_error', $th->getMessage);
