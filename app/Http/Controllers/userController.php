@@ -171,12 +171,14 @@ class UserController extends Controller
         ]);
         Notifikasi::create($notif);
         $user->update($validatedData);
-        return redirect('/profil')->with('toast_success', $notif['msg']);
+        return redirect('/profile')->with('toast_success', $notif['msg']);
     }
 
     public function passwordProfile(Request $req, User $user)
     {
-        $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
+        try {
+            //code...
+            $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
         $validatedData = $req->validate([
             'password' => 'required',
             'newPassword' => 'required|min:8',
@@ -194,6 +196,11 @@ class UserController extends Controller
             $notif['status'] = 'gagal';
             return redirect()->back()->with('toast_error', $notif['msg']);
         }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th->getMessage();
+        }
+        
     }
 
     /**

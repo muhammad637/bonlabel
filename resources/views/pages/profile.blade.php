@@ -122,9 +122,7 @@
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                   <!-- Change Password Form -->
                   <form action="/user/{{auth()->user()->id}}/password" method="POST">
-                  @method('put')
                   @csrf
-
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>
                       <div class="col-md-8 col-lg-9">

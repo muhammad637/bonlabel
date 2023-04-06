@@ -163,14 +163,4 @@ class OrderController extends Controller
     }
 
 
-    //user
-    // public function indexuser()
-    // {
-    //     //
-
-    //     return view('user.page.order',[
-    //         'orders' => Order::all(),
-    //         'title' => 'Orderan'
-    //     ]);
-    // }
 }

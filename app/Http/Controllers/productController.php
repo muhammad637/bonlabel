@@ -116,11 +116,6 @@ class ProductController extends Controller
         $notif = Notifikasi::notif('produk', 'data produk berhasil diupdate', 'update', 'berhasil');
 
         //code...
-        try {
-            //code...
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
         $validatedData = $request->validate(
             [
                 'limit_order' => 'required|min:1',
@@ -129,13 +124,20 @@ class ProductController extends Controller
                 'jumlah_stock' => '',
             ]
         );
+            
+        Product::where('id', $product->id)->update($validatedData);
+        Notifikasi::create($notif);
+        return redirect()->back()->with('toast_success', $notif['msg']);
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
             $notif['msg'] = 'data produk gagal diupdate';
             $notif['status'] = 'gagal';
             Notifikasi::create($notif);
             return redirect()->back()->with('toast_error', $notif['msg']);
-        Product::where('id', $product->id)->update($validatedData);
-        Notifikasi::create($notif);
-        return redirect()->back()->with('toast_success', $notif['msg']);
+        }
+       
     }
 
     /**

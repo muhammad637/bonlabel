@@ -6,7 +6,18 @@
 @endsection
 @section('container')
     <section class="font-poppins">
-        <form action="/master/user/{{$user->id}}" method="POST">
+
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+        <form action="/master/user/{{ $user->id }}" method="POST">
             @method('put')
             @csrf
             {{-- nama,username,password,no_telephone,cekLevel --}}
@@ -14,19 +25,22 @@
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="{{$user->nama}}">
+                        <input type="text" class="form-control" id="nama" name="nama"
+                            value="{{ $user->nama }}">
                     </div>
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" value="{{$user->username}}">
+                        <input type="text" class="form-control" id="username" name="username"
+                            value="{{ $user->username }}">
                     </div>
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="password" class="form-label">Reset Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="masukkan new password">
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="masukkan new password">
                     </div>
                 </div>
                 <div class="col-lg-6 mb-4">
@@ -41,7 +55,8 @@
                 <div class="col-lg-6 mb-4">
                     <div class="mb-3">
                         <label for="no_telephone" class="form-label">No Telephone</label>
-                        <input type="text" class="form-control" id="no_telephone" name="no_telephone" placeholder="example: 62812345678" value="{{$user->no_telephone}}">
+                        <input type="text" class="form-control" id="no_telephone" name="no_telephone"
+                            placeholder="example: 62812345678" value="{{ $user->no_telephone }}">
                         <div class="form-text">note : ubah angka 0 didepan menjadi kode area negara ex: 62 </div>
                     </div>
                 </div>
@@ -50,7 +65,7 @@
                     <div class="row mb-3 ms-1">
                         @foreach ($ruangans as $ruangan)
                             <div class="form-check col-lg-6">
-                                @if ($ruangan->user_id == null &&  $ruangan->status == 'aktif')
+                                @if ($ruangan->user_id == null && $ruangan->status == 'aktif')
                                     <input type="checkbox" name="ruangan[]" class="form-check-input"
                                         id="{{ $ruangan->nama_ruangan }}" value="{{ $ruangan->id }}">
                                     <label class="form-check-label"
