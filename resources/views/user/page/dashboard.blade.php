@@ -55,7 +55,7 @@
                             <h5 class="fs-2 fw-bold font-poppins mt-2">List Order terakhir user</h5>
                             <hr class="mb-n2 ">
                             @if (count($orders) < 1)
-                            <h1 class="fs-5 font-poppins text-secondary">anda belum order apapun</h1> 
+                                <h1 class="fs-5 font-poppins text-secondary">anda belum order apapun</h1>
                             @else
                                 <table class="table table-stripe font-poppins ">
                                     <thead>
@@ -64,8 +64,9 @@
                                             <th scope="col">Nama Ruangan</th>
                                             <th scope="col">Nama Produk</th>
                                             <th scope="col">jumlah order</th>
+                                            <th scope="col">status</th>
                                             <th scope="col">tanggal order</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -75,6 +76,12 @@
                                                 <td>{{ $order->ruangan->nama_ruangan }}</td>
                                                 <td>{{ $order->product->nama_product }}</td>
                                                 <td>{{ $order->jumlah_order }}</td>
+                                                <td>
+                                                    <div
+                                                        class="badge {{ !$order->status ? 'bg-warning' : ($order->status == 'terima' ? 'bg-success' : 'bg-danger') }}">
+                                                        {{ $order->status ?? 'pending' }}
+                                                    </div>
+                                                </td>
                                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('Y-M-d') }}</td>
                                             </tr>
                                         @endforeach
