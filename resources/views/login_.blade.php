@@ -19,12 +19,14 @@
                     <div class="row">
                         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1"
                             data-aos="fade-up" data-aos-delay="200">
-                            <h2 style="font-family: 'Red Rose'; font-size: 38px;">Lorem ipsum dolor sit amet, consectetur
+                            <h2 style="font-family: 'Red Rose'; font-size: 38px;">
+                                Ngebon Kertas label dengan teknologi terkini, GUNAKANLAH!!
                             </h2>
                             <h1 style="font-family: 'Red Rose'; font-size: 64px;">SiBONLABEL</h1>
-                            <h2 style="font-family: 'Red Rose'; font-size: 32px;">adipiscing elit. Turpis ipsum dolor sit
-                                amet, </h2>
-                            <h2 style="font-family: 'Red Rose'; font-size: 32px;">consectetur Etiam eu turpis .</h2>
+                            <h2 style="font-family: 'Red Rose'; font-size: 32px;">
+                                Ngebon praktis, cepat, efisien, dan dan terstruktur.
+                            </h2>
+    
                             <!-- Button trigger modal -->
                             <center>
                                 <div class="btn-modal">
