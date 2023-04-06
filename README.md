@@ -1,12 +1,13 @@
-
 ## SIBONLABEL 
 SIBONLABEL (Sistem Informasi Bon Label)
 
-Deskripsi: SIBONLABEL merupakan Sistem Informasi Bon Label pada RSUD Blambangan, yang dimana sistem informasi ini bermanfaat bagi management Rumah Sakit seperti halnya tata cara user atau ruangan memesan/bon kertas label. Yang didalamnya memuat beberapa informasi Penting seperti halnya: Memuat jumlah stock label yang tersedia oleh admin, Dapat mencatat jumlah order yang dilakukan oleh user, melihat jumlalh user dan ruangan yang masi aktif, dan juga terdapat fitur laporan yang memperlihatkan log user yang sedang order dalam keadaan Pending, Ditolak, atau di terima. dan pada aplikasi SIBONLABEL juga terdapat fitur Export file laporan menjadi file berekstensi exel. 
+Deskripsi: SIBONLABEL merupakan Sistem Informasi Bon Label pada RSUD Blambangan, yang dimana sistem informasi ini bermanfaat bagi management Rumah Sakit seperti halnya tata cara user atau ruangan memesan/bon kertas label. Yang didalamnya memuat beberapa informasi Penting seperti halnya: Memuat jumlah stock label yang tersedia oleh admin, Dapat mencatat jumlah order yang dilakukan oleh user, melihat jumlah user dan ruangan yang masih aktif, dan juga terdapat fitur laporan yang memperlihatkan log user yang sedang order dalam keadaan Pending, Ditolak, atau diterima. dan pada aplikasi SIBONLABEL juga terdapat fitur Export file laporan menjadi file berekstensi excel. 
 
 
-
-
+## Requirements
+- PHP ^8.0
+- MySQL
+- Composer
 
 ## Installation
 
@@ -33,7 +34,9 @@ Lalu cari file php.ini seperti gambar di bawah dan buka
 ![ss2](https://user-images.githubusercontent.com/67191961/229971296-e4e4ab75-ca66-416c-8c86-ede53f46378a.JPG)
 
 muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd dan enter. lalu hilahkan tanda titik koma didepan extension=gd.
+
 ![ss3](https://user-images.githubusercontent.com/67191961/229971301-5bdf406f-74c1-40cb-a205-7d23c98529d6.JPG)
+
 6. jalankan di terminal
 ```bash
    composer update
@@ -68,7 +71,7 @@ muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd d
     juga terdapat fitur untuk mengedit/mengatur jumlah kertas label yang diminta user oleh admin. juga admin dapat menolak atau menyetujui orderan dari user.)
 - Laporan (menampilkan tabel yang berisi jumlah order yang dilakukan user yang di setujui maupun ditolak.
 
-    dan terdapat fitur eksport data berupa exel.)
+    dan terdapat fitur eksport data berupa excel.)
 - Master (berisi menu utama untuk membuat, mengedit, dan menonaktifkan User, Produk, dan Ruangan)
     - Master user
     - Master Ruangan
@@ -80,7 +83,7 @@ muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd d
 
 ![Login](https://user-images.githubusercontent.com/67191961/230259456-b8863bc6-ab6c-4ea8-95ec-0148c3383d86.JPG)
 
-2. Pada halaman depan dashboard akan langsung menampilkan informasi mengenai jumla stock tersedia. Di bawahnya berisi  jumlah user, ruangan, dan produk yang masih aktif.
+2. Pada halaman depan dashboard akan langsung menampilkan informasi mengenai jumlah stock tersedia. Di bawahnya berisi  jumlah user, ruangan, dan produk yang masih aktif.
 
 ![adm1](https://user-images.githubusercontent.com/67191961/230260627-c3557b3c-a75e-41a8-8b9e-9de22d82b577.JPG)
 
