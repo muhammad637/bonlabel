@@ -140,6 +140,7 @@ class OrderController extends Controller
         // dd($order->order_id);
         //code...
         $notif = Notifikasi::notif('order', 'data order berhasil diupdate', 'update', 'berhasil');
+        $userAdmin = User::where('cekLevel','admin')->get();
         try {
             //code...
             $dataOrder = Order::where('id', $request->order_id)->first();
@@ -155,8 +156,16 @@ class OrderController extends Controller
             
             Order::where('id', $request->order_id)->update($validatedData);
             Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
+
+            
+            $notif['user_id'] = $dataOrder->user->id;
+            $notif['msg'] = 'data berhasil di update oleh admin '. auth()->user()->nama;
             Notifikasi::create($notif);
-            return redirect()->back()->with('toast_success', $notif['msg']);
+            foreach ($userAdmin as $admin) {
+                $notif['user_id'] = $admin->id;
+                Notifikasi::create($notif);
+            }
+            return redirect()->back()->with('toast_success', 'orderan berhasil dipdate');
         } catch (\Throwable $th) {
             //throw $th;
                 # code..
