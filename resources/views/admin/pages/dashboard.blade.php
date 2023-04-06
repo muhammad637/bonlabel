@@ -72,7 +72,7 @@
                     <div class="card recent-sales overflow-auto">
 
                         <div class="card-body">
-                            <h5 class="fs-2 fw-bold font-poppins mt-2">List Order terakhir user</h5>
+                            <h5 class="fs-2 fw-bold font-poppins mt-2">List Order terakhir</h5>
                             <hr class="mb-n2">
 
                             @if (count($orders) < 1)
@@ -83,6 +83,7 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Ruangan</th>
+                                            <th scope="col">Nama User</th>
                                             <th scope="col">Nama Produk</th>
                                             <th scope="col">jumlah order</th>
                                             <th scope="col">status</th>
@@ -95,6 +96,7 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $order->ruangan->nama_ruangan }}</td>
+                                                <td>{{ $order->user->nama }}</td>
                                                 <td>{{ $order->product->nama_product }}</td>
                                                 <td>{{ $order->jumlah_order }}</td>
                                                 <td>

@@ -32,7 +32,7 @@
                     <ul>
                         <li><i class="bx"></i> <a href="#"><strong>Phone:<br></strong> (0333) 636780</a>
                         </li>
-                        <li><i class="bx"></i> <a href="#"><strong>Email:<br></strong> poliwangi.ac.id</a>
+                        <li><i class="bx" style="font-size: 9px;"></i> <a href="#"><strong>Email:<br></strong>poliwangi@poliwangi.ac.id</a></li>
                         </li>
                     </ul>
                 </div>
