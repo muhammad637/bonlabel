@@ -58,8 +58,14 @@
                                     aria-describedby="emailHelp" name="username">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="show-password">
+                                    <label class="form-check-label" for="show-password">
+                                      Show password
+                                    </label>
+                                </div>
                             </div>
                     </div>
                     <div class="modal-footer mx-auto">
