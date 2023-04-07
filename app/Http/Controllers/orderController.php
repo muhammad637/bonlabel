@@ -153,11 +153,8 @@ class OrderController extends Controller
                     'status' => '',
                 ]
             );
-            
             Order::where('id', $request->order_id)->update($validatedData);
             Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
-
-            
             $notif['user_id'] = $dataOrder->user->id;
             $notif['msg'] = 'data berhasil di update oleh admin '. auth()->user()->nama;
             Notifikasi::create($notif);

@@ -149,7 +149,5 @@
             background: rgba(48, 48, 192, 0.13);
         }
     </style>
-
-   
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>

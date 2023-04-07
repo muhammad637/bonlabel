@@ -6,16 +6,6 @@
 @endsection
 @section('container')
     <section class="font-poppins">
-
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
         
         <form action="/master/user/{{ $user->id }}" method="POST">
             @method('put')
@@ -28,12 +18,18 @@
                         <input type="text" class="form-control" id="nama" name="nama"
                             value="{{ $user->nama }}">
                     </div>
+                    @error('nama')
+                            <div class="form-text text-danger"> {{$message}} </div>
+                        @enderror
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username"
                             value="{{ $user->username }}">
+                            @error('username')
+                            <div class="form-text text-danger"> {{$message}} </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-lg-4 ">
@@ -41,6 +37,15 @@
                         <label for="password" class="form-label">Reset Password</label>
                         <input type="password" class="form-control" id="password" name="password"
                             placeholder="masukkan new password">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="show-password">
+                                <label class="form-check-label" for="show-password">
+                                  Show password
+                                </label>
+                            </div>
+                            @error('password')
+                            <div class="form-text text-danger"> {{$message}} </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-lg-6 mb-4">
@@ -57,7 +62,9 @@
                         <label for="no_telephone" class="form-label">No Telephone</label>
                         <input type="text" class="form-control" id="no_telephone" name="no_telephone"
                             placeholder="example: 62812345678" value="{{ $user->no_telephone }}">
-                        <div class="form-text">note : ubah angka 0 didepan menjadi kode area negara ex: 62 </div>
+                        @error('no_telephone')
+                            <div class="form-text text-danger"> {{$message}} </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-12">

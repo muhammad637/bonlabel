@@ -4,9 +4,27 @@
     <li class="breadcrumb-item color-primary fs-6 fw-bold">Produk</li>
 @endsection
 @section('container')
-    <section class="section">
+    <section class="section" style="width:98%">
         <div class="row">
 
+            @if (count($errors) > 0)
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                   <ul class="list-group"></ul>
+                   @error('nama_product')
+                   <li class="list-group-item">{{$message}}</li>
+                   @enderror
+                   @error('jenis_product')
+                   <li class="list-group-item">{{$message}}</li>
+                   @enderror
+                   @error('limit_order')
+                   <li class="list-group-item">{{$message}}</li>
+                   @enderror
+                   @error('jumlah_stock')
+                   <li class="list-group-item">{{$message}}</li>
+                   @enderror
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="font-poppins fs-2 mb-3 color-black">
                 List Produk
             </div>
@@ -16,8 +34,8 @@
                             Tambah Product</button></a>
                     <br> --}}
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#tambahProduct"><i
-                        class="bi bi-plus fs-5"></i> Tambah </button>
+                <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal"
+                    data-bs-target="#tambahProduct"><i class="bi bi-plus fs-5"></i> Tambah </button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="tambahProduct" tabindex="-1" aria-labelledby="exampleModalLabel"

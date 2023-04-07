@@ -43,33 +43,36 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // return $request->all();
-        try {
-            $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil ditambahkan', 'tambah', 'berhasil');
-            //code...
-            $validatedData = $request->validate(
-                [
-                    'nama_ruangan' => 'required',
-                    'no_telephone' => 'required|unique:ruangans',
-                    'status' => ''
-                ]
-            );
-           
-            $validatedData['status'] = 'aktif';
-            Ruangan::create($validatedData);
+        $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil ditambahkan', 'tambah', 'berhasil');
+        $validatedData = Validator::make($request->all(), [
+            'nama_ruangan' => 'required',
+            'no_telephone' => 'required|unique:ruangans',
+        ]);
+        if ($validatedData->fails()) {
+            $notif['msg'] = 'data gagal dimasukkan';
+            $notif['status'] = 'gagal';
             Notifikasi::create($notif);
-            return redirect()->back()->with('toast_success',$notif['msg']);
+            return redirect()
+                ->back()
+                ->with('toast_error', $notif['msg'])
+                ->withErrors($validatedData)
+                ->withInput();
+        }
+        try {
             //code...
-               
+            //  $validatedData['status'] = 'aktif';
+            Ruangan::create($validatedData->validate());
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_success', $notif['msg']);
+            //code...
+
         } catch (\Throwable $th) {
             //throw $th;
             $notif['msg'] = 'data ruangan gagal ditambahkan';
             $notif['status'] = 'gagal';
             Notifikasi::create($notif);
-            return redirect()->back()->with('toast_error',$notif['msg']);
+            return redirect()->back()->with('toast_error', $notif['msg']);
         }
-      
     }
 
     /**
@@ -95,7 +98,7 @@ class RuanganController extends Controller
         // return view('admin.pages.Ruangan.editRuangan',[
         //     'ruangan' => $ruangan,
         // ]);
-        
+
     }
 
     /**
@@ -110,29 +113,33 @@ class RuanganController extends Controller
 
         //
         $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil diupdate', 'update', 'berhasil');
+        //code...
+        $validatedData = Validator::make($request->all(), [
+            'nama_ruangan' => 'required',
+            'no_telephone' => 'required|'.Rule::unique('users')->ignore($ruangan->id),
+        ]);
+        if ($validatedData->fails()) {
+            $notif['msg'] = 'data gagal dimasukkan';
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            return redirect()
+                ->back()
+                ->with('toast_error', $notif['msg'])
+                ->withErrors($validatedData)
+                ->withInput();
+        }
+        try {
+            Notifikasi::create($notif);
+            Ruangan::where('id', $ruangan->id)->update($validatedData->validate());
+            return redirect()->back()->with('toast_success', $notif['msg']);
             //code...
-            try {
-                $validatedData = $request->validate(
-                    [
-                        'nama_ruangan' => 'required',
-                        'no_telephone' => 'required|'.Rule::unique('users')->ignore($ruangan->id),
-                        'status' => ''
-                    ]
-                );
-               
-                Notifikasi::create($notif);
-                $validatedData['status'] = 'aktif';
-                Ruangan::where('id',$ruangan->id)->update($validatedData);
-                return redirect()->back()->with('toast_success',$notif['msg']);
-                //code...
-            } catch (\Throwable $th) {
-                //throw $th;
-                    $notif['msg'] = 'data ruangan gagal diupdate';
-                    $notif['status'] = 'gagal';
-                    Notifikasi::create($notif);
-                    return redirect()->back()->with('toast_error',$notif['msg']);
-            }
-           
+        } catch (\Throwable $th) {
+            //throw $th;
+            $notif['msg'] = 'data ruangan gagal diupdate';
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_error', $notif['msg']);
+        }
     }
 
     /**
@@ -150,21 +157,20 @@ class RuanganController extends Controller
     {
 
         // return "tes";
-            //code...
-            $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil dinonaktifkan', 'nonaktif', 'berhasil');
-            Notifikasi::create($notif);
-            $status = 'nonaktif';
-            Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
-            return redirect()->back()->with('toast_success',$notif['msg']);
+        //code...
+        $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil dinonaktifkan', 'nonaktif', 'berhasil');
+        Notifikasi::create($notif);
+        $status = 'nonaktif';
+        Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
+        return redirect()->back()->with('toast_success', $notif['msg']);
     }
     public function aktif(Ruangan $ruangan)
     {
-            //code...
-            $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil diaktifkan', 'aktif', 'berhasil');
-            $status = 'aktif';
-            Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
-            Notifikasi::create($notif);
-            return redirect()->back()->with('toast_success',$notif['msg']);
-        
+        //code...
+        $notif = Notifikasi::notif('ruangan', 'data ruangan berhasil diaktifkan', 'aktif', 'berhasil');
+        $status = 'aktif';
+        Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
+        Notifikasi::create($notif);
+        return redirect()->back()->with('toast_success', $notif['msg']);
     }
 }

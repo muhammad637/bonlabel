@@ -3,6 +3,8 @@
     <li class="breadcrumb-item active fs-6">Dashboard</li>
 @endsection
 @section('container')
+
+
     <section class="section dashboard">
         <div class="row">
 
@@ -76,7 +78,7 @@
                             <hr class="mb-n2">
 
                             @if (count($orders) < 1)
-                            <h1 class="fs-5 font-poppins text-secondary">orderan masih kosong</h1> 
+                                <h1 class="fs-5 font-poppins text-secondary">orderan masih kosong</h1>
                             @else
                                 <table class="table table-stripe font-poppins ">
                                     <thead>
@@ -88,7 +90,7 @@
                                             <th scope="col">jumlah order</th>
                                             <th scope="col">status</th>
                                             <th scope="col">tanggal order</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,9 +102,10 @@
                                                 <td>{{ $order->product->nama_product }}</td>
                                                 <td>{{ $order->jumlah_order }}</td>
                                                 <td>
-                                                <div class="badge {{ !$order->status ? 'bg-warning' : ($order->status == 'terima' ? 'bg-success' : 'bg-danger')  }}" >
-                                                    {{ $order->status ?? 'pending'  }}
-                                                </div>
+                                                    <div
+                                                        class="badge {{ !$order->status ? 'bg-warning' : ($order->status == 'terima' ? 'bg-success' : 'bg-danger') }}">
+                                                        {{ $order->status ?? 'pending' }}
+                                                    </div>
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('Y-M-d') }}</td>
                                             </tr>
@@ -120,7 +123,8 @@
             <!-- </div>End Left side columns -->
 
             <!-- Right side columns -->
-
         </div>
     </section>
 @endsection
+
+

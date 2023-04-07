@@ -9,6 +9,7 @@
         "ext-json": "*",
         "composer/semver": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
+        "giggsey/libphonenumber-for-php": "^8.13",
         "guzzlehttp/guzzle": "^7.0.1",
         "illuminate/support": "*",
         "laravel/framework": "^8.75",

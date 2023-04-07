@@ -27,11 +27,13 @@
             @yield('container')
         </main>
         @include('parts.footer')
-       
+
         {{--  tag script --}}
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+                class="bi bi-arrow-up-short"></i></a>
         @include('parts.script')
+        @yield('script')
+
     </body>
 
     </html>

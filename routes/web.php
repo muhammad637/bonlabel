@@ -48,7 +48,8 @@ Route::middleware('auth')->group(function () {
     // notifikasi
     Route::get('/notifikasi', [NotifikasiController::class, 'index']);
     Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
-    Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll']);
+    Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll'])->name('notifi-del');
+    Route::get('/notifikasi/mark', [NotifikasiController::class, 'mark'])->name('notifi');
     
 
     // profil

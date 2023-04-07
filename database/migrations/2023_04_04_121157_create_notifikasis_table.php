@@ -17,11 +17,12 @@ class CreateNotifikasisTable extends Migration
             $table->id();
             $table->string('nama_table')->nullable();
             $table->foreignId('user_id')->constrained()
-            ->onUpdate('cascade')
-            ->onDelete('cascade'); 
-            $table->enum('jenis_notifikasi',['tambah','update','aktif','nonaktif']);
-            $table->enum('status',['berhasil','gagal']);
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->enum('jenis_notifikasi', ['tambah', 'update', 'aktif', 'nonaktif']);
+            $table->enum('status', ['berhasil', 'gagal']);
             $table->string('msg');
+            $table->enum('mark', ['true', 'false']);
             $table->timestamps();
         });
     }

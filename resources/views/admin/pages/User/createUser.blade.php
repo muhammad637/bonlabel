@@ -17,18 +17,39 @@
                     <div class="mb-3">
                         <label for="nama" class="form-label">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama">
+                        @error('nama')
+                        <span class="form-text text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username" >
+                        @error('username')
+                        <span class="form-text text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="text" class="form-control" id="password" name="password">
+                        @error('password')
+                        <span class="form-text text-danger">
+                            {{$message}}
+                        </span>
+                        @enderror
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="show-password">
+                            <label class="form-check-label" for="show-password">
+                              Show password
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-6 mb-4">
@@ -43,8 +64,10 @@
                 <div class="col-lg-6 mb-4">
                     <div class="mb-3">
                         <label for="no_telephone" class="form-label">No Telephone</label>
-                        <input type="text" class="form-control" id="no_telephone" name="no_telephone" placeholder="example: 62812345678">
-                        <div class="form-text">note : ubah angka 0 didepan menjadi kode area negara ex: 62 </div>
+                        <input type="text" class="form-control" id="no_telephone" name="no_telephone" placeholder="example: 081234567890">
+                        @error('no_telephone')
+                            <div class="form-text"> {{$message}} </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-12">

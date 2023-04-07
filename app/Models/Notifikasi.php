@@ -15,6 +15,10 @@ class Notifikasi extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    protected $attributes = [
+        'mark' => 'false',
+    ];
+    
 
     public static function notif($tb, $msg, $jn, $st, )
     {

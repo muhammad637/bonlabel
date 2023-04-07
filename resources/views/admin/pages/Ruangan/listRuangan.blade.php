@@ -4,6 +4,21 @@
     <li class="breadcrumb-item color-primary fs-6 fw-bold">Ruangan</li>
 @endsection
 @section('container')
+    @if (count($errors) > 0)
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <ul class="list-group"></ul>
+            @error('nama_ruangan')
+                <li class="list-group-item">{{ $message }}</li>
+            @enderror
+            @error('no_telephone')
+                <li class="list-group-item">{{ $message }}</li>
+            @enderror
+            @error('status')
+                <li class="list-group-item">{{ $message }}</li>
+            @enderror
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#tambahRuangan"><i
             class="bi bi-plus fs-5"></i> Tambah</button>
     <!-- Modal Tambah -->
@@ -84,8 +99,8 @@
                     </td>
                 </tr>
                 <!-- Modal -->
-                <div class="modal fade" id="updateRuangan-{{ $ruangan->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
+                <div class="modal fade" id="updateRuangan-{{ $ruangan->id }}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -94,17 +109,19 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="ruangan/{{$ruangan->id}}" method="post" class="container m-1 p-1">
-                                  @method('put')
+                                <form action="ruangan/{{ $ruangan->id }}" method="post" class="container m-1 p-1">
+                                    @method('put')
                                     @csrf
                                     <div class="mb-3">
                                         <label for="namaRuangan" class="form-label">Nama Ruangan</label>
-                                        <input type="text" class="form-control" id="namaRuangan" name="nama_ruangan" value="{{$ruangan->nama_ruangan}}">
+                                        <input type="text" class="form-control" id="namaRuangan" name="nama_ruangan"
+                                            value="{{ $ruangan->nama_ruangan }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="no_telephone" class="form-label">No Telephone</label>
-                                        <input type="text" class="form-control" id="no_telephone" name="no_telephone" value="{{$ruangan->no_telephone}}">
+                                        <input type="text" class="form-control" id="no_telephone" name="no_telephone"
+                                            value="{{ $ruangan->no_telephone }}">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"

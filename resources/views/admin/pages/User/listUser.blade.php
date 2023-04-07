@@ -5,7 +5,6 @@
 @endsection
 @section('container')
     <div class="" style="width: 98%">
-       
         <div class="font-poppins fs-2 mb-3 color-black">
             List User
         </div>
@@ -29,12 +28,19 @@
                 <tbody>
                     @foreach ($users as $user)
                         @if ($user->id != auth()->user()->id)
+                            @php
+                                $nohp = $user->no_telephone;
+                                if (substr(trim($nohp), 0, 1) == '0') {
+                                    $nohp = '62' . substr(trim($nohp), 1);
+                                }
+                            @endphp
                             <tr>
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $user->nama }}</td>
                                 <td>{{ $user->username }}</td>
-                                <td><a href="https://wa.me/{{ $user->no_telephone }}" target="_blank"
-                                        class="badge bg-info p-2">{{ $user->no_telephone }}</a></td>
+                                <td><a href="https://wa.me/{{ $nohp }}" target="_blank"
+                                        class="badge bg-info p-2">{{ $user->no_telephone }}</a>
+                                </td>
                                 <td>
                                     @if (count($user->ruangan) <= 0)
                                         -
