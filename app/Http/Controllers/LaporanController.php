@@ -20,14 +20,14 @@ class LaporanController extends Controller
         // return $users;
         return view('admin.pages.laporan.index', [
             'title' => 'laporan',
-            'orders' => Order::orderBy('updated_at', 'desc')->get()
+            'orders' => Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get()
         ]);
     }
 
 
     public function exportLaporan()
     {
-        $data = $this->dataLaporan(Order::all());
+        $data = $this->dataLaporan(Order::whereNotNull('status')->orderBy('updated_at','desc')->get());
         return $data;
     }
 
@@ -56,7 +56,7 @@ class LaporanController extends Controller
         $tahun = Carbon::parse($request->bulanan)->format('Y');
 
         $data = $this->dataLaporan(
-            Order::whereMonth('created_at',$bulan)
+            Order::whereNotNull('status')->whereMonth('created_at',$bulan)->orderBy('updated_at','desc')
             ->whereYear('created_at',$tahun)->get()
         );
         return $data;
