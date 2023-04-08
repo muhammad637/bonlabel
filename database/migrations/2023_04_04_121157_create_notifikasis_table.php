@@ -18,7 +18,7 @@ class CreateNotifikasisTable extends Migration
             $table->string('nama_table')->nullable();
             $table->foreignId('user_id')->constrained()
                 ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->onDelete('cascade');    
             $table->enum('jenis_notifikasi', ['tambah', 'update', 'aktif', 'nonaktif']);
             $table->enum('status', ['berhasil', 'gagal']);
             $table->string('msg');
