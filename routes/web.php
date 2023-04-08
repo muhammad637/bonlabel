@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/laporan', [LaporanController::class, 'index']);
         Route::get('/eksportLaporan',[LaporanController::class,'exportLaporan']);
         Route::post('/bulananExcel',[LaporanController::class,'bulananExcel']);
+        Route::post('/ruanganExcel',[LaporanController::class,'ruanganExcel']);
     });
 
     // user

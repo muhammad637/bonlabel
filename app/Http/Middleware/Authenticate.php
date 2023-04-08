@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+use Carbon\Carbon;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
 class Authenticate extends Middleware
@@ -18,4 +20,6 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+
+
 }
