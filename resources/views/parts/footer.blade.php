@@ -21,18 +21,18 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="https://rsudblambangan.banyuwangikab.go.id/" class="text-decoration-none" target="_blank">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="https://rsudblambangan.banyuwangikab.go.id/halaman/lihat/tentang-kami" class="text-decoration-none" target="_blank">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#" class="text-decoration-none">Privacy policy</a></li>
                     </ul>
                 </div>
 
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Contact Us</h4>
                     <ul>
-                        <li><i class="bx"></i> <a href="#"><strong>Phone:<br></strong> (0333) 421118</a>
+                        <li><i class="bx"></i> <a href="#" class="text-decoration-none"><strong>Phone:<br></strong> (0333) 421118</a>
                         </li>
-                        <li><i class="bx" ></i> <a href="#" style="font-size: 12px;"><strong>Email:<br></strong>rusdblambangan.bwi@gmail.com</a></li>
+                        <li> <a href="#" class="text-decoration-none" style="font-size:100%"><strong>Email:<br></strong>rusdblambangan.bwi@gmail.com</a></li>
                         </li>
                     </ul>
                 </div>

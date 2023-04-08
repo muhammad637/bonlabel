@@ -16,7 +16,7 @@
                 <div class="alert {{ $notif->status == 'berhasil' ? 'alert-success' : 'alert-danger' }} alert-dismissible fade show"
                     role="alert">
                     <i
-                        class="bi {{ $notif->nama_table == 'user' ? 'bi-people' : ($notif->nama_table == 'produk' ? 'bi-tag' : ($notif->nama_table == 'produk' ? 'bi-house' : 'bi-cart')) }}"></i>
+                        class="bi {{ $notif->nama_table == 'user' ? 'bi-people' : ($notif->nama_table == 'produk' ? 'bi-tag' : ($notif->nama_table == 'ruangan' ? 'bi-house' : 'bi-cart')) }}"></i>
                     {{ $notif->msg }}
                     <i
                         class="bi {{ $notif->jenis_notifikasi == 'tambah' ? 'bi-add-circle' : ($notif->jenis_notifikasi == 'update' ? 'bi-subtract' : ($notif->jenis_notifikasi == 'aktif' ? 'bi-check-circle' : 'bi-x-circle')) }}"></i>

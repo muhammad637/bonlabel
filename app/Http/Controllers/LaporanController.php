@@ -20,14 +20,14 @@ class LaporanController extends Controller
         // return $users;
         return view('admin.pages.laporan.index', [
             'title' => 'laporan',
-            'orders' => Order::orderBy('updated_at', 'desc')->get()
+            'orders' => Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get()
         ]);
     }
 
 
     public function exportLaporan()
     {
-        $data = $this->dataLaporan(Order::all());
+        $data = $this->dataLaporan(Order::whereNotNull('status')->orderBy('updated_at','desc')->get());
         return $data;
     }
 
@@ -40,7 +40,7 @@ class LaporanController extends Controller
                 'nama produk' => $order->product->nama_product,
                 ($order->status == null) ? "pending" : "di$order->status",
                 'jumlah order' => $order->jumlah_order,
-                'tanggal order' => Carbon::parse($order->created_at)->format('y/m/d')
+                'tanggal order' => Carbon::parse($order->created_at)->format('Y/M/d')
             ]);
         }
         $laporan = new OrdersExport([
@@ -57,7 +57,9 @@ class LaporanController extends Controller
 
         $data = $this->dataLaporan(
             Order::whereMonth('created_at',$bulan)
-            ->whereYear('created_at',$tahun)->get()
+            ->whereYear('created_at',$tahun)
+            ->whereNotNull('status')
+            ->get()
         );
         return $data;
     }
