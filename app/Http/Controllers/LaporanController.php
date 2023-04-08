@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Exports\OrdersExport;
+use App\Models\Ruangan;
 use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
@@ -16,11 +17,15 @@ class LaporanController extends Controller
     //
     public  function index()
     {
+        $ruangan = Ruangan::all();
+    
         $users = User::all();
         // return $users;
         return view('admin.pages.laporan.index', [
             'title' => 'laporan',
-            'orders' => Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get()
+            'orders' => Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get(),
+            'ruangan' => $ruangan
+            
         ]);
     }
 
@@ -60,5 +65,19 @@ class LaporanController extends Controller
             ->whereYear('created_at',$tahun)->get()
         );
         return $data;
+    }
+
+    public function ruanganExcel(Request $request)
+    {
+        try {
+            //code...
+            $ruangan = $this->dataLaporan(
+                Order::where('ruangan_id', $request->ruangan_id)->get()
+            );
+            return $ruangan;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('toast_error',$th->getMessage());
+        }
     }
 }
