@@ -74,8 +74,16 @@
         </ul>
     </nav><!-- End Icons Navigation -->
     <script>
+        setTimeout(function() {
+          location.reload();
+        }, 300000); // Refresh setiap 3000 detik (5 menit)
+      </script>
+      
+    <script>
+         
         $(document).ready(function() {
-            $('#get-data').click(function() {
+        
+           $('#get-data').click(function() {
                 $.ajax({
                     url: '{{ route('notifi') }}',
                     type: 'GET',

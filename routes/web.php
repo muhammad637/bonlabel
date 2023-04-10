@@ -34,10 +34,20 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [CekRouteController::class, 'master']);
 Route::post('/login', [LoginController::class, 'authenticate']);
+// Route::get('/login',function(Request $request){
+//     if($request->session()->exists('username')){
+//         return view('/home');
+//     }
+//     return view('/login');
+// });
+
+// Route::post('/login',function(Request $request){
+//     $request->session()->put('username',$request->username);
+//     return redirect("/home");
+// });
 Route::get('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
 Route::get('home',[CekRouteController::class,'home']);
 Route::get('cek',[CekRouteController::class, 'cekLevel']);
-
 
 
 // ADMIN

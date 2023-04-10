@@ -3,6 +3,7 @@
     <li class="breadcrumb-item active fs-6">Dashboard</li>
 @endsection
 @section('container')
+<meta http-equiv="refresh" content="60">
 
 
     <section class="section dashboard">
@@ -123,6 +124,7 @@
             <!-- </div>End Left side columns -->
 
             <!-- Right side columns -->
+
         </div>
     </section>
 @endsection
