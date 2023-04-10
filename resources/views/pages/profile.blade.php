@@ -124,37 +124,30 @@
                                 <form action="/user/{{ auth()->user()->id }}/password" method="POST">
                                     @csrf
 
+                                    
+                                    {{-- teranyar --}}
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Password
-                                            Lama</label>
-                                            {{-- <div id="testing"></div> --}}
-                                        <div class="col-md-8 col-lg-9 position-relative">
-                                            <input type="password" id="currentPassword" class="form-control">
-                                            <div class="input-group-append">
-
-                                                <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->
-                                                <span class="input-group-text position-absolute border-0 bg-transparent"
-                                                    id="mybutton" 
-                                                    style="width:40px; height: 30px; right: 2%; top: 25%">
-                                                    <!-- icon mata bawaan bootstrap  -->
-                                                    <i id="eye1" style="width: 30px; height: 30px;"></i>
-                                                </span>
+                                      <label for="currentPassword" class="col-md-5 col-lg-4 col-form-label">Password
+                                        Lama</label>
+                                        <div class="col-md-7 ">
+                                          <div class="d-flex justify-content-start">
+                                            <input type="password" id="currentPassword" class="d-block form-control" style="width: 100%" name="password">
+                                            <div class="border rounded-md px-1 pt-2" id="mybutton">
+                                              <i id="eye1"></i>
                                             </div>
+                                          </div>
                                         </div>
                                     </div>
-                                    
+                                    {{-- teranyar --}}
                                     <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password
-                                            Lama</label>
-                                        <div class="col-md-8 col-lg-9 position-relative">
-                                            <input type="password" id="newPassword" class="form-control">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text position-absolute border-0 bg-transparent"
-                                                    id="mybutton2"
-                                                    style="width:40px; height: 30px; right: 2%; top: 25%">
-                                                    <i id="eye" style="width: 30px; height: 30px;"></i>
-                                                </span>
+                                      <label for="newPassword" class="col-md-5 col-lg-4 col-form-label">Password Baru</label>
+                                        <div class="col-md-7 ">
+                                          <div class="d-flex justify-content-start">
+                                            <input type="password" id="newPassword" class="d-block form-control" style="width: 100%" name="newPassword">
+                                            <div class="border rounded-md px-1 pt-2" id="mybutton2">
+                                              <i id="eye"></i>
                                             </div>
+                                          </div>
                                         </div>
                                     </div>
 

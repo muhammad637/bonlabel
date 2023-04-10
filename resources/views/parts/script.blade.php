@@ -45,8 +45,8 @@
         //         passwordInput.attr('type', 'password');
         //     }
         // });
-        $('#eye').addClass('bi bi-eye-fill')
-        $('#eye1').addClass('bi bi-eye-fill')
+        $('#eye').addClass('bi bi-eye-slash-fill')
+        $('#eye1').addClass('bi bi-eye-slash-fill')
         $('#mybutton').click(function() {
             // $('#currentPassword').attr('value','aan')
             var passwordInputan = $('#currentPassword');
@@ -55,11 +55,11 @@
             // Toggle tampilan password
             if (passwordFieldTypean === 'password') {
                 passwordInputan.attr('type', 'text');
-                $('#eye1').addClass('bi bi-eye-slash-fill')
-                $('#eye1').removeClass('bi bi-eye-fill')
-            } else {
                 $('#eye1').removeClass('bi bi-eye-slash-fill')
                 $('#eye1').addClass('bi bi-eye-fill')
+            } else {
+                $('#eye1').addClass('bi bi-eye-slash-fill')
+                $('#eye1').removeClass('bi bi-eye-fill')
                 passwordInputan.attr('type', 'password');
             }
         });
@@ -70,11 +70,11 @@
             // Toggle tampilan password
             if (passwordFieldType === 'password') {
                 passwordInput.attr('type', 'text');
-                $('#eye').addClass('bi bi-eye-slash-fill')
-                $('#eye').removeClass('bi bi-eye-fill')
-            } else {
                 $('#eye').removeClass('bi bi-eye-slash-fill')
                 $('#eye').addClass('bi bi-eye-fill')
+            } else {
+                $('#eye').addClass('bi bi-eye-slash-fill')
+                $('#eye').removeClass('bi bi-eye-fill')
                 passwordInput.attr('type', 'password');
             }
         });

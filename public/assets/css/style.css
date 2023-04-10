@@ -366,16 +366,16 @@ h6 {
 
 @media screen and (min-width: 375px) {
     #title-job{
-        font-size: 15px;
+        font-size: 90%;
     }
 }
 
-@media screen and (min-width: 375px) {
+/* @media screen and (min-width: 375px) {
    #nama {
         position: absolute;
         top: 5000%;
     }
-}
+} */
 
 .logo img {
     max-height: 26px;
@@ -745,7 +745,7 @@ h6 {
     color: #fff;
     font-size: 14px;
     background: #050d1b;
-        url("../img/hero-bg.jpg") center center no-repeat;
+        /* url ("../img/hero-bg.jpg") center center no-repeat; */
     background-size: cover;
 }
 

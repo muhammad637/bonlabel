@@ -38,7 +38,7 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link nav-icon text-decoration-none" href="#" data-bs-toggle="dropdown">
                         <div class="d-flex align-items-center gap-2">
-                            <span class="fs-6 font-poppins" id="nama">
+                            <span class="fs-6 font-poppins d-none d-lg-block">
                                 {{ auth()->user()->nama }} </span> <i class="bi bi-person-circle"
                                 style="font-size: 25px;"></i>
                         </div>

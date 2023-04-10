@@ -21,12 +21,11 @@
                                 <div class="card-body">
                                     <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}
                                     </h5>
-                                    <h5 class="fs-6 color-primary font-poppins fw-semibold mb-n3">
+                                    <h5 class="fs-6 color-primary font-poppins fw-semibold ">
                                         {{ $product->jenis_product }}
                                     </h5>
                                     <div class="row ">
-                                        <div class="col-md-6 col-12"></div>
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-12">
                                             <h5 class="color-primary font-poppins">stock</h5>
                                             {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
                                             <span class="color-black size-number  font-poppins mb-n3 purecounter"
