@@ -125,15 +125,12 @@
                                 @endif
                             </td>
                             <td>
-
                                 <!-- Button trigger modal -->
                                 <button type="button"
                                     class="badge @if ($order->status == 'terima') bg-success @else bg-secondary @endif border-0"
                                     data-bs-toggle="modal" data-bs-target="#pesan-modal-{{ $order->id }}">
                                     <i class="bi bi-envelope"></i>
                                 </button>
-
-
                             </td>
                         </tr>
                         <!-- Modal pesan order-->
