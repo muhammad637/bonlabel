@@ -3,6 +3,7 @@
     <li class="breadcrumb-item active fs-6">Dashboard</li>
 @endsection
 @section('container')
+<meta http-equiv="refresh" content="60">
 
 
     <section class="section dashboard">
@@ -107,7 +108,7 @@
                                                         {{ $order->status ?? 'pending' }}
                                                     </div>
                                                 </td>
-                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('Y-M-d') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('D-M-Y H:i') }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -123,6 +124,7 @@
             <!-- </div>End Left side columns -->
 
             <!-- Right side columns -->
+
         </div>
     </section>
 @endsection

@@ -92,7 +92,7 @@
                                                             {{ $order->product->nama_product }}</option>
                                                         @foreach ($products as $prod)
                                                             @if ($prod->id !== $order->product_id)
-                                                                <option value="{{ $prod->id }}">{{ $prod->nama_product }}
+                                                                <option value="{{ $prod->id }}">{{ $prod->nama_product }}|<p value ="{{ $prod->id}}">{{ $prod->jenis_product}}</p>
                                                                 </option>
                                                             @endif
                                                         @endforeach

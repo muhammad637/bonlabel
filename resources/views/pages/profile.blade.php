@@ -51,73 +51,67 @@
                         </ul>
                         <div class="tab-content pt-2">
 
-                            <div class="tab-pane fade show active profile-overview" id="profile-overview">
-                                <h5 class="card-title">Detail Profil</h5>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Name</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->nama }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">Username</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->username }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Status</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->status }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">Ruangan</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->cekLevel }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label">No Telephone</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->no_telephone }}</div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+                <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                  <h5 class="card-title">Detail Profil</h5>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Name</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->nama }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label ">Username</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->username }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Status</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->status }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Level</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->cekLevel }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">No Telephone</div>
+                    <div class="col-lg-9 col-md-8">{{ auth()->user()->no_telephone }}</div>
+                  </div>
+                </div>
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
-                                <!-- Profile Edit Form -->
-                                <form action="/user/{{ auth()->user()->id }}" method="POST">
-                                    @csrf
-                                    <div class="row mb-3">
-                                        <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="username" type="text" class="form-control" id="username"
-                                                value="{{ auth()->user()->username }}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="nama" type="text" class="form-control" id="nama"
-                                                value="{{ auth()->user()->nama }}" readonly>
-                                        </div>
-                                    </div>
+                  <!-- Profile Edit Form -->
+                  <form action="/user/{{auth()->user()->id}}" method="POST">
+                    @csrf
+                    <div class="row mb-3">
+                      <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->username }}">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="nama" type="text" class="form-control" id="nama" value="{{ auth()->user()->nama }}">
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                      <label for="company" class="col-md-4 col-lg-3 col-form-label">Tempat Bekerja</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input  type="text" class="form-control" id="company"
+                          value="RSUD Blambangan">
+                      </div>
+                    </div>
 
-                                    <div class="row mb-3">
-                                        <label for="company" class="col-md-4 col-lg-3 col-form-label">Tempat
-                                            Bekerja</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input type="text" class="form-control" id="company"
-                                                value="RSUD Blambangan">
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="cekLevel" class="col-md-4 col-lg-3 col-form-label">Ruangan</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="cekLevel" type="text" class="form-control" id="cekLevel"
-                                                placeholder="{{ auth()->user()->cekLevel }}" readonly>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="no_telephone" class="col-md-4 col-lg-3 col-form-label">No.Telp /
-                                            WA</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="no_telephone" type="text" class="form-control"
-                                                id="no_telephone" value="{{ auth()->user()->no_telephone }}">
-                                        </div>
-                                    </div>
+                    <div class="row mb-3">
+                      <label for="cekLevel" class="col-md-4 col-lg-3 col-form-label">Level</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="cekLevel" type="text" class="form-control" id="cekLevel" placeholder="{{ auth()->user()->cekLevel }}" readonly>
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="no_telephone" class="col-md-4 col-lg-3 col-form-label">No.Telp / WA</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="no_telephone" type="text" class="form-control" id="no_telephone" value="{{ auth()->user()->no_telephone }}">
+                      </div>
+                    </div>
 
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Save Changes</button>

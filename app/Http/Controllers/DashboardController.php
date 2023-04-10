@@ -12,6 +12,14 @@ use Illuminate\Routing\Controller;
 
 class DashboardController extends Controller
 {
+    public function index()
+{
+    // Logika controller Anda di sini
+
+//     return response()
+//         ->view('admin.dashboard')
+//         ->header('refresh', '60'); // Refresh setiap 60 detik (1 menit)
+ }
     //
     public function dashboardAdmin()
     {
@@ -19,7 +27,7 @@ class DashboardController extends Controller
         $productAktif = Product::where('status', 'aktif')->count();
         $products = Product::all();
         $ruanganAktif = Ruangan::where('status', 'aktif')->count();
-        $ordersTerakhir = Order::orderBy('updated_at', 'desc')->limit(5)->get();
+        $ordersTerakhir = Order::orderBy('updated_at', 'desc')->limit(10)->get();
         $aktif = [
             [
                 'title' => 'User Aktif',
@@ -46,6 +54,7 @@ class DashboardController extends Controller
             'title' => 'dashboard'
 
         ]);
+        
     }
     public function dashboardUser()
     {
