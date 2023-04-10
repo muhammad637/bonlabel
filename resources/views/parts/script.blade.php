@@ -21,6 +21,7 @@
 
 <script>
     $(document).ready(function() {
+        // $('#iasd').html('simpan pinjam')
         $('#example').DataTable();
         $('#show-password').change(function() {
             var passwordInput = $('#password');
@@ -30,6 +31,50 @@
             if (passwordFieldType === 'password') {
                 passwordInput.attr('type', 'text');
             } else {
+                passwordInput.attr('type', 'password');
+            }
+        });
+        // $('#mybutton').click(function() {
+        //     var passwordInput = $('#currentPassword');
+        //     var passwordFieldType = passwordInput.attr('type');
+
+        //     // Toggle tampilan password
+        //     if (passwordFieldType === 'password') {
+        //         passwordInput.attr('type', 'text');
+        //     } else {
+        //         passwordInput.attr('type', 'password');
+        //     }
+        // });
+        $('#eye').addClass('bi bi-eye-fill')
+        $('#eye1').addClass('bi bi-eye-fill')
+        $('#mybutton').click(function() {
+            // $('#currentPassword').attr('value','aan')
+            var passwordInputan = $('#currentPassword');
+            var passwordFieldTypean = passwordInputan.attr('type');
+
+            // Toggle tampilan password
+            if (passwordFieldTypean === 'password') {
+                passwordInputan.attr('type', 'text');
+                $('#eye1').addClass('bi bi-eye-slash-fill')
+                $('#eye1').removeClass('bi bi-eye-fill')
+            } else {
+                $('#eye1').removeClass('bi bi-eye-slash-fill')
+                $('#eye1').addClass('bi bi-eye-fill')
+                passwordInputan.attr('type', 'password');
+            }
+        });
+        $('#mybutton2').click(function() {
+            var passwordInput = $('#newPassword');
+            var passwordFieldType = passwordInput.attr('type');
+
+            // Toggle tampilan password
+            if (passwordFieldType === 'password') {
+                passwordInput.attr('type', 'text');
+                $('#eye').addClass('bi bi-eye-slash-fill')
+                $('#eye').removeClass('bi bi-eye-fill')
+            } else {
+                $('#eye').removeClass('bi bi-eye-slash-fill')
+                $('#eye').addClass('bi bi-eye-fill')
                 passwordInput.attr('type', 'password');
             }
         });

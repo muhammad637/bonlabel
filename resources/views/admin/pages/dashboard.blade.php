@@ -14,7 +14,7 @@
                 <h1 class="fw-bold font-poppins color-black">Daftar Produk</h1>
                 @foreach ($products as $product)
                     <!-- Product Card -->
-                    <div class="col-xxl-6 col-md-6">
+                    <div class="col-md-4">
                         <div data-aos="zoom-in-left">
                             <div class="card info-card sales-card shadow">
                                 <div class="card-body">

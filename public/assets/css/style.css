@@ -364,6 +364,19 @@ h6 {
     }
 }
 
+@media screen and (min-width: 375px) {
+    #title-job{
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 375px) {
+   #nama {
+        position: absolute;
+        top: 5000%;
+    }
+}
+
 .logo img {
     max-height: 26px;
     margin-right: 6px;
