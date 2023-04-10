@@ -65,10 +65,15 @@
                     <div class="col-lg-3 col-md-4 label">Status</div>
                     <div class="col-lg-9 col-md-8">{{ auth()->user()->status }}</div>
                   </div>
+                  @if(auth()->user()->cekLevel === 'user')
                   <div class="row">
-                    <div class="col-lg-3 col-md-4 label">Level</div>
-                    <div class="col-lg-9 col-md-8">{{ auth()->user()->cekLevel }}</div>
+                    <div class="col-lg-3 col-md-4 label">Ruangan</div>
+                    <div class="col-lg-9 col-md-8">
+                    @foreach ( auth()->user()->ruangan as $r)
+                        {{$r->nama_ruangan }}
+                    @endforeach</div>
                   </div>
+                  @endif
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">No Telephone</div>
                     <div class="col-lg-9 col-md-8">{{ auth()->user()->no_telephone }}</div>
@@ -82,7 +87,7 @@
                     <div class="row mb-3">
                       <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->username }}">
+                        <input name="username" type="text" class="form-control" id="username" value="{{ auth()->user()->username }} "readonly disabled>
                       </div>
                     </div>
                     <div class="row mb-3">
@@ -95,21 +100,26 @@
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Tempat Bekerja</label>
                       <div class="col-md-8 col-lg-9">
-                        <input  type="text" class="form-control" id="company"
+                        <input  type="text" class="form-control" id="company" readonly disabled
                           value="RSUD Blambangan">
                       </div>
                     </div>
-
+                    @if(auth()->user()->cekLevel === 'user')
                     <div class="row mb-3">
-                      <label for="cekLevel" class="col-md-4 col-lg-3 col-form-label">Level</label>
+                      <label for="ruangan" class="col-md-4 col-lg-3 col-form-label">Ruangan</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="cekLevel" type="text" class="form-control" id="cekLevel" placeholder="{{ auth()->user()->cekLevel }}" readonly>
+                          @if (count(auth()->user()->ruangan) > 0)
+                              @foreach ( auth()->user()->ruangan as $r )
+                                {{ $r->nama_ruangan }}
+                              @endforeach
+                          @endif
                       </div>
                     </div>
+                    @endif
                     <div class="row mb-3">
                       <label for="no_telephone" class="col-md-4 col-lg-3 col-form-label">No.Telp / WA</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="no_telephone" type="text" class="form-control" id="no_telephone" value="{{ auth()->user()->no_telephone }}">
+                        <input name="no_telephone" type="text" name="no_telephone" class="form-control" id="no_telephone" value="{{ auth()->user()->no_telephone }}">
                       </div>
                     </div>
 
