@@ -1,9 +1,11 @@
 <!-- ======= Header ======= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center text-decoration-none">
             <img src="../assets/img/icon/RSUD-logo.png" alt="">
-            <span class="d-lg-block">SiBONLABEL</span><br>
+            <span class="d-lg-block" id="title-job">SiBONLABEL</span><br>
 
         </a>
     </div>
@@ -36,7 +38,7 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link nav-icon text-decoration-none" href="#" data-bs-toggle="dropdown">
                         <div class="d-flex align-items-center gap-2">
-                            <span class="fs-6 font-poppins">
+                            <span class="fs-6 font-poppins d-none d-lg-block">
                                 {{ auth()->user()->nama }} </span> <i class="bi bi-person-circle"
                                 style="font-size: 25px;"></i>
                         </div>
@@ -68,14 +70,22 @@
             </li>
             </li><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
-            <li class="nav-item mr-3 pe-4">
+            <li class="nav-item mr-3 pe-4" id="hum-menu">
                 <i class="bi bi-list toggle-sidebar-btn"></i>
             </li>
         </ul>
     </nav><!-- End Icons Navigation -->
     <script>
+        setTimeout(function() {
+          location.reload();
+        }, 300000); // Refresh setiap 3000 detik (5 menit)
+      </script>
+      
+    <script>
+         
         $(document).ready(function() {
-            $('#get-data').click(function() {
+        
+           $('#get-data').click(function() {
                 $.ajax({
                     url: '{{ route('notifi') }}',
                     type: 'GET',

@@ -3,7 +3,7 @@
     <div class="footer-top">
         <div class="container ">
             <div class="row" style="margin-bottom: 0;">
-                <div class="col-lg-8 col-md-6 footer-contact">
+                <div class="col-lg-6 col-md-6 footer-contact">
                     <div class="row">
                         <div class="col-md-4">
                             <h3>SIBONLABEL</h3>
@@ -27,12 +27,17 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-6 footer-links">
+                <div class="col-lg-4 col-md-6 footer-links">
                     <h4>Contact Us</h4>
+                    <p></p>
+                    <p>Email</p>
+                    <p>rsudblambangan@gmail.com</p>
                     <ul>
-                        <li><i class="bx"></i> <a href="#" class="text-decoration-none"><strong>Phone:<br></strong> (0333) 421118</a>
+
+                        <li><i class="bi bi-phone"></i> <a href="#" class="text-decoration-none"><strong>Phone:<br></strong> (0333) 421118</a>
                         </li>
-                        <li> <a href="#" class="text-decoration-none" style="font-size:100%"><strong>Email:<br></strong>rusdblambangan.bwi@gmail.com</a></li>
+                        <li>
+                            <i class="bi bi-envelope-at-fill"></i> <a href="#" class="text-decoration-none" ><strong> Email</strong></a>
                         </li>
                     </ul>
                 </div>

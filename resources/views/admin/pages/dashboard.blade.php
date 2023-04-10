@@ -3,6 +3,7 @@
     <li class="breadcrumb-item active fs-6">Dashboard</li>
 @endsection
 @section('container')
+<meta http-equiv="refresh" content="60">
 
 
     <section class="section dashboard">
@@ -14,18 +15,17 @@
                 <h1 class="fw-bold font-poppins color-black">Daftar Produk</h1>
                 @foreach ($products as $product)
                     <!-- Product Card -->
-                    <div class="col-xxl-6 col-md-6">
+                    <div class="col-md-4">
                         <div data-aos="zoom-in-left">
                             <div class="card info-card sales-card shadow">
                                 <div class="card-body">
                                     <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}
                                     </h5>
-                                    <h5 class="fs-6 color-primary font-poppins fw-semibold mb-n3">
+                                    <h5 class="fs-6 color-primary font-poppins fw-semibold ">
                                         {{ $product->jenis_product }}
                                     </h5>
                                     <div class="row ">
-                                        <div class="col-md-6 col-12"></div>
-                                        <div class="col-md-6 col-12">
+                                        <div class="col-12">
                                             <h5 class="color-primary font-poppins">stock</h5>
                                             {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
                                             <span class="color-black size-number  font-poppins mb-n3 purecounter"
@@ -123,6 +123,7 @@
             <!-- </div>End Left side columns -->
 
             <!-- Right side columns -->
+
         </div>
     </section>
 @endsection
