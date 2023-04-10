@@ -17,6 +17,7 @@ class Notifikasi extends Model
     }
     protected $attributes = [
         'mark' => 'false',
+        // 'msg_pesan' => 'pesanan anda sudah di terima oleh admin harap ambil di ruang admin'
     ];
     
 

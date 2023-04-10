@@ -43,5 +43,17 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
+        Product::create([
+            'nama_product' => 'produk1',
+            'jenis_product' => 'produk1',
+            'status' => 'aktif',
+            'jumlah_stock' => 100,
+            'limit_order' => 2,
+        ]);
+        Ruangan::create([
+            'nama_ruangan' => 'ruangan1',
+            'no_telephone' => '0812345678',
+        ]);
+
     }
 }
