@@ -59,13 +59,13 @@
                                     aria-label="Close"></button>
                             </div>
                             <form action="/ruanganExcel" method="post">
-                               
+
                                 @csrf
                                 <div class="modal-body">
                                     <label for="ruangan" class="form-label"> Pilih Ruangan</label>
-                                    <select type="" id="ruangan" name="ruangan_id" class="form-control" >
+                                    <select type="" id="ruangan" name="ruangan_id" class="form-control">
                                         @foreach ($ruangan as $ruang)
-                                        <option value="{{$ruang->id}}">{{$ruang->nama_ruangan}}</option>
+                                            <option value="{{ $ruang->id }}">{{ $ruang->nama_ruangan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -92,6 +92,7 @@
                         <th>No Telp User</th>
                         <th>No Telp Ruangan</th>
                         <th>status</th>
+                        <th>msg</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,6 +102,8 @@
                             if (substr(trim($nohp), 0, 1) == '0') {
                                 $nohp = '62' . substr(trim($nohp), 1);
                             }
+                            $array = json_decode($order->pesan, true);
+                            
                         @endphp
                         <tr>
                             <td>{{ $loop->iteration }}</td>
@@ -108,9 +111,9 @@
                             <td>{{ $order->product->nama_product }}</td>
                             <td>{{ $order->ruangan->nama_ruangan }}</td>
                             <td>{{ $order->jumlah_order }}</td>
-                            <td><a href="https://wa.me/{{ $nohp }}" target="_blank"
-                                class="badge bg-info p-2">{{ $order->user->no_telephone }}</a>
-                        </td>
+                            <td><a href="https://wa.me/{{ $nohp }}/?text=SIBONLABEL%0Auntuk : {{ $array['pengorder'] }}%0A{{ $array['msg'] }}%0Adari Admin: {{$array['nama_perubah']}}"
+                                    target="_blank" class="badge bg-info p-2">{{ $order->user->no_telephone }}</a>
+                            </td>
                             <td>{{ $order->ruangan->no_telephone }}</td>
                             <td>
                                 @if ($order->status == 'terima')
@@ -121,7 +124,44 @@
                                     <div class="badge bg-warning">Pending</div>
                                 @endif
                             </td>
+                            <td>
+
+                                <!-- Button trigger modal -->
+                                <button type="button"
+                                    class="badge @if ($order->status == 'terima') bg-success @else bg-secondary @endif border-0"
+                                    data-bs-toggle="modal" data-bs-target="#pesan-modal-{{ $order->id }}">
+                                    <i class="bi bi-envelope"></i>
+                                </button>
+
+
+                            </td>
                         </tr>
+                        <!-- Modal pesan order-->
+                        <div class="modal fade" id="pesan-modal-{{ $order->id }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">pengubah : {{ $array['nama_perubah'] }}</li>
+                                            <li class="list-group-item">pengorder : {{ $array['pengorder'] }}</li>
+                                            <li class="list-group-item mt-5">pesan :
+                                                <p>{{ $array['msg'] }}</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary mx-auto"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>

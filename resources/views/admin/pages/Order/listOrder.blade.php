@@ -3,9 +3,11 @@
     <li class="breadcrumb-item active fs-6">Orderan</li>
 @endsection
 @section('container')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <div class="" style="width: 98%">
             <h2 class="text-capitalize color-black mb-3">list Order</h2>
         <!-- End Page Title -->
+        
         <div class="table-responsive">
             <table class="table border table-striped my-2" id="example" style="width:100%">
                 <thead>
@@ -21,6 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    
                     @foreach ($orders as $order)
                     @php
                     $nohp = $order->user->no_telephone;
@@ -111,8 +114,8 @@
                                                     <div class="row mt-2">
                                                         <div class="col-5 ms-1">
                                                             <input class="tolak" type="radio" name="status"
-                                                                id="tolak-{{ $order->id }}" hidden value="tolak">
-                                                            <label class="form-check-label" for="tolak-{{ $order->id }}">
+                                                                id="tolak-{{$order->id}}" hidden value="tolak">
+                                                            <label class="form-check-label" for="tolak-{{$order->id}}">
                                                                 <h3>
                                                                     <div class="badge bg-danger"><i class="bi bi-x-circle"></i>
                                                                         tolak </div>
@@ -121,7 +124,7 @@
                                                         </div>
                                                         <div class="col-5">
                                                             <input class="terima" type="radio" name="status"
-                                                                id="terima-{{ $order->id }}" checked hidden value="terima">
+                                                                id="terima-{{ $order->id }}"  hidden value="terima">
                                                             <label class="form-check-label" for="terima-{{ $order->id }}">
                                                                 <h3>
                                                                     <div class="badge bg-success "><i
@@ -130,8 +133,14 @@
                                                             </label>
                                                         </div>
                                                     </div>
+                                                    
     
-    
+                                                </div>
+                                                <div class="mt-3">
+                                                    <div class="form-floating pesan" style="display: none">
+                                                        <textarea class="form-control kotakPesan" placeholder="Leave a comment here" style="height: 100px" required name="pesan"></textarea>
+                                                        <label for="pesan">Pesan</label>
+                                                      </div>
                                                 </div>
                                                 <!-- End Browser Default Validation -->
                                                 <div class="modal-footer mt-5 justify-content-center">
@@ -149,5 +158,17 @@
             </table>
         </div>
     </div>
+    <script>
+        var tolak = $('.tolak')
+        var terima = $('.terima')
+        tolak.on('click',function(){
+            $('.pesan').css('display','block')
+            $('.kotakPesan').attr('required',true)
 
+        })
+        terima.on('click',function(){
+            $('.pesan').css('display','none')
+            $('.kotakPesan').removeAttr('required')
+        })
+    </script>
 @endsection

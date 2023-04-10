@@ -82,7 +82,7 @@ class UserController extends Controller
             $notif['msg'] = 'data user gagal ditambahkan';
             $notif['status'] = 'gagal';
             Notifikasi::create($notif);
-            return redirect()->back()->with('toast_error', $notif['msg']);
+            return redirect()->back()->with('toast_error', $th->getMessage());
         }
     }
 

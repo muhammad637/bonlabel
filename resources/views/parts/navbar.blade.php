@@ -105,7 +105,7 @@
                                 } else {
                                     var i = $('<i>').addClass('bi bi-x-circle text-danger')
                                 }
-                                var div = $('<div>')
+                                var div = $('<div>').css('cursor','pointer')
                                 var h4 = $('<h4>').addClass('').text("tabel " + await item
                                     .nama_table);
                                 var p = $('<p>').addClass('font-poppins').text(await item.msg);

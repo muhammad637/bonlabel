@@ -23,4 +23,13 @@ class Order extends Model
         return $this->belongsTo(Product::class,'product_id');
     }
 
+
+    public static function aksiOrderan($pengorder,$msg = "orderan diterima silahkan ambil di ruangan admin"){
+        return [
+            'nama_perubah' => auth()->user()->nama,
+            'pengorder' => $pengorder,
+            'msg' => $msg
+        ];
+    }
+
 }

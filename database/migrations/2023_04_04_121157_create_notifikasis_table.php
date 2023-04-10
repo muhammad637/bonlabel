@@ -21,6 +21,7 @@ class CreateNotifikasisTable extends Migration
                 ->onDelete('cascade');    
             $table->enum('jenis_notifikasi', ['tambah', 'update', 'aktif', 'nonaktif']);
             $table->enum('status', ['berhasil', 'gagal']);
+            $table->string('order_status')->nullable();
             $table->string('msg');
             $table->enum('mark', ['true', 'false']);
             $table->timestamps();
