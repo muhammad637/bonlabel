@@ -50,40 +50,48 @@
                                     $array = json_decode($order->pesan, true);
                                 @endphp
                                 <!-- Button trigger modal -->
+                                @if ($array == null)
+                                
+                                @else
                                 <button type="button"
                                     class="badge @if ($order->status == 'terima') bg-success @else bg-secondary @endif border-0"
                                     data-bs-toggle="modal" data-bs-target="#pesan-modal-{{ $order->id }}">
                                     <i class="bi bi-envelope"></i>
                                 </button>
 
+                                <div class="modal fade" id="pesan-modal-{{ $order->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">pengubah : {{ $array['nama_perubah'] }}</li>
+                                                    <li class="list-group-item">pengorder : {{ $array['pengorder'] }}</li>
+                                                    <li class="list-group-item mt-5">pesan :
+                                                        <p>{{ $array['msg'] }}</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary mx-auto"
+                                                    data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @endif
+                                
+
                             </td>
                         </tr>
 
-                        <div class="modal fade" id="pesan-modal-{{ $order->id }}" tabindex="-1"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Pesan</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">pengubah : {{ $array['nama_perubah'] }}</li>
-                                            <li class="list-group-item">pengorder : {{ $array['pengorder'] }}</li>
-                                            <li class="list-group-item mt-5">pesan :
-                                                <p>{{ $array['msg'] }}</p>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary mx-auto"
-                                            data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     @endforeach
                 </tbody>
             </table>

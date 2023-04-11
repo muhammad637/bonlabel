@@ -92,10 +92,10 @@
                                                     <select class="form-select" id="validationDefault04" required
                                                         name="product_id">
                                                         <option selected value="{{ $order->product_id }}">
-                                                            {{ $order->product->nama_product }}</option>
+                                                            {{ $order->product->nama_product }} - {{$order->product->jenis_product}}</option>
                                                         @foreach ($products as $prod)
                                                             @if ($prod->id !== $order->product_id)
-                                                                <option value="{{ $prod->id }}">{{ $prod->nama_product }}|<p value ="{{ $prod->id}}">{{ $prod->jenis_product}}</p>
+                                                                <option value="{{ $prod->id }}">{{ $prod->nama_product }} - {{$prod->jenis_product}}
                                                                 </option>
                                                             @endif
                                                         @endforeach

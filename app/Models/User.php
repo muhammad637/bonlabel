@@ -68,4 +68,8 @@ class User extends Authenticatable
     public function notifikasi(){
        return $this->hasMany(Notifikasi::class);
     }
+
+    public static function userAdmin(){
+        return User::where('cekLevel','admin')->get();
+    }
 }

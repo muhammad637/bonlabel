@@ -76,9 +76,9 @@
         </ul>
     </nav><!-- End Icons Navigation -->
     <script>
-        setTimeout(function() {
-          location.reload();
-        }, 300000); // Refresh setiap 3000 detik (5 menit)
+        // setTimeout(function() {
+        //   location.reload();
+        // }, 1000); // Refresh setiap 3000 detik (5 menit)
       </script>
       
     <script>
