@@ -52,7 +52,7 @@ Route::get('cek',[CekRouteController::class, 'cekLevel']);
 
 
 // ADMIN
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','autologout'])->group(function () {
 
     Route::get('/logout', [LoginController::class, 'logout']);
     

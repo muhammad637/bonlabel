@@ -79,13 +79,11 @@
     <script>
         setTimeout(function() {
           location.reload();
-        }, 1000 * 60 * 3); // Refresh setiap 3000 detik (5 menit)
+        }, 1000 * 5 * 60); // Refresh setiap 3000 detik (5 menit)
     </script>
 
     <script>
-         
         $(document).ready(function() {
-        
            $('#get-data').click(function() {
                 $.ajax({
                     url: '{{ route('notifi') }}',
@@ -110,7 +108,7 @@
                         if(data.length == 0 ) $('#data').append(`<li class="notification-item"> <h4 class="mx-auto text-center mt-2">pesan kosong</h4></li>`)
                         else{
                             $.each(data, async function(index, item) {
-                                if (index < 3) {
+                                if (index) {
                                     var row = $('<li>').addClass('notification-item px-1');
                                     if (await item.status == 'berhasil') {
                                         var i = $('<i>').addClass('bi bi-check-circle text-success')

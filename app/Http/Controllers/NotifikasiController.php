@@ -42,7 +42,7 @@ class NotifikasiController extends Controller
             Notifikasi::where('id', $not->id)->update(['mark' => 'true']);
         }
         $data = User::with(['notifikasi' => function ($query) {
-            $query->orderBy('created_at', 'desc')->limit(3);
+            $query->orderBy('created_at', 'desc')->limit(4);
         }])->orderBy('created_at', 'desc')->where('id', auth()->user()->id)->first()->notifikasi;
         return response()->json($data);
     }

@@ -9,7 +9,7 @@ use Illuminate\Session\Store;
 class AutologoutMiddleware
 {
     protected $session;
-    protected $timeout = 60; // Timeout dalam detik, 1800 detik = 30 menit
+    protected $timeout = 1; // Timeout dalam detik, 1800 detik = 30 menit
 
     public function __construct(Store $session)
     {
@@ -28,7 +28,7 @@ class AutologoutMiddleware
                 // Jika waktu terakhir aktivitas lebih dari timeout, logout pengguna
                 Auth::logout();
                 $request->session()->invalidate();
-                return redirect('/login')->with('toast_success', 'Anda telah otomatis logout karena tidak melakukan aktivitas dalam beberapa saat.');
+                return redirect('/login')->with('toast_success', "Anda login selama {{$this->timeout}} , mohon login kembali🙏");
             }
 
             // Update waktu terakhir aktivitas
