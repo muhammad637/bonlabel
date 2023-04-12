@@ -16,6 +16,12 @@
         </a>
       </li><!-- End Orderan Nav -->
       <li class="nav-item">
+        <a class="nav-link {{Request::is('ubahStock') ? '' : 'collapsed'}}" href="/ubahStock">
+          <i class="bi bi-tag"></i>
+          <span>Ubah Stock</span>
+        </a>
+      </li><!-- End ubahStock Nav -->
+      <li class="nav-item">
         <a class="nav-link {{Request::is('laporan') ? '' : 'collapsed'}}" href="/laporan">
           <i class="bi bi-journals"></i>
           <span>Laporan</span>

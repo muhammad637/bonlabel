@@ -16,6 +16,7 @@ use App\Http\Controllers\RuanganController;
 use Rap2hpoutre\FastExcel\Facades\FastExcel;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\UbahStockController;
 use App\Models\Notifikasi;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -72,6 +73,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboardAdmin', [DashboardController::class, 'dashboardAdmin'])->name('dashboard.admin');
         
         // MASTER
+
         // product
         Route::resource('/master/product', ProductController::class);
         Route::put('/master/product/{product:id}/nonaktif', [ProductController::class, 'nonaktif']);
@@ -88,9 +90,14 @@ Route::middleware('auth')->group(function () {
         Route::put('/master/ruangan/{ruangan:id}/nonaktif', [RuanganController::class, 'nonaktif']);
         Route::put('/master/ruangan/{ruangan:id}/aktif', [RuanganController::class, 'aktif']);
 
-        // order
+        // orderan
         Route::resource('/orderan', OrderController::class);
         
+        // ubahStock
+        Route::get('/ubahStock',[UbahStockController::class,'index']);
+        Route::put('ubahStock/{product:id}/kurangi',[UbahStockController::class,'kurangi']);
+        Route::put('ubahStock/{product:id}/tambahi',[UbahStockController::class ,'tambahi']);
+
         // laporan
         Route::get('/laporan', [LaporanController::class, 'index']);
         Route::get('/eksportLaporan',[LaporanController::class,'exportLaporan']);

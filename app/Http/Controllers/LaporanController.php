@@ -25,7 +25,6 @@ class LaporanController extends Controller
             'title' => 'laporan',
             'orders' => Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get(),
             'ruangan' => $ruangan
-            
         ]);
     }
 
@@ -45,7 +44,7 @@ class LaporanController extends Controller
                 'nama produk' => $order->product->nama_product,
                 ($order->status == null) ? "pending" : "di$order->status",
                 'jumlah order' => $order->jumlah_order,
-                'tanggal order' => Carbon::parse($order->created_at)->format('y/m/d')
+                'tanggal order' => Carbon::parse($order->created_at)->format('Y/M/d')
             ]);
         }
         $laporan = new OrdersExport([
@@ -61,8 +60,10 @@ class LaporanController extends Controller
         $tahun = Carbon::parse($request->bulanan)->format('Y');
 
         $data = $this->dataLaporan(
-            Order::whereNotNull('status')->whereMonth('created_at',$bulan)->orderBy('updated_at','desc')
-            ->whereYear('created_at',$tahun)->get()
+            Order::whereMonth('created_at',$bulan)
+            ->whereYear('created_at',$tahun)
+            ->whereNotNull('status')
+            ->get()
         );
         return $data;
     }

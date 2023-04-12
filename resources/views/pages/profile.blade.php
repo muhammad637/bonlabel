@@ -162,6 +162,56 @@
 
                     </div>
                 </div>
+                <div class="tab-pane fade pt-3" id="profile-change-password">
+                  <!-- Change Password Form -->
+                  <form action="/user/{{auth()->user()->id}}/password" method="POST">
+                  @csrf
+                    <div class="row mb-3">
+                      <label for="password" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="password" type="password" class="form-control" id="password">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">Password Baru</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input type="assword" class="form-control" id="newPassword" name="newPassword">
+                      </div>
+                      <div class="form-check mt-2" style="margin-left: 10px">
+                        <input class="form-check-input" type="checkbox" id="show-password">
+                        <label class="form-check-label" for="show-password">
+                          Show password
+                        </label>
+                    </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="changePassword">Change Password</button>
+                    </div>
+
+                    <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="changePasswordLabel">Reset Password</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <h4>Apakah anda ingin reset Password</h4>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <!-- End Change Password Form -->
+
+                </div>
+
+              </div>
+
 
             </div>
         </div>

@@ -37,7 +37,7 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //  user
+    //  USER
     public function createorder()
     {
         // return  Ruangan::where('user_id',auth()->user()->id)->get();
@@ -136,33 +136,45 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-
         // dd($order->order_id);
         //code...
-        $notif = Notifikasi::notif('order', 'data order berhasil diupdate', 'update', 'berhasil');
+        // ambil notifikasi
+        $notif = Notifikasi::notif('order', 'data order berhasil diupdate oleh '. auth()->user()->nama, 'update', 'berhasil');
+        // ambil data semua admin
         $userAdmin = User::where('cekLevel','admin')->get();
         try {
             //code...
+            // ambil data order
             $dataOrder = Order::where('id', $request->order_id)->first();
+            if($request->pesan)
+            $pesanOrder = Order::aksiOrderan($dataOrder->user->nama,$request->pesan);
+            else{
+            $pesanOrder = Order::aksiOrderan($dataOrder->user->nama);
+            }
+            // value request
+            $value = [
+                'product_id' => $request->product_id,
+                'jumlah_order' => $request->jumlah_order,
+                'status' => $request->status,
+                'pesan' => $pesanOrder
+            ];
+            // ambil product order buat update jumlah stock
             $productOrder = Product::where('id', $request->product_id)->first();
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
-            $validatedData = $request->validate(
-                [
-                    'product_id' => '',
-                    'jumlah_order' => '',
-                    'status' => '',
-                ]
-            );
-            Order::where('id', $request->order_id)->update($validatedData);
+            // proses update order
+            Order::where('id', $request->order_id)->update($value);
+            // proses update jumlah product
             Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
-            $notif['user_id'] = $dataOrder->user->id;
-            $notif['msg'] = 'data berhasil di update oleh admin '. auth()->user()->nama;
-            Notifikasi::create($notif);
+            // memberi pesan notifikasi kepada semua admin
             foreach ($userAdmin as $admin) {
                 $notif['user_id'] = $admin->id;
                 Notifikasi::create($notif);
             }
+            // memberi pesan notifikasi kepada USER yang order
+            $notif['user_id'] = $dataOrder->user->id;
+            Notifikasi::create($notif);  
             return redirect()->back()->with('toast_success', 'orderan berhasil dipdate');
+            
         } catch (\Throwable $th) {
             //throw $th;
                 # code..

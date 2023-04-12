@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade'); 
             $table->string('jumlah_order');
+            $table->json('pesan')->nullable();
             $table->enum('status',['terima','tolak'])->nullable();
             $table->timestamps();
         });

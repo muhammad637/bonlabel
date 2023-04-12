@@ -21,9 +21,9 @@
                 <div class="col-lg-2 col-md-6 footer-links">
                     <h4>Useful Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="https://rsudblambangan.banyuwangikab.go.id/" class="text-decoration-none" target="_blank">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="https://rsudblambangan.banyuwangikab.go.id/halaman/lihat/tentang-kami" class="text-decoration-none" target="_blank">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#" class="text-decoration-none">Privacy policy</a></li>
                     </ul>
                 </div>
 
@@ -33,6 +33,7 @@
                     <p>Email</p>
                     <p>rsudblambangan@gmail.com</p>
                     <ul>
+
                         <li><i class="bi bi-phone"></i> <a href="#" class="text-decoration-none"><strong>Phone:<br></strong> (0333) 421118</a>
                         </li>
                         <li>

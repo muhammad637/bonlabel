@@ -23,6 +23,20 @@
     $(document).ready(function() {
         // $('#iasd').html('simpan pinjam')
         $('#example').DataTable();
+
+
+        // ubahStock script
+        var count = $('.counter').val()
+        $('.tambah').on('click',function(){
+            $('.counter').val(count)
+            count++
+        })
+        $('.kurang').on('click',function(){
+            $('.counter').val(count)
+            if (count == 0) count = 0
+            else count--
+            
+        })
         $('#show-password').change(function() {
             var passwordInput = $('#password');
             var passwordFieldType = passwordInput.attr('type');
