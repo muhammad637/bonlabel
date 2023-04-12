@@ -28,7 +28,7 @@ class AutologoutMiddleware
                 // Jika waktu terakhir aktivitas lebih dari timeout, logout pengguna
                 Auth::logout();
                 $request->session()->invalidate();
-                return redirect('/login')->with('status', 'Anda telah otomatis logout karena tidak melakukan aktivitas dalam beberapa saat.');
+                return redirect('/login')->with('toast_success', 'Anda telah otomatis logout karena tidak melakukan aktivitas dalam beberapa saat.');
             }
 
             // Update waktu terakhir aktivitas

@@ -76,11 +76,11 @@
             </li>
         </ul>
     </nav><!-- End Icons Navigation -->
-    {{-- <script>
-        // setTimeout(function() {
-        //   location.reload();
-        // }, 1000); // Refresh setiap 3000 detik (5 menit)
-    </script> --}}
+    <script>
+        setTimeout(function() {
+          location.reload();
+        }, 1000 * 60 * 3); // Refresh setiap 3000 detik (5 menit)
+    </script>
 
     <script>
          
