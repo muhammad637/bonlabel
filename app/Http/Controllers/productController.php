@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 
 
@@ -22,7 +25,8 @@ class ProductController extends Controller
 
         return response(
             view('admin.pages.Product.listProduct', [
-                'datas' => Product::all()
+                'datas' => Product::orderBy('created_at', 'desc')->orderBy('updated_at', 'desc')->get(),
+                'title' => 'produk'
             ])
         );
     }
@@ -35,7 +39,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return response(view('admin.pages.Product.createProduct'));
+        // return response(view('admin.pages.Product.createProduct'));
     }
 
     /**
@@ -46,21 +50,40 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //membuat notifikasi
+        $notif = Notifikasi::notif('produk', 'data produk berhasil ditambahkan', 'tambah', 'berhasil');
+        // validasi requestan
+        $validatedData = validator::make($request->all(), [
+            'limit_order' => 'required|min:1',
+            'nama_product' => 'required |unique:products',
+            'jenis_product' => 'required',
+            'jumlah_stock' => 'required|min:1',
+        ]);
+        // jika requestan tidak falid 
+        if ($validatedData->fails()) {
+            $notif['msg'] = "produk $request->nama - $request->jenis_product gagal dimasukkan by " . auth()->user()->nama;
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif)->user()->sync(User::adminId());
+            return redirect()
+                ->back()
+                ->with('toast_error', $notif['msg'])
+                ->withErrors($validatedData)
+                ->withInput();
+        }
 
-        //
+
         try {
-            $validatedData = $request->validate(
-                [
-                    'limit_order' => 'min:1',
-                    'nama_product' => 'required |unique:App\Models\Product,nama_product',
-                    'jenis_product' => 'required',
-                    'jumlah_stock' => '',
-                ]
-            );
-            Product::create($validatedData);
-            return response(redirect('/product'));
-        } catch (\Exception $e) {
-            return response($e->getMessage());
+            // membuat pesan pada produk
+            $notif['msg'] = "produk : $request->nama_product - $request->jenis_product ditambahkan by " . auth()->user()->nama;
+            // membuat data pesan pada semua admin
+            Notifikasi::create($notif)
+                ->user()->sync(User::adminId());
+            // proses membuat product
+            Product::create($validatedData->validate());
+            return redirect('/master/product')->with('toast_success', $notif['msg']);
+        } catch (\Throwable $th) {
+            // peanganan jika error pada column tabel 
+            return redirect()->back()->with('toast_error', $th->getMessage());
         }
     }
 
@@ -84,14 +107,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return response(
-            view(
-                'admin.pages.Product.editProduct',
-                [
-                    'dataProduk' =>  $product,
-                ]
-            )
-        );
+        // return response(
+        //     view(
+        //         'admin.pages.Product.editProduct',
+        //         [
+        //             'dataProduk' =>  $product,
+        //         ]
+        //     )
+        // );
         //
     }
 
@@ -104,24 +127,43 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        
+        $notif = Notifikasi::notif('produk', ' ', 'update', 'berhasil');
+        $validatedData = validator::make($request->all(), [
+            'limit_order' => 'required|min:1',
+            'nama_product' => 'required |' . Rule::unique('products')->ignore($product->id),
+            'jenis_product' => 'required',
+            'jumlah_stock' => 'required|min:1',
+        ]);
+        if ($validatedData->fails()) {
+            $notif['msg'] = "produk $product->nama_product - $product->jenis_product gagal diupdate";
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            $notifAkhir = Notifikasi::latest()->first();
+            $admin = User::where('id', auth()->user()->id)->first();
+            $notifAkhir->user()->attach($admin->id);
+            return redirect()
+                ->back()
+                ->with('toast_error', $notif['msg'])
+                ->withErrors($validatedData)
+                ->withInput();
+        }
 
-       // dd($request['oldNameProduct']);
+        //code...
+
         try {
+            $prod = Product::where('id', $product->id)->first();
+            $prod->update($validatedData->validate());
+            $notif['msg'] = "produk $prod->nama_product - $prod->jenis_product berhasil di update by " . auth()->user()->nama;
+            Notifikasi::create($notif)
+                ->user()->sync(User::adminId());
+            return redirect()->back()->with('toast_success', $notif['msg']);
             //code...
-            $validatedData = $request->validate(
-                [
-                    'limit_order' => 'required|min:1',
-                    'nama_product' => ' required|'.Rule::unique('products')->ignore($product->id),
-                    'jenis_product' => '',
-                    'jumlah_stock' => '',
-                ]
-            );
-            Product::where('id', $product->id)->update($validatedData);
-            return response(redirect('/product'));
-        } catch (\Exception $e) {
+        } catch (\Throwable $th) {
             //throw $th;
-            return response($e->getMessage());
+            $notif['msg'] = 'data produk gagal diupdate';
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_error', $notif['msg']);
         }
     }
 
@@ -137,27 +179,21 @@ class ProductController extends Controller
     }
     public function nonaktif(Product $product)
     {
-
-        try {
-            //code...
-            $status_product = 'nonaktif';
-            Product::where('id', $product->id)->update(['status_product' => $status_product]);
-            return redirect()->back();
-        } catch (\Exception $e) {
-            //throw $th;
-            return $e->getMessage();
-        }
+        //code...
+        $notif = Notifikasi::notif('produk', 'produk ' . $product->nama_product . 'dinonaktifkan by ' . auth()->user()->nama, 'nonaktif', 'berhasil');
+        $status = 'nonaktif';
+        Notifikasi::create($notif)
+            ->user()->sync(User::adminId());
+        Product::where('id', $product->id)->update(['status' => $status]);
+        return redirect()->back()->with('toast_success', $notif['msg']);
     }
     public function aktif(Product $product)
     {
-        try {
-            //code...
-            $status_product = 'aktif';
-            Product::where('id', $product->id)->update(['status_product' => $status_product]);
-            return  redirect()->back();
-        } catch (\Exception $e) {
-            //throw $th;
-            return  $e->getMessage();
-        }
+        $notif = Notifikasi::notif('produk', 'produk ' . $product->nama_product . ' diaktifkan by ' . auth()->user()->nama, 'aktif', 'berhasil');
+        $status = 'aktif';
+        Notifikasi::create($notif)
+            ->user()->sync(User::adminId());
+        Product::where('id', $product->id)->update(['status' => $status]);
+        return redirect()->back()->with('toast_success', $notif['msg']);
     }
 }

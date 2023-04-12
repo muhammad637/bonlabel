@@ -13,7 +13,7 @@ class Notifikasi extends Model
     // protected $with = ['user'];
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsToMany(User::class,'notif_users');
     }
     protected $attributes = [
         'mark' => 'false',
@@ -26,7 +26,6 @@ class Notifikasi extends Model
         return [
                 'nama_table' => $tb,
                 'msg' => $msg,
-                'user_id' => auth()->user()->id,
                 'jenis_notifikasi' => $jn,
                 'status' => $st
         ];
