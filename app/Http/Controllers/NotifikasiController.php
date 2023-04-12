@@ -15,9 +15,11 @@ class NotifikasiController extends Controller
 
     public function index()
     {
-        $notifikasi = User::with(['notifikasi' => function($query){
-            $query->orderBy('created_at','desc');
-        }])->where('id', auth()->user()->id)->first()->notifikasi;
+        // $notifikasi = User::with(['notifikasi' => function($query){
+        //     $query->orderBy('created_at','desc')->paginate(10);
+        // }])->where('id', auth()->user()->id)->first()->notifikasi;
+        $user = User::with('notifikasi')->find(auth()->user()->id);
+        $notifikasi = $user->notifikasi()->orderBy('created_at','desc')->paginate(10);
         return view('pages.notifikasi', [
             'title' => 'notifikasi',
             'notifikasis' => $notifikasi
@@ -42,7 +44,7 @@ class NotifikasiController extends Controller
             Notifikasi::where('id', $not->id)->update(['mark' => 'true']);
         }
         $data = User::with(['notifikasi' => function ($query) {
-            $query->orderBy('created_at', 'desc')->limit(4);
+            $query->orderBy('created_at', 'desc')->limit(3);
         }])->orderBy('created_at', 'desc')->where('id', auth()->user()->id)->first()->notifikasi;
         return response()->json($data);
     }

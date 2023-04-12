@@ -5,9 +5,13 @@
 @section('container')
     <div class="card info-card sales-card shadow" style="width: 98%">
         <div class="container my-4 font-poppins">
-            <div class="d-lg-flex align-items-center mb-2 justify-content-between">
-                <h5 class="fs-1 fw-semibold my-2">Semua Notifikasi</h5>
-
+            <div class="row my-2 justify-content-between">
+                <div class="col-md-8 col-12 ">
+                    <h5 class="fs-1 fw-semibold">Semua Notifikasi</h5>
+                </div>
+                <div class="col-md-4  col-12">
+                    
+                </div>
             </div>
             @if (count($notifikasis) > 0)
                 @foreach ($notifikasis as $notif)
@@ -27,7 +31,7 @@
                                 <span class="text-secondary">{{ $notif->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
-                       
+
                         {{-- <form action="/notifikasi/{{ $notif->id }}" method="post">
                             @method('delete')
                             @csrf
@@ -35,6 +39,11 @@
                         </form> --}}
                     </div>
                 @endforeach
+
+                <!-- Tampilkan pagination menggunakan komponen Bootstrap -->
+                <div class="d-flex justify-content-center">
+                    {{ $notifikasis->onEachSide(1)->links() }}
+                </div>
             @else
                 <h3 class="fs-2 font-poppins text-secondary text-center my-5">Notifikasi Kosong</h3>
             @endif

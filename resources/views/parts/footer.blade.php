@@ -29,15 +29,12 @@
 
                 <div class="col-lg-4 col-md-6 footer-links">
                     <h4>Contact Us</h4>
-                    <p></p>
-                    <p>Email</p>
-                    <p>rsudblambangan@gmail.com</p>
                     <ul>
 
                         <li><i class="bi bi-phone"></i> <a href="#" class="text-decoration-none"><strong>Phone:<br></strong> (0333) 421118</a>
                         </li>
                         <li>
-                            <i class="bi bi-envelope-at-fill"></i> <a href="#" class="text-decoration-none" ><strong> Email</strong></a>
+                            <i class="bi bi-envelope-at-fill"></i> <a href="#" class="text-decoration-none" ><strong> Email: <br></strong> rsudblambangan@gmail.com</a>
                         </li>
                     </ul>
                 </div>

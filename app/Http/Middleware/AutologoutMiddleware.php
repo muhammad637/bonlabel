@@ -10,7 +10,7 @@ class AutologoutMiddleware
 {
     protected $session;
 
-    protected $timeout = 300000; // Timeout dalam detik, 1800 detik = 30 menit
+    protected $timeout = 300000000000; // Timeout dalam detik, 1800 detik = 30 menit
 
 
     public function __construct(Store $session)

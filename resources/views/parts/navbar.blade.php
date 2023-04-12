@@ -91,7 +91,7 @@
                     dataType: 'json',
                     success: function(data) {
                         // tampilkan data pada halaman
-                        console.log(data)
+                        // console.log(data)
                         $('#data').empty()
                         $('#data').html(`
                         <li class="dropdown-header">
@@ -108,9 +108,9 @@
                         if(data.length == 0 ) $('#data').append(`<li class="notification-item"> <h4 class="mx-auto text-center mt-2">pesan kosong</h4></li>`)
                         else{
                             $.each(data, async function(index, item) {
-                                if (index) {
+                                    // console.log(index)
                                     var row = $('<li>').addClass('notification-item px-1');
-                                    if (await item.status == 'berhasil') {
+                                    if (item.status == 'berhasil') {
                                         var i = $('<i>').addClass('bi bi-check-circle text-success')
                                     } else {
                                         var i = $('<i>').addClass('bi bi-x-circle text-danger')
@@ -123,7 +123,7 @@
                                     div.append(h4, p)
                                     row.append(i, div)
                                     $('#data').append(row, hr)
-                                }
+                            
                             })
                         }
 
@@ -132,7 +132,7 @@
                     },
                     error: function(data) {
                         // tampilkan pesan error pada halaman
-                        console.log(data)
+                        // console.log(data)
                     }
                 });
             });
