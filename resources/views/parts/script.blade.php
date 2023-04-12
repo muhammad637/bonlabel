@@ -37,6 +37,7 @@
             else count--
             
         })
+
         $('#show-password').change(function() {
             var passwordInput = $('#password');
             var passwordFieldType = passwordInput.attr('type');
@@ -94,4 +95,5 @@
         });
     });
 </script>
+
 @include('sweetalert::alert')

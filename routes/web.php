@@ -52,14 +52,14 @@ Route::get('cek',[CekRouteController::class, 'cekLevel']);
 
 
 // ADMIN
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','autologout'])->group(function () {
 
     Route::get('/logout', [LoginController::class, 'logout']);
     
     // notifikasi
     Route::get('/notifikasi', [NotifikasiController::class, 'index']);
-    Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
-    Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll'])->name('notifi-del');
+    // Route::delete('/notifikasi/{notif:id}', [NotifikasiController::class, 'delete']);
+    // Route::get('/notifikasi/delete', [NotifikasiController::class, 'delAll'])->name('notifi-del');
     Route::get('/notifikasi/mark', [NotifikasiController::class, 'mark'])->name('notifi');
     
 

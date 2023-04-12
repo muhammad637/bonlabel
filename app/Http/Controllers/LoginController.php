@@ -32,7 +32,7 @@ class LoginController extends Controller
                     # code...
                     return redirect('/dashboardUser')->with('success','selamat datang '.auth()->user()->nama);
                 }else{
-                    return "maaf";
+                    return redirect('cek');
                 }
             }
             

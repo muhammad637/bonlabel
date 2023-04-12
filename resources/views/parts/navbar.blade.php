@@ -6,19 +6,20 @@
         <a href="#" class="logo d-flex align-items-center text-decoration-none">
             <img src="../assets/img/icon/RSUD-logo.png" alt="">
             <span class="d-lg-block" id="title-job">SiBONLABEL</span><br>
-
         </a>
     </div>
 
     <!-- End Logo -->
     {{-- pemanggilan table notifikasi --}}
     @php
-        use App\Models\Notifikasi;
-        $notifikasiCount = count(
-            Notifikasi::where('user_id', auth()->user()->id)
-                ->where('mark', 'false')
-                ->get(),
+        use App\Models\User;
+        $notifikasiCount = count(User::with('notifikasi')
+            ->where('id', auth()->user()->id)
+            ->first()
+            ->notifikasi
+            ->where('mark','false')
         );
+        // $notifikasiCount = 5
     @endphp
     <nav class="header-nav ms-auto ">
         <ul class="d-flex align-items-center">
@@ -26,7 +27,7 @@
                 <div class="nav-item dropdown">
                     <button class="nav-link nav-icon text-decoration-none" data-bs-toggle="dropdown" id="get-data">
                         <i class="bi bi-bell"></i>
-                            <span class="badge bg-primary badge-number" id="notif-number">{{ $notifikasiCount }}</span>
+                        <span class="badge bg-primary badge-number" id="notif-number">{{ $notifikasiCount }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-arrow dropdown-menu-end notifications">
                         <div id="data">
@@ -78,13 +79,11 @@
     <script>
         setTimeout(function() {
           location.reload();
-        }, 300000); // Refresh setiap 3000 detik (5 menit)
-      </script>
-      
+        }, 1000 * 5 * 60); // Refresh setiap 3000 detik (5 menit)
+    </script>
+
     <script>
-         
         $(document).ready(function() {
-        
            $('#get-data').click(function() {
                 $.ajax({
                     url: '{{ route('notifi') }}',
@@ -109,20 +108,22 @@
                         if(data.length == 0 ) $('#data').append(`<li class="notification-item"> <h4 class="mx-auto text-center mt-2">pesan kosong</h4></li>`)
                         else{
                             $.each(data, async function(index, item) {
-                                var row = $('<li>').addClass('notification-item px-1');
-                                if (await item.status == 'berhasil') {
-                                    var i = $('<i>').addClass('bi bi-check-circle text-success')
-                                } else {
-                                    var i = $('<i>').addClass('bi bi-x-circle text-danger')
+                                if (index) {
+                                    var row = $('<li>').addClass('notification-item px-1');
+                                    if (await item.status == 'berhasil') {
+                                        var i = $('<i>').addClass('bi bi-check-circle text-success')
+                                    } else {
+                                        var i = $('<i>').addClass('bi bi-x-circle text-danger')
+                                    }
+                                    var div = $('<div>').css('cursor','pointer')
+                                    var h4 = $('<h4>').addClass('').text("tabel " + await item
+                                        .nama_table);
+                                    var p = $('<p>').addClass('font-poppins').text(await item.msg);
+                                    var hr = $('<hr>').addClass('dropdown-divider');
+                                    div.append(h4, p)
+                                    row.append(i, div)
+                                    $('#data').append(row, hr)
                                 }
-                                var div = $('<div>').css('cursor','pointer')
-                                var h4 = $('<h4>').addClass('').text("tabel " + await item
-                                    .nama_table);
-                                var p = $('<p>').addClass('font-poppins').text(await item.msg);
-                                var hr = $('<hr>').addClass('dropdown-divider');
-                                div.append(h4, p)
-                                row.append(i, div)
-                                $('#data').append(row, hr)
                             })
                         }
 

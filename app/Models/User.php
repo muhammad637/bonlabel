@@ -66,6 +66,10 @@ class User extends Authenticatable
     }
     
     public function notifikasi(){
-       return $this->hasMany(Notifikasi::class);
+       return $this->belongsToMany(Notifikasi::class,'notif_users');
+    }
+
+    public static function adminId(){
+        return User::where('cekLevel','admin')->get()->pluck('id');
     }
 }

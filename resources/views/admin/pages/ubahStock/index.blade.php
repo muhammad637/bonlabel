@@ -56,7 +56,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Form Tambahin Stok</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -80,7 +80,7 @@
                                                                     value="{{ $data->jenis_product }}">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="jumlah_stock" class="form-label">tambah
+                                                                <label for="jumlah_stock" class="form-label">Tambahin
                                                                     Stock</label>
                                                                     <div class="d-flex gap-2">
                                                                         <button type="button" class="btn btn-success tambah">+</button>
@@ -107,7 +107,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Form Kurangin Stock</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
                                                     </div>
@@ -131,7 +131,7 @@
                                                                     value="{{ $data->jenis_product }}">
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label for="jumlah_stock" class="form-label">tambah
+                                                                <label for="jumlah_stock" class="form-label">kurangin
                                                                     Stock</label>
                                                                     <div class="d-flex gap-2">
                                                                         <button type="button" class="btn btn-success tambah">+</button>

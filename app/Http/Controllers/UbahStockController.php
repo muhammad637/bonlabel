@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
@@ -17,11 +17,13 @@ class UbahStockController extends Controller
         ]);
     }
     public function kurangi(Product $product, Request $request){
-        $notif = Notifikasi::notif('produk', 'jumlah stock produk berhasil berkurang', 'update', 'berhasil');
+        $notif = Notifikasi::notif('produk', "jumlah stock produk $product->nama_product - $product->jenis_product berhasil berkurang $request->jumlah_stock by" .auth()->user()->nama, 'update', 'berhasil');
         try {
             //code...
+            // membuat semua notifikasi pada setiap admin
             $product->update(['jumlah_stock' => $product->jumlah_stock - $request->jumlah_stock]);
-            Notifikasi::create($notif);
+            Notifikasi::create($notif)->user()->sync(User::adminId());
+           
             return redirect()->back()->with('toast_success', $notif['msg']);
         } catch (\Throwable $th) {
             //throw $th;
@@ -29,11 +31,11 @@ class UbahStockController extends Controller
         }
     }
     public function tambahi(Product $product, Request $request){
-        $notif = Notifikasi::notif('produk', 'jumlah stock produk berhasil bertambah', 'update', 'berhasil');
+        $notif = Notifikasi::notif('produk', "jumlah stock produk $product->nama_product - $product->jenis_product berhasil bertambah $request->jumlah_stock by ".auth()->user()->nama , 'update', 'berhasil');
         try {
             //code...
             $product->update(['jumlah_stock' => $product->jumlah_stock + $request->jumlah_stock]);
-            Notifikasi::create($notif);
+            Notifikasi::create($notif)->user()->sync(User::adminId());
             return redirect()->back()->with('toast_success', $notif['msg']);
         } catch (\Throwable $th) {
             //throw $th;

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Ruangan;
+use App\Models\Notifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -16,12 +20,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-        //
-        return response(view('admin.pages.User.listUser', [
-            'users' => User::all(),
-        ]));
+
+        return view('admin.pages.User.listUser', [
+            'users' => User::orderBy('created_at', 'desc')->get(),
+            'title' => 'user',
+        ]);
     }
 
     /**
@@ -35,6 +42,7 @@ class UserController extends Controller
         $ruangan = Ruangan::all();
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
+            'title' => 'Create User'
         ]));
     }
 
@@ -46,33 +54,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $notif = Notifikasi::notif('user', "user: $request->nama berhasil di tambahkan by ".auth()->user()->nama, 'tambah', 'berhasil');
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'username' => 'required|unique:users',
+            'password' => 'required|min:8',
+            'cekLevel' => 'required',
+            'no_telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
+        ]);
         try {
-            $validatedData = $request->validate([
-                'nama' => 'required',
-                'username' => 'required|unique:users',
-                'password' => 'required',
-                // 'image' => '|image|file|max:1024',
-                'cekLevel' => 'required',
-                // 'address' => '',
-                'no_telephone' => 'required',
-            ]);
             $validatedData['password'] = Hash::make($validatedData['password']);
-            $create = User::create($validatedData);
-            $create;
+            User::create($validatedData);
+            Notifikasi::create($notif)->user()->sync(User::adminId());
             $user = User::where('username', $request->username)->first();
-            // return $user->id;
-
-            // return 'kelas';
-            // return User::all();
-            foreach ($request->ruangan as $index => $val) {
-                // dd($val);
+            if ($request->ruangan) {
                 # code...
-                Ruangan::where('id', $val)->update(['user_id' => $user->id]);
+                foreach ($request->ruangan as $index => $val) {
+                    // dd($val);
+                    # code...
+                    Ruangan::where('id', $val)->update(['user_id' => $user->id]);
+                }
             }
-            return response(redirect('/user'));    //code...
+            return redirect('/master/user')->with('toast_success', $notif['msg']);
+            //code...
         } catch (\Throwable $th) {
             //throw $th;
-            return $th->getMessage();
+            $notif['msg'] = "user: $request->nama gagal ditambahkan";
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif)->user()->sync(User::adminId());
+            return redirect()->back()->with('toast_error', $th->getMessage());
         }
     }
 
@@ -101,6 +111,7 @@ class UserController extends Controller
         return response(view('admin.pages.User.editUser', [
             'ruangans' => Ruangan::all(),
             'user' => $user,
+            'title' => 'Edit User'
         ]));
     }
 
@@ -113,36 +124,83 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        
+        //code...
         $validatedData = $request->validate([
             'nama' => 'required',
-            'username' => 'required |' .Rule::unique('users')->ignore($user->id),
+            'username' => 'required |' . Rule::unique('users')->ignore($user->id),
             'password' => '',
             'cekLevel' => 'required',
+            'no_telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
+        ]);
+        try {
+            //code...
+            if ($validatedData['password']  == null) {
+                $validatedData['password'] = $user->password;
+            } else {
+                $validatedData['password'] = Hash::make($validatedData['password']);
+            }
+            
+            User::where('id', $user->id)->update($validatedData);
+            $notif = Notifikasi::notif('user', "user: $request->nama berhasil diupdate", 'update', 'berhasil');
+            Notifikasi::create($notif)->user()->sync(User::adminId());
+            foreach ($user->ruangan as $item) {
+                Ruangan::where('id', $item->id)->update(['user_id' => null]);
+            }
+            if ($request->ruangan !== null) {
+                foreach ($request->ruangan as $index => $id) {
+                    Ruangan::where('id', $id)->update(['user_id' => $user->id]);
+                    // return Ruangan::where('id', $val)->get();
+                }
+            }
+            return redirect('/master/user')->with('toast_success', $notif['msg']);
+        } catch (\Throwable $th) {
+            //throw $th;
+            $notif['msg'] = 'data user ' . $user->nama . ' gagal diupdate';
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            return redirect()->back()->with('toast_error', $th->getMessage());
+        }
+    }
+
+
+    public function updatev2(Request $request, User $user)
+    {
+
+        $notif = Notifikasi::notif('user', 'no telphone anda berhasil diupdate', 'update', 'berhasil');
+        $validatedData = $request->validate([
             'no_telephone' => 'required',
         ]);
-        if($validatedData['password']  == null ){
-            $validatedData['password'] = $user->password;
-        }else{
-            $validatedData['password'] = Hash::make($validatedData['password']);
-        }
-        $update = $user->update($validatedData);
-        $update;
-        // foreach ($user->ruangan as  $val) {
-        //     array_push($p,$val->id);
-        //     // Ruangan::where('id', $val->id)->update(['user_id' == null]);
-        // }
-        // return $p;
-        foreach ($user->ruangan as $item) {
-            Ruangan::where('id',$item->id)->update(['user_id' => null]);
-        }
-        if($request->ruangan !== null){
-            foreach ($request->ruangan as $index => $id) {
-                Ruangan::where('id', $id)->update(['user_id' => $user->id]);
-                // return Ruangan::where('id', $val)->get();
+        Notifikasi::create($notif)->user()->attach(auth()->user()->id);
+        $user->update($validatedData);
+        return redirect('/profile')->with('toast_success', $notif['msg']);
+    }
+
+    public function passwordProfile(Request $req, User $user)
+    {
+        try {
+            //code...
+            $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
+            $validatedData = $req->validate([
+                'password' => 'required',
+                'newPassword' => 'required|min:8',
+            ]);
+            $password = Hash::check($validatedData['password'], $user->password);
+            if ($password) {
+                # code...
+                $user->update(['password' => Hash::make($validatedData['newPassword'])]);
+                Auth::logout();
+                $req->session()->invalidate();
+                $req->session()->regenerateToken();
+                return redirect('/login')->with('toast_success', $notif['msg']);
+            } else {
+                $notif['msg'] = 'password gagal diupdate';
+                $notif['status'] = 'gagal';
+                return redirect()->back()->with('toast_error', $notif['msg']);
             }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return $th->getMessage();
         }
-        return response(redirect('/user'));
     }
 
     /**
@@ -158,27 +216,19 @@ class UserController extends Controller
 
     public function nonaktif(User $user)
     {
-
-        try {
-            //code...
-            $status = 'nonaktif';
-            User::where('id', $user->id)->update(['status' => $status]);
-            return redirect()->back();
-        } catch (\Exception $e) {
-            //throw $th;
-            return $e->getMessage();
-        }
+        $notif = Notifikasi::notif('user', 'user ' . "$user->nama  berhasil dinonaktifkan by ".auth()->user()->nama, 'nonaktif', 'berhasil');
+        $status = 'nonaktif';
+        User::where('id', $user->id)->update(['status' => $status]);
+        Notifikasi::create($notif)->user()->sync(User::adminId());
+        return redirect()->back()->with('toast_success', $notif['msg']);
     }
     public function aktif(User $user)
     {
-        try {
-            //code...
-            $status = 'aktif';
-            User::where('id', $user->id)->update(['status' => $status]);
-            return  redirect()->back();
-        } catch (\Exception $e) {
-            //throw $th;
-            return  $e->getMessage();
-        }
+        //code...
+        $notif = Notifikasi::notif('user', 'user ' . "$user->nama berhasil diaktifkan by ".auth()->user()->nama, 'aktif', 'berhasil');
+        Notifikasi::create($notif)->user()->sync(User::adminId());
+        $status = 'aktif';
+        User::where('id', $user->id)->update(['status' => $status]);
+        return redirect()->back()->with('toast_success', $notif['msg']);
     }
 }

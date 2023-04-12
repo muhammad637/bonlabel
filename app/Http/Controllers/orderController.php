@@ -49,11 +49,10 @@ class OrderController extends Controller
     }
     public function storeOrder(Request $request)
     {
-        $notif = Notifikasi::notif('order', 'berhasil mengorder', 'tambah', 'berhasil');
 
         // mengirim Notifikasi pada setiap admin
         // ambil data admin
-        $userAdmin = User::where('cekLevel','admin')->get();
+        $userAdmin = User::where('cekLevel', 'admin')->get();
         $notif['userId'] = $userAdmin[0]->id;
 
         try {
@@ -66,6 +65,7 @@ class OrderController extends Controller
             ]);
             // ambil data product
             $produk = Product::where('id', $validatedData['product_id'])->first();
+            $notif = Notifikasi::notif('order', "produk $produk->nama_product berhasil diorder", 'tambah', 'berhasil');
 
             // isi user dengan user yang login
             $validatedData['user_id'] = auth()->user()->id;
@@ -73,21 +73,21 @@ class OrderController extends Controller
             // gagal update apabila jumlah order melebihi limit
             if ($validatedData['jumlah_order'] > $produk->limit_order) {
                 # code...
-                $notif['msg'] = "jumlah order melebihi limit" ;
+                $notif['msg'] = "jumlah order melebihi limit jumlah product $produk->nama_product";
                 $notif['status'] = "gagal";
-                Notifikasi::create($notif);
+                Notifikasi::create($notif)->user()->attach(auth()->user()->id);
                 return redirect()->back()->with('toast_error', $notif['msg']);
             }
             // create order dan notifikasi
             Order::create($validatedData);
-            Notifikasi::create($notif);
-            $notif['msg'] = auth()->user()->nama." mengorder produk "  ;
-            foreach ($userAdmin as $admin) {
-                $notif['user_id'] = $admin->id;
-                Notifikasi::create($notif);
-            }
-            return redirect()->back()->with('toast_success', 'berhasil merngorder produk');
-
+            Notifikasi::create($notif)->user()->attach(auth()->user()->id);
+            $notif['msg'] = auth()->user()->nama . " mengorder produk " . $produk->nama_product . ' - ' . $produk->jenis_product;
+            Notifikasi::create($notif)->user()->sync(User::adminId());
+            // foreach ($userAdmin as $admin) {
+            //     $notif['user_id'] = $admin->id;
+            //     Notifikasi::create($notif);
+            // }
+            return redirect()->back()->with('toast_success', "berhasil merngorder produk $produk->nama_product");
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('toast_error', $th->getMessage());
@@ -136,21 +136,20 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        // dd($order->order_id);
-        //code...
-        // ambil notifikasi
-        $notif = Notifikasi::notif('order', 'data order berhasil diupdate oleh '. auth()->user()->nama, 'update', 'berhasil');
-        // ambil data semua admin
-        $userAdmin = User::where('cekLevel','admin')->get();
+
+        // $userAdmin = User::where('cekLevel', 'admin')->get();
         try {
             //code...
+
             // ambil data order
             $dataOrder = Order::where('id', $request->order_id)->first();
-            if($request->pesan)
-            $pesanOrder = Order::aksiOrderan($dataOrder->user->nama,$request->pesan);
-            else{
-            $pesanOrder = Order::aksiOrderan($dataOrder->user->nama);
+            // jika pesan ada
+            if ($request->pesan)
+                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, $request->pesan);
+            else {
+                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama);
             }
+
             // value request
             $value = [
                 'product_id' => $request->product_id,
@@ -158,33 +157,46 @@ class OrderController extends Controller
                 'status' => $request->status,
                 'pesan' => $pesanOrder
             ];
+            // value notifikasi
+
             // ambil product order buat update jumlah stock
             $productOrder = Product::where('id', $request->product_id)->first();
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
+
+            $userOrder = Order::find($request->order_id)->user;
+
+            // ambil order data yang sudah diupdate
+            $nama_product = $productOrder->nama_product;
+            $jenis_product = $productOrder->jenis_product;
+            $msg = "orderan $userOrder->nama | jenis product: $nama_product - $jenis_product berhasil diupdate by " . auth()->user()->nama;
+            // pemanggilan fungsi notif di class Notifikasi
+            $notif = Notifikasi::notif('order', $msg, 'update', 'berhasil');
+            // mengambil semua id admin dan user yang order
+            $idUser =  [...User::adminId(),$userOrder->id];
+            if ($sisa < 0) {
+                # code...
+                $notif['msg'] = "jumlah order melebihi jumlah stock $productOrder->nama_product";
+                $notif['status'] = 'gagal';
+                Notifikasi::create($notif)->user()->sync(User::adminId());
+                return redirect()->back()->with('toast_error', $notif['msg']);
+            }
             // proses update order
             Order::where('id', $request->order_id)->update($value);
             // proses update jumlah product
             Product::where('id', $request->product_id)->update(['jumlah_stock' => $sisa]);
-            // memberi pesan notifikasi kepada semua admin
-            foreach ($userAdmin as $admin) {
-                $notif['user_id'] = $admin->id;
-                Notifikasi::create($notif);
-            }
-            // memberi pesan notifikasi kepada USER yang order
-            $notif['user_id'] = $dataOrder->user->id;
-            Notifikasi::create($notif);  
-            return redirect()->back()->with('toast_success', 'orderan berhasil dipdate');
-            
+            // memberi pesan notifikasi kepada semua admin dan user yang order
+            Notifikasi::create($notif)->user()->sync($idUser);
+            return redirect()->back()->with('toast_success', $notif['msg']);
         } catch (\Throwable $th) {
             //throw $th;
-                # code..
-                $notif['msg'] =  "gagal karena melebihi kapasitas product";
-                $notif['status'] = 'gagal';
-                Notifikasi::create($notif);
-                $productOrder->jumlah_stock;
-                return redirect()->back()->with('toast_error', $notif['msg'])->with('toast_error', 'data gagal diupdate');
+            # code..
+            return $th->getMessage();
+            $notif['msg'] =  "gagal karena melebihi kapasitas product";
+            $notif['status'] = 'gagal';
+            Notifikasi::create($notif);
+            $productOrder->jumlah_stock;
+            return redirect()->back()->with('toast_error', $notif['msg'])->with('toast_error', 'data gagal diupdate');
         }
-       
     }
 
     /**
@@ -197,6 +209,4 @@ class OrderController extends Controller
     {
         //
     }
-
-
 }
