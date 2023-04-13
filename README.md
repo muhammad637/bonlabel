@@ -57,6 +57,7 @@ muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd d
 
 - Dashboard
 - Orderan
+- ubah stok
 - Laporan
 - Master
     - Master user
@@ -69,6 +70,7 @@ muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd d
 - Orderan (menampilkan sebuah tabel dari user yang orderannya sedang pending, ditolak, atau di setujui orderannya.
 
     juga terdapat fitur untuk mengedit/mengatur jumlah kertas label yang diminta user oleh admin. juga admin dapat menolak atau menyetujui orderan dari user.)
+- Ubah stok(berisi bagaimana admin mengubah stok produk yang ada seperti bisa menambah dan mengurangi stok produk nya)
 - Laporan (menampilkan tabel yang berisi jumlah order yang dilakukan user yang di setujui maupun ditolak.
 
     dan terdapat fitur eksport data berupa excel.)
@@ -95,16 +97,19 @@ muncul halaman seperti dibawah, dan kita ketik ctrl + f lalu cari extension=gd d
 
 ![adm3](https://user-images.githubusercontent.com/67191961/230260640-504967ec-df0c-4452-8a93-7e4aa6732484.JPG)
 
-    terdapat beberapa fitur untuk admin yaitu pada Kolom Aksi, terdapat Button yg digunakan untuk admin Mengedit jumlah pesanan dan jenis kertas lalu fitur terima dan tolak permintaan user oleh Admin.
+    terdapat beberapa fitur untuk admin yaitu pada Kolom Aksi, terdapat Button yg digunakan untuk admin Mengkonfirmasi jumlah pesanan dan jenis kertas lalu fitur terima dan tolak permintaan user oleh Admin.
 
 ![adm4](https://user-images.githubusercontent.com/67191961/230260643-bc2bc09d-9df8-4aa1-abd8-f31d7175015d.JPG)
 
-4. Pada halaman laporan menampilkan data user yang telah proses.
-    Pada pojok kanan atas konten merupakan fitur ekspor untuk kita dapat mendownload data berekstensi exel.
+4. pada halaman ubah stok terdapat fitur menambahkan dan mengurangi stok produk sesuai jumlah yang tersedia.
+ 
 
+5.Pada halaman laporan menampilkan data user yang telah diproses.
+    Pada pojok kanan atas konten merupakan fitur ekspor data ke dokumen excel.
+    
 ![adm5](https://user-images.githubusercontent.com/67191961/230262710-f970c25b-9a6c-4233-bd7c-c8f79e7ca0a2.JPG)
 
-5. Berikut halaman Master dengan 3 sub menu yaitu,
+6. Berikut halaman Master dengan 3 sub menu yaitu,
 
 ![adm6 1](https://user-images.githubusercontent.com/67191961/230262714-0fbcb9e6-1927-4093-814c-648e0e68772d.JPG)
 

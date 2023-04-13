@@ -91,23 +91,17 @@
                         <input name="nama" type="text" class="form-control" id="nama" value="{{ auth()->user()->nama }} " readonly disabled>
                       </div>
                     </div>
-                   
+                   @if(auth()->user()->cekLevel == 'user')
                         
                    
                     <div class="row mb-3">
                       <label for="company" class="col-md-4 col-lg-3 col-form-label">Ruangan</label>
                       <div class="col-md-8 col-lg-9">
                         <input  type="text" class="form-control" id="company"
-                          value="{{ auth()->user()->ruangan }}" readonly disabled>
+                          value="@foreach(auth()->user()->ruangan as $r) {{$r->nama_ruangan}},@endforeach" readonly disabled>
                       </div>
                     </div>
-
-                    <div class="row mb-3">
-                      <label for="cekLevel" class="col-md-4 col-lg-3 col-form-label">Level</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="cekLevel" type="text" class="form-control" id="cekLevel" placeholder="{{ auth()->user()->cekLevel }}">
-                      </div>
-                    </div>
+                  @endif
                     <div class="row mb-3">
                       <label for="no_telephone" class="col-md-4 col-lg-3 col-form-label">No.Telp / WA</label>
                       <div class="col-md-8 col-lg-9">
