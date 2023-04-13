@@ -28,7 +28,7 @@
                                     class="bi {{ $notif->jenis_notifikasi == 'tambah' ? 'bi-add-circle' : ($notif->jenis_notifikasi == 'update' ? 'bi-subtract' : ($notif->jenis_notifikasi == 'aktif' ? 'bi-check-circle' : 'bi-x-circle')) }}"></i>
                             </div>
                             <div class="">
-                                <span class="text-secondary">{{ $notif->created_at->diffForHumans() }}</span>
+                                <span class="text-secondary">{{ Carbon\Carbon::parse($notif->created_at)->format('d M Y H:i:s') }}</span>
                             </div>
                         </div>
 

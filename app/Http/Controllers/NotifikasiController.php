@@ -19,7 +19,7 @@ class NotifikasiController extends Controller
         //     $query->orderBy('created_at','desc')->paginate(10);
         // }])->where('id', auth()->user()->id)->first()->notifikasi;
         $user = User::with('notifikasi')->find(auth()->user()->id);
-        $notifikasi = $user->notifikasi()->orderBy('created_at','desc')->paginate(10);
+        $notifikasi = $user->notifikasi()->orderBy('created_at','desc')->paginate(5);
         return view('pages.notifikasi', [
             'title' => 'notifikasi',
             'notifikasis' => $notifikasi

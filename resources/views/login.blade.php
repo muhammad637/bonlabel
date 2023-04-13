@@ -20,13 +20,13 @@
                 <div
                     class="col-xl-5 col-lg-6 pt-3 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
                     <div class="color-primary fs-6  font-poppins text-capitalize">
-                        Lorem ipsum dolor sit amet
+                        Ngebon Kertas label dengan teknologi terkini, GUNAKANLAH!!
                     </div>
                     <div class="color-primary fs-1 fw-bold font-poppins text-uppercase">
-                        Sibonlabel
+                        SiBONLABEL
                     </div>
                     <div class="color-primary fs-6  font-poppins text-capitalize">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, voluptatum?
+                        Ngebon praktis, cepat, efisien, dan dan terstruktur.
                     </div>
                     <div><button type="button" class="btn-get-started scrollto text-decoration-none"
                             data-bs-target="#modalLogin" data-bs-toggle="modal">Login</button></div>
