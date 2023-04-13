@@ -112,6 +112,7 @@ class UserController extends Controller
             'ruangans' => Ruangan::all(),
             'user' => $user,
             'title' => 'Edit User'
+            
         ]));
     }
 
