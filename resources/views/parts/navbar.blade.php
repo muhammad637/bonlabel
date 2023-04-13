@@ -3,7 +3,7 @@
 
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
-        <a href="#" class="logo d-flex align-items-center text-decoration-none">
+        <a class="logo d-flex align-items-center text-decoration-none">
             <img src="../assets/img/icon/RSUD-logo.png" alt="">
             <span class="d-lg-block" id="title-job">SiBONLABEL</span><br>
         </a>
@@ -75,12 +75,13 @@
                 <i class="bi bi-list toggle-sidebar-btn"></i>
             </li>
         </ul>
-    </nav><!-- End Icons Navigation -->
-    {{-- <script>
+    </nav>
+    <!-- End Icons Navigation -->
+    <script>
         setTimeout(function() {
           location.reload();
-        }, 1000 * 5 * 60); // Refresh setiap 3000 detik (5 menit)
-    </script> --}}
+        }, 300000); // Refresh setiap 3000 detik (5 menit)
+    </script>
 
     <script>
         $(document).ready(function() {
