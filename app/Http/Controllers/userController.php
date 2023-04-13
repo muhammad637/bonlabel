@@ -67,7 +67,14 @@ class UserController extends Controller
             User::create($validatedData);
             Notifikasi::create($notif)->user()->sync(User::adminId());
             $user = User::where('username', $request->username)->first();
-            if ($request->ruangan) {
+            // cek apakah request level adalah admin
+            if ($validatedData['cekLevel'] == 'admin' ) {
+                # kosongkan request->ruangan = []
+                $dataR =  !$request->ruangan;
+            }else{
+                $dataR =  $request->ruangan;
+            }
+            if ($dataR) {
                 # code...
                 foreach ($request->ruangan as $index => $val) {
                     // dd($val);
@@ -141,13 +148,20 @@ class UserController extends Controller
             }
             
             User::where('id', $user->id)->update($validatedData);
-            $notif = Notifikasi::notif('user', "user: $request->nama berhasil diupdate", 'update', 'berhasil');
+            $notif = Notifikasi::notif('user', "user: $request->nama berhasil diupdate by ".auth()->user()->nama, 'update', 'berhasil');
             Notifikasi::create($notif)->user()->sync(User::adminId());
             foreach ($user->ruangan as $item) {
                 Ruangan::where('id', $item->id)->update(['user_id' => null]);
             }
-            if ($request->ruangan !== null) {
-                foreach ($request->ruangan as $index => $id) {
+            if ($validatedData['cekLevel'] == 'admin' ) {
+                # kosongkan request->ruangan = []
+                $dataR =  !$request->ruangan;
+            }else{
+                $dataR =  $request->ruangan;
+            }
+
+            if ($dataR) {
+                foreach ($dataR as $index => $id) {
                     Ruangan::where('id', $id)->update(['user_id' => $user->id]);
                     // return Ruangan::where('id', $val)->get();
                 }

@@ -163,16 +163,18 @@ class OrderController extends Controller
             $productOrder = Product::where('id', $request->product_id)->first();
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
 
-            $userOrder = Order::find($request->order_id)->user;
+            $Orderan = Order::find($request->order_id);
 
             // ambil order data yang sudah diupdate
             $nama_product = $productOrder->nama_product;
+            $nama_user = $Orderan->user->nama;
             $jenis_product = $productOrder->jenis_product;
-            $msg = "orderan $userOrder->nama | jenis product: $nama_product - $jenis_product berhasil diupdate by " . auth()->user()->nama;
+            $nama_ruangan = $Orderan->ruangan->nama_ruangan;
+            $msg = "orderan $nama_user ruangan $nama_ruangan | jenis product: $nama_product - $jenis_product berhasil diupdate by " . auth()->user()->nama;
             // pemanggilan fungsi notif di class Notifikasi
             $notif = Notifikasi::notif('order', $msg, 'update', 'berhasil');
             // mengambil semua id admin dan user yang order
-            $idUser =  [...User::adminId(),$userOrder->id];
+            $idUser =  [...User::adminId(),$Orderan->user->id];
             if ($sisa < 0) {
                 # code...
                 $notif['msg'] = "jumlah order melebihi jumlah stock $productOrder->nama_product";

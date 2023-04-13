@@ -18,7 +18,8 @@
                     <tr>
                         <th scope="col">no</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">User</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Level</th>
                         <th scope="col">No Hp</th>
                         <th scope="col">ruangan</th>
                         <th scope="col">status</th>
@@ -38,20 +39,24 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $user->nama }}</td>
                                 <td>{{ $user->username }}</td>
+                                <td>{{ $user->cekLevel }}</td>
                                 <td><a href="https://wa.me/{{ $nohp }}" target="_blank"
                                         class="badge bg-info p-2">{{ $user->no_telephone }}</a>
                                 </td>
                                 <td>
-                                    @if (count($user->ruangan) <= 0)
+                                    @if (count($user->ruangan) < 1 && $user->cekLevel == 'user')
                                         -
+                                    @elseif(count($user->ruangan) >= 1 && $user->cekLevel == 'user')
+                                        @foreach ($user->ruangan as $r)
+                                            @if ($r->status == 'aktif')
+                                                <a href="/master/ruangan" class="text-dark">
+                                                    {{ $r->nama_ruangan . ',' }}
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <strong>level admin tidak memiliki ruangan</strong>
                                     @endif
-                                    @foreach ($user->ruangan as $r)
-                                        @if ($r->status == 'aktif')
-                                            <a href="/master/ruangan" class="text-dark">
-                                                {{ $r->nama_ruangan . ',' }}
-                                            </a>
-                                        @endif
-                                    @endforeach
                                 </td>
                                 <td>
                                     @if ($user->status == 'aktif')

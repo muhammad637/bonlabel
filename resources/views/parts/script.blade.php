@@ -27,15 +27,15 @@
 
         // ubahStock script
         var count = $('.counter').val()
-        $('.tambah').on('click',function(){
+        $('.tambah').on('click', function() {
             $('.counter').val(count)
             count++
         })
-        $('.kurang').on('click',function(){
+        $('.kurang').on('click', function() {
             $('.counter').val(count)
             if (count == 0) count = 0
             else count--
-            
+
         })
 
         $('#show-password').change(function() {
@@ -49,17 +49,15 @@
                 passwordInput.attr('type', 'password');
             }
         });
-        // $('#mybutton').click(function() {
-        //     var passwordInput = $('#currentPassword');
-        //     var passwordFieldType = passwordInput.attr('type');
 
-        //     // Toggle tampilan password
-        //     if (passwordFieldType === 'password') {
-        //         passwordInput.attr('type', 'text');
-        //     } else {
-        //         passwordInput.attr('type', 'password');
-        //     }
-        // });
+        // script master user create dan update
+        var cekLevel = $('#cekLevel')
+        var pilihRuangan = $('#pilihRuangan')
+        cekLevel.on('change', function() {
+            if (cekLevel.val() == 'admin') pilihRuangan.css('display', 'none')
+            else if (cekLevel.val() == 'user') pilihRuangan.css('display', 'block')
+        })
+        
         $('#eye').addClass('bi bi-eye-slash-fill')
         $('#eye1').addClass('bi bi-eye-slash-fill')
         $('#mybutton').click(function() {

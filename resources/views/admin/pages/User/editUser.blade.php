@@ -6,7 +6,7 @@
 @endsection
 @section('container')
     <section class="font-poppins">
-        
+
         <form action="/master/user/{{ $user->id }}" method="POST">
             @method('put')
             @csrf
@@ -19,16 +19,16 @@
                             value="{{ $user->nama }}">
                     </div>
                     @error('nama')
-                            <div class="form-text text-danger"> {{$message}} </div>
-                        @enderror
+                        <div class="form-text text-danger"> {{ $message }} </div>
+                    @enderror
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username"
                             value="{{ $user->username }}">
-                            @error('username')
-                            <div class="form-text text-danger"> {{$message}} </div>
+                        @error('username')
+                            <div class="form-text text-danger"> {{ $message }} </div>
                         @enderror
                     </div>
                 </div>
@@ -37,23 +37,28 @@
                         <label for="password" class="form-label">Reset Password</label>
                         <input type="password" class="form-control" id="password" name="password"
                             placeholder="masukkan new password">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="show-password">
-                                <label class="form-check-label" for="show-password">
-                                  Show password
-                                </label>
-                            </div>
-                            @error('password')
-                            <div class="form-text text-danger"> {{$message}} </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="show-password">
+                            <label class="form-check-label" for="show-password">
+                                Show password
+                            </label>
+                        </div>
+                        @error('password')
+                            <div class="form-text text-danger"> {{ $message }} </div>
                         @enderror
                     </div>
                 </div>
                 <div class="col-lg-6 mb-4">
                     <div class="mb-3">
                         <label for="cekLevel" class="form-label">level</label>
-                        <select class="form-select" aria-label="Default select example" name="cekLevel">
-                            <option selected value="user">user</option>
-                            <option value="admin">admin</option>
+                        <select class="form-select" aria-label="Default select example" name="cekLevel" id="cekLevel">
+                            @if ($user->cekLevel == 'admin')
+                                <option value="user">user</option>
+                                <option selected value="admin">admin</option>
+                            @else
+                                <option selected value="user">user</option>
+                                <option value="admin">admin</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -63,11 +68,12 @@
                         <input type="text" class="form-control" id="no_telephone" name="no_telephone"
                             placeholder="example: 62812345678" value="{{ $user->no_telephone }}">
                         @error('no_telephone')
-                            <div class="form-text text-danger"> {{$message}} </div>
+                            <div class="form-text text-danger"> {{ $message }} </div>
                         @enderror
                     </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12" id="pilihRuangan">
+
                     <p class="form-label">Pilih Ruangan</p>
                     <div class="row mb-3 ms-1">
                         @foreach ($ruangans as $ruangan)
@@ -91,11 +97,14 @@
                             </div>
                         @endforeach
                     </div>
-
+                </div>
+                <div class="col-12">
                     <div class="d-flex justify-content-center mt-5 column-gap-3">
                         <a href="{{ route('user.index') }}" class="btn btn-secondary"> <i class="bi bi-back"></i> Back</a>
-                        <button type="submit" class="btn btn-primary"> <i class="bi bi-box-arrow-down"></i> Submit</button>
+                        <button type="submit" class="btn btn-primary"> <i class="bi bi-box-arrow-down"></i>
+                            Submit</button>
                     </div>
+                </div>
         </form>
 
     </section>

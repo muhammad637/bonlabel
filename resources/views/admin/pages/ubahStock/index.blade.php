@@ -84,7 +84,7 @@
                                                                     Stock</label>
                                                                     <div class="d-flex gap-2">
                                                                         <button type="button" class="btn btn-success tambah">+</button>
-                                                                        <input type="number" class="form-control counter" id="jumlah_stock"
+                                                                        <input type="number" min="0" class="form-control counter" id="jumlah_stock"
                                                                         name="jumlah_stock" value="0">
                                                                         <button type="button" class="btn btn-danger kurang">-</button>
                                                                     </div>
@@ -135,7 +135,7 @@
                                                                     Stock</label>
                                                                     <div class="d-flex gap-2">
                                                                         <button type="button" class="btn btn-success tambah">+</button>
-                                                                        <input type="number" class="form-control counter" id="jumlah_stock"
+                                                                        <input type="number" min="0" class="form-control counter" id="jumlah_stock"
                                                                         name="jumlah_stock" value="0">
                                                                         <button type="button" class="btn btn-danger kurang">-</button>
                                                                     </div>

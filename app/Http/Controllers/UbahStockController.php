@@ -21,6 +21,11 @@ class UbahStockController extends Controller
         try {
             //code...
             // membuat semua notifikasi pada setiap admin
+            $sisa = $product->jumlah_stock - $request->jumlah_stock ;
+            if($sisa < 0 ){
+                $notif['msg'] = "jumlah stock $product->nama_product kurang dari $request->jumlah_stock";
+                return redirect()->back()->with('toast_error', $notif['msg']);
+            }
             $product->update(['jumlah_stock' => $product->jumlah_stock - $request->jumlah_stock]);
             Notifikasi::create($notif)->user()->sync(User::adminId());
            
