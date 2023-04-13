@@ -9,7 +9,7 @@ use Illuminate\Session\Store;
 class AutologoutMiddleware
 {
     protected $session;
-    protected $timeout = 100; // Timeout dalam detik, 1800 detik = 30 menit
+    protected $timeout = 10000; // Timeout dalam detik, 1800 detik = 30 menit
 
     public function __construct(Store $session)
     {
