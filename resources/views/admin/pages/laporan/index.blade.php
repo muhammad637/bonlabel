@@ -17,7 +17,7 @@
                         <i class="bi bi-download"></i> Excel
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/eksportLaporan">Semua</a></li>
+                        <li><a class="dropdown-item" href="{{route('eksportLaporan')}}">Semua</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#bulanan">Bulanan</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
@@ -34,7 +34,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="/bulananExcel" method="post">
+                            <form action="{{route('bulananExcel')}}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <label for="bulanan" class="form-label"> Pilih bulan</label>
@@ -58,7 +58,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="/ruanganExcel" method="post">
+                            <form action="{{route('ruanganExcel')}}" method="post">
 
                                 @csrf
                                 <div class="modal-body">

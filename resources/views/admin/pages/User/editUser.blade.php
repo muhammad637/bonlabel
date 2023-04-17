@@ -7,7 +7,7 @@
 @section('container')
     <section class="font-poppins">
 
-        <form action="/master/user/{{ $user->id }}" method="POST">
+        <form action="{{route('user.update',['user'=> $user->id])}}" method="POST">
             @method('put')
             @csrf
             {{-- nama,username,password,no_telephone,cekLevel --}}

@@ -11,7 +11,7 @@ class AutologoutMiddleware
     protected $session;
 
 
-    protected $timeout = 300000000000; // Timeout dalam detik, 1800 detik = 30 menit
+    protected $timeout = 50; //  10  = 1 menit
 
 
     public function __construct(Store $session)
@@ -31,7 +31,7 @@ class AutologoutMiddleware
                 // Jika waktu terakhir aktivitas lebih dari timeout, logout pengguna
                 Auth::logout();
                 $request->session()->invalidate();
-                return redirect('/login')->with('toast_success', "Anda login selama $this->timeout , mohon login kembali🙏");
+                return redirect('/login')->with('toast_success', "Anda login selama 5 menit , mohon login kembali🙏");
             }
 
             // Update waktu terakhir aktivitas

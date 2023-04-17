@@ -13,11 +13,11 @@
     {{-- pemanggilan table notifikasi --}}
     @php
         use App\Models\User;
-        $notifikasiCount = count(User::with('notifikasi')
-            ->where('id', auth()->user()->id)
-            ->first()
-            ->notifikasi
-            ->where('mark','false')
+        $notifikasiCount = count(
+            User::with('notifikasi')
+                ->where('id', auth()->user()->id)
+                ->first()
+                ->notifikasi->where('mark', 'false'),
         );
         // $notifikasiCount = 5
     @endphp
@@ -55,7 +55,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="/profile">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('profile') }}">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -63,7 +63,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <a class="dropdown-item d-flex align-items-center" href="/logout">
+                        <a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -78,16 +78,31 @@
     </nav>
     <!-- End Icons Navigation -->
     <script>
-        setTimeout(function() {
-          location.reload();
-        }, 300000); // Refresh setiap 3000 detik (5 menit)
+        // Refresh setiap 3000 detik (5 menit)
     </script>
 
     <script>
         $(document).ready(function() {
-           $('#get-data').click(function() {
+            let lastActivityTime = Date.now();
+            window.on('mousemove',() => {
+                lastActivityTime = Date.now();
+            });
+            window.on('keydown',() => {
+                lastActivityTime = Date.now();
+            });
+            // const
+            // autoLogout = setTimeout(function() {
+            //     let waktu = 5000
+            //     location.reload();
+            //     window.location.href = "/sibonlabel/logout"
+            // }, this.waktu);
+
+            console.log('/sibonlabel/logout')
+
+            // autoLogout
+            $('#get-data').click(function() {
                 $.ajax({
-                    url: '{{ route('notifi') }}',
+                    url: "{{ route('notifi.mark') }}",
                     type: 'GET',
                     dataType: 'json',
                     success: function(data) {
@@ -97,7 +112,7 @@
                         $('#data').html(`
                         <li class="dropdown-header">
                             pesan terakhir
-                                <a href="/notifikasi" class="text-decoration-none">
+                                <a href="{{ route('notifi') }}" class="text-decoration-none">
                                     <span class="badge rounded-pill bg-primary p-2 ms-2">View all
                                     </span>
                                 </a>
@@ -106,25 +121,32 @@
                             <hr class="dropdown-divider"></hr>
                                 </li>
                         `)
-                        if(data.length == 0 ) $('#data').append(`<li class="notification-item"> <h4 class="mx-auto text-center mt-2">pesan kosong</h4></li>`)
-                        else{
+                        if (data.length == 0) $('#data').append(
+                            `<li class="notification-item"> <h4 class="mx-auto text-center mt-2">pesan kosong</h4></li>`
+                            )
+                        else {
                             $.each(data, async function(index, item) {
-                                    // console.log(index)
-                                    var row = $('<li>').addClass('notification-item px-1');
-                                    if (item.status == 'berhasil') {
-                                        var i = $('<i>').addClass('bi bi-check-circle text-success')
-                                    } else {
-                                        var i = $('<i>').addClass('bi bi-x-circle text-danger')
-                                    }
-                                    var div = $('<div>').css('cursor','pointer')
-                                    var h4 = $('<h4>').addClass('').text("tabel " + await item
-                                        .nama_table);
-                                    var p = $('<p>').addClass('font-poppins').text(await item.msg);
-                                    var hr = $('<hr>').addClass('dropdown-divider');
-                                    div.append(h4, p)
-                                    row.append(i, div)
-                                    $('#data').append(row, hr)
-                            
+                                // console.log(index)
+                                var row = $('<li>').addClass(
+                                    'notification-item px-1');
+                                if (item.status == 'berhasil') {
+                                    var i = $('<i>').addClass(
+                                        'bi bi-check-circle text-success')
+                                } else {
+                                    var i = $('<i>').addClass(
+                                        'bi bi-x-circle text-danger')
+                                }
+                                var div = $('<div>').css('cursor', 'pointer')
+                                var h4 = $('<h4>').addClass('').text("tabel " +
+                                    await item
+                                    .nama_table);
+                                var p = $('<p>').addClass('font-poppins').text(
+                                    await item.msg);
+                                var hr = $('<hr>').addClass('dropdown-divider');
+                                div.append(h4, p)
+                                row.append(i, div)
+                                $('#data').append(row, hr)
+
                             })
                         }
 

@@ -143,7 +143,7 @@ class OrderController extends Controller
 
             // ambil data order
             $dataOrder = Order::where('id', $request->order_id)->first();
-            // jika pesan ada
+            // jika pesanan ada
             if ($request->pesan)
                 $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, $request->pesan);
             else {
@@ -160,7 +160,7 @@ class OrderController extends Controller
             // value notifikasi
 
             // ambil product order buat update jumlah stock
-            $productOrder = Product::where('id', $request->product_id)->first();
+            $productOrder = Product::where('id', $request->product_id)->first();  
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
 
             $Orderan = Order::find($request->order_id);

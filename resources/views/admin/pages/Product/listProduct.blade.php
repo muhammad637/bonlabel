@@ -137,7 +137,7 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="/master/product/{{ $data->id }}" method="post"
+                                                        <form action="{{route('product.update',['product' => $data->id])}}" method="post"
                                                             class="container m-1 p-2">
                                                             @method('put')
                                                             @csrf
@@ -189,7 +189,7 @@
                                         </div>
 
                                         @if ($data->status == 'aktif')
-                                            <form action="/master/product/{{ $data->id }}/nonaktif" method="post"
+                                            <form action="{{route('master.product.nonaktif',['product' => $data->id])}}" method="post"
                                                 class="inline-block">
                                                 @method('put')
                                                 @csrf
@@ -197,7 +197,7 @@
                                                         class="bi bi-x-circle"></i></button>
                                             </form>
                                         @else
-                                            <form action="/master/product/{{ $data->id }}/aktif" method="post">
+                                            <form action="{{route('master.product.aktif',['product' => $data->id])}}" method="post">
                                                 @method('put')
                                                 @csrf
                                                 <button type="submit" class="btn btn-success"><i

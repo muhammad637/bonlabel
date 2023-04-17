@@ -10,7 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-9 col-7 justify-content-center mt-md-5 mt-2 " data-aos="zoom-in">
                 <div class="d-flex align-items-center mx-md-auto">
-                    <img src="../../img/logo.png" alt="logo" class="logo" width="32">
+                    <img src="{{asset('img/logo.png')}}" alt="logo" class="logo" width="32">
                     <div class="font-poppins fs-md-1 fs-3 fw-bold">SIBONLABEL</div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
 
                 </div>
                 <div class="col-xl-4 col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="150">
-                    <img src="img/display.png" class="img-fluid animated" alt="">
+                    <img src="{{asset('img/display.png')}}" class="img-fluid animated" alt="">
                 </div>
             </div>
         </div>
@@ -46,11 +46,11 @@
                     <div class="modal-body mx-auto">
                         <div class="d-flex align-items-center mt-3">
                             <div class="">
-                                <img src="../../img/logo.png" alt="logo" class="logo" width="32">
+                                <img src="{{asset('img/logo.png')}}" alt="logo" class="logo" width="32">
                             </div>
                             <div class="font-poppins fs-md-1 fs-3 fw-bold">SIBONLABEL</div>
                         </div>
-                        <form action="/login" method="post" class="mt-5">
+                        <form action="{{route('login.auth')}}" method="post" class="mt-5">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Username</label>

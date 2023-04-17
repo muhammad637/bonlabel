@@ -156,18 +156,17 @@ class UserController extends Controller
             }
             if ($validatedData['cekLevel'] == 'admin' ) {
                 # kosongkan request->ruangan = []
-                $dataR =  !$request->ruangan;
+                return redirect(route('user.index'))->with('toast_success', $notif['msg']);
             }else{
-                $dataR =  $request->ruangan;
-            }
-
-            if ($dataR) {
-                foreach ($dataR as $index => $id) {
-                    Ruangan::where('id', $id)->update(['user_id' => $user->id]);
-                    // return Ruangan::where('id', $val)->get();
+                $cek = count($request->ruangan) >= 1;
+                if($cek){
+                    foreach ($request->ruangan as $index => $id) {
+                        Ruangan::where('id', $id)->update(['user_id' => $user->id]);
+                        // return Ruangan::where('id', $val)->get();
+                    }
                 }
             }
-            return redirect('/master/user')->with('toast_success', $notif['msg']);
+            return redirect(route('user.index'))->with('toast_success', $notif['msg']);
         } catch (\Throwable $th) {
             //throw $th;
             $notif['msg'] = 'data user ' . $user->nama . ' gagal diupdate';
@@ -181,9 +180,10 @@ class UserController extends Controller
     public function updatev2(Request $request, User $user)
     {
 
-        $notif = Notifikasi::notif('user', 'no telphone anda berhasil diupdate', 'update', 'berhasil');
+        $notif = Notifikasi::notif('user', "data anda berhasil diupdate", 'update', 'berhasil');
         $validatedData = $request->validate([
             'no_telephone' => 'required',
+            'nama' => 'required'
         ]);
         Notifikasi::create($notif)->user()->attach(auth()->user()->id);
         $user->update($validatedData);

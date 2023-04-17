@@ -71,11 +71,11 @@
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">
-                                        <a href="/master/user/{{ $user->id }}/edit " class="mb-2">
+                                        <a href="{{ route('user.edit', ['user' => $user->id]) }} " class="mb-2">
                                             <div class=" btn btn-warning"><i class="bi bi-pencil-square"></i></div>
                                         </a>
                                         @if ($user->status == 'aktif')
-                                            <form action="/master/user/{{ $user->id }}/nonaktif" method="post"
+                                            <form action="{{route('master.user.nonaktif',['user' => $user->id])}}" method="post"
                                                 class="inline-block">
                                                 @method('put')
                                                 @csrf
@@ -83,7 +83,7 @@
                                                         class="bi bi-x-circle"></i></button>
                                             </form>
                                         @else
-                                            <form action="/master/user/{{ $user->id }}/aktif" method="post">
+                                            <form action="{{route('master.user.aktif',['user'=> $user->id])}}" method="post">
                                                 @method('put')
                                                 @csrf
                                                 <button type="submit" class="btn btn-success"><i

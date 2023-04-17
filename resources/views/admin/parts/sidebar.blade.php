@@ -4,25 +4,25 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link  {{Request::is('dashboardAdmin') ? '' : 'collapsed'}}" href="/dashboardAdmin">
+        <a class="nav-link  {{Request::is('dashboardAdmin') ? '' : 'collapsed'}}" href="{{route('dashboard.admin')}}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
       <li class="nav-item">
-        <a class="nav-link {{Request::is('orderan') ? '' : 'collapsed'}}" href="/orderan">
+        <a class="nav-link {{Request::is('orderan') ? '' : 'collapsed'}}" href="{{route('orderan.index')}}">
           <i class="bi bi-cart"></i>
           <span>Orderan</span>
         </a>
       </li><!-- End Orderan Nav -->
       <li class="nav-item">
-        <a class="nav-link {{Request::is('ubahStock') ? '' : 'collapsed'}}" href="/ubahStock">
+        <a class="nav-link {{Request::is('ubahStock') ? '' : 'collapsed'}}" href="{{route('ubahStock')}}">
           <i class="bi bi-tag"></i>
           <span>Ubah Stock</span>
         </a>
       </li><!-- End ubahStock Nav -->
       <li class="nav-item">
-        <a class="nav-link {{Request::is('laporan') ? '' : 'collapsed'}}" href="/laporan">
+        <a class="nav-link {{Request::is('laporan') ? '' : 'collapsed'}}" href="{{route('laporan')}}">
           <i class="bi bi-journals"></i>
           <span>Laporan</span>
         </a>

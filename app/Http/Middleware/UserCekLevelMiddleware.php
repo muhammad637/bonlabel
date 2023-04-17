@@ -19,7 +19,8 @@ class UserCekLevelMiddleware
     {
         if (Auth::check() && auth()->user()->cekLevel == $cekLevel) {
             # code...
-            return $next($request);
+            (auth()->user()->status == 'aktif') ? $check = $next($request) : $check = redirect(route('logNonaktif'));
+            return $check;
         }
 
         return abort(403);   

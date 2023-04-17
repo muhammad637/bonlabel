@@ -1,3 +1,4 @@
+
 @extends('pages.index')
 @section('pagetitle')
     <li class="breadcrumb-item active fs-6">Orderan</li>
@@ -69,7 +70,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- Browser Default Validation -->
-                                        <form action="/orderan/{{ $order->id }}" method="post">
+                                        <form action="orderan/{{ $order->id }}" method="post">
                                             @csrf
                                             @method('put')
                                             <input type="text" class="form-control" id="validationDefault01"

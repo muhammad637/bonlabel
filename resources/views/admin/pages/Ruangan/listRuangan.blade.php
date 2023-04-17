@@ -80,7 +80,7 @@
                                         data-bs-target="#updateRuangan-{{ $ruangan->id }}"></i></div>
                             </div>
                             @if ($ruangan->status == 'aktif')
-                                <form action="/master/ruangan/{{ $ruangan->id }}/nonaktif" method="post"
+                                <form action="{{route('master.ruangan.nonaktif',['ruangan'=> $ruangan->id])}}" method="post"
                                     class="inline-block">
                                     @method('put')
                                     @csrf
@@ -88,7 +88,7 @@
                                             class="bi bi-x-circle"></i></button>
                                 </form>
                             @else
-                                <form action="/master/ruangan/{{ $ruangan->id }}/aktif" method="post">
+                                <form action="{{route('master.ruangan.aktif',['ruangan' => $ruangan->id])}}" method="post">
                                     @method('put')
                                     @csrf
                                     <button type="submit" class="btn btn-success"><i

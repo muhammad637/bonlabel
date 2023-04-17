@@ -8,7 +8,7 @@
         @if (count($ruangans) < 1)
             <h1>maaf anda tidak bisa order karena anda tidak memiliki ruangan</h1>
         @else
-            <form action="/order" class="my-2 mb-5" method="post">
+            <form action="{{route('user.storeOrder')}}" class="my-2 mb-5" method="post">
                 @csrf
                 <div class="row row-gap-2">
                     <div class="col-md-9">

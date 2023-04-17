@@ -14,19 +14,19 @@ class CekRouteController extends Controller
     }
 
     public function master(){
-        return redirect('/login');
+        return redirect(route('login'));
     }
 
     public function home(){
         $path = '/login';
         if(auth()->user()){
             if (auth()->user()->cekLevel == 'admin') {
-                $path = '/dashboardAdmin';
+                $path = route('dashboard.admin');
             }else{
                 $path= '/dashboardUser';
             }
         }
-        return redirect($path);
+        return redirect($path)->with('success',"selamat datang ".auth()->user()->nama);
     }
     
     public function cekLevel(){
