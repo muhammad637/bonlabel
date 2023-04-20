@@ -12,20 +12,20 @@
                 <h1 class="fw-bold font-poppins color-black">Daftar Produk</h1>
                 @foreach ($products as $product)
                     <!-- Product Card -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div data-aos="zoom-in-left">
                             <div class="card info-card sales-card shadow">
                                 <div class="card-body">
-                                    <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}
+                                    <h5 class="fs-4 font-poppins color-primary fw-bold mt-2">{{ $product->nama_product }}
                                     </h5>
-                                    <h5 class="fs-6 color-primary font-poppins fw-semibold ">
+                                    <h5 class="fs-12 color-primary font-poppins fw-regular ">
                                         {{ $product->jenis_product }}
                                     </h5>
                                     <div class="row ">
                                         <div class="col-12">
-                                            <h5 class="color-primary font-poppins">stock</h5>
-                                            {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
-                                            <span class="color-black size-number  font-poppins mb-n3 purecounter"
+                                            <h5 class="color-primary font-poppins">stock :</h5>
+                                            {{-- <div class="size-number font-poppins mb-n4 color-black">{{ $product->jumlah_stock }}</div> --}}
+                                            <span class="color-black size-number font-poppins mb-n3 purecounter"
                                                 data-purecounter-start="0"
                                                 data-purecounter-end="{{ $product->jumlah_stock }}"
                                                 data-purecounter-duration="1"></span>
@@ -46,7 +46,7 @@
                     <!-- End Product Card -->
                 @endforeach
 
-                <div class="col-12 mt-5">
+                <div class="col-10 mt-3 mx-auto">
                     <div class="row text-center font-poppins">
                         @foreach ($aktif as $item)
                             <a href="{{ $item['route'] }}" class="col-md-4">

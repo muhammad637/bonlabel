@@ -87,7 +87,7 @@
         }
 
         .size-number {
-            font-size: 80px;
+            font-size: 50px;
         }
 
         /* negatif margin */
