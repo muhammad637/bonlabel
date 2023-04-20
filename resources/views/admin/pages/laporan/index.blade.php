@@ -1,6 +1,9 @@
 @extends('pages.index')
 @section('pagetitle')
     <li class="breadcrumb-item active fs-6">Laporan</li>
+    @if (session()->has('pageTitle'))
+        <li class="breadcrumb-item active fs-6">{{ session()->get('pageTitle') }}</li>
+    @endif
 @endsection
 
 @section('container')
@@ -9,6 +12,9 @@
         <div class="d-flex mb-3 justify-content-between align-items-end">
             <div class="fs-2 color-black">
                 List Laporan
+                @if (session()->has('header'))
+                    <strong>{{ session()->get('header') }}</strong>
+                @endif
             </div>
             <div class="d-flex justify-content-end gap-2">
                 <div class="dropdown">
@@ -17,14 +23,14 @@
                         <i class="bi bi-download"></i> Excel
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('eksportLaporan')}}">Semua</a></li>
+                        <li><a class="dropdown-item" href="{{ route('eksportLaporan') }}">Semua</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#bulanan">Bulanan</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#ruangan">Ruangan</a></li>
                     </ul>
                 </div>
-                <!-- Modal -->
+                <!-- Modal laporabulananExcel -->
                 <div class="modal fade" id="bulanan" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -34,7 +40,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="{{route('bulananExcel')}}" method="post">
+                            <form action="{{ route('bulananExcel') }}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <label for="bulanan" class="form-label"> Pilih bulan</label>
@@ -48,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
+                <!-- Modal  laporanruanganExcel-->
                 <div class="modal fade" id="ruangan" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
@@ -58,7 +64,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <form action="{{route('ruanganExcel')}}" method="post">
+                            <form action="{{ route('ruanganExcel') }}" method="post">
 
                                 @csrf
                                 <div class="modal-body">
@@ -78,8 +84,69 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="fs-6 color-black">
+                tampilkan laporan :
+            </div>
+            <span class="badge bg-warning "><a href="{{ route('laporan') }}" class="text-decoration-none">semua</a> </span>
+            <span class="badge bg-warning "><a href="#laporanByBulan" class="text-decoration-none" data-bs-toggle="modal"
+                    data-bs-target="#laporanByBulan">byBulan</a> </span>
+            <span class="badge bg-warning "><a href="#" data-bs-toggle="modal" data-bs-target="#laporanByRuangan"
+                    class="text-decoration-none">byRuangan</a> </span>
+        </div>
+
+        <div class="modal fade" id="laporanByBulan" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tampilkan Data Laporan by Bulan</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ route('laporan.bulan') }}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <label for="bulanan" class="form-label"> Pilih bulan</label>
+                            <input type="month" id="bulanan" name="bulanan" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal  laporanruanganExcel-->
+        <div class="modal fade" id="laporanByRuangan" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Tampilkan Data laporan by Ruangan</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{route('laporan.ruangan')}}" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <label for="ruangan" class="form-label"> Pilih Ruangan</label>
+                            <select type="" id="ruangan" name="ruangan_id" class="form-control">
+                                @foreach ($ruangan as $ruang)
+                                    <option value="{{ $ruang->id }}">{{ $ruang->nama_ruangan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <div class="table-responsive">
             <table id="example" class="table table-striped border" style="width:100%">
                 <thead>
@@ -111,7 +178,7 @@
                             <td>{{ $order->product->nama_product }}</td>
                             <td>{{ $order->ruangan->nama_ruangan }}</td>
                             <td>{{ $order->jumlah_order }}</td>
-                            <td><a href="https://wa.me/{{ $nohp }}/?text=SIBONLABEL%0Auntuk : {{ $array['pengorder'] }}%0A{{ $array['msg'] }}%0Adari Admin: {{$array['nama_perubah']}}"
+                            <td><a href="https://wa.me/{{ $nohp }}/?text=SIBONLABEL%0Auntuk : {{ $array['pengorder'] }}%0A{{ $array['msg'] }}%0Adari Admin: {{ $array['nama_perubah'] }}"
                                     target="_blank" class="badge bg-info p-2">{{ $order->user->no_telephone }}</a>
                             </td>
                             <td>{{ $order->ruangan->no_telephone }}</td>

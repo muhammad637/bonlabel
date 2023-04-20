@@ -42,7 +42,7 @@ Route::get('cek',[CekRouteController::class, 'cekLevel'])->name('def.cek');
 
 
 // ADMIN
-Route::middleware(['auth','autologout'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/logNonaktif', [LoginController::class, 'logNonaktif'])->name('logNonaktif');
@@ -89,6 +89,8 @@ Route::middleware(['auth','autologout'])->group(function () {
 
         // laporan
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
+        Route::post('/laporan/bulan', [LaporanController::class, 'laporanByBulan'])->name('laporan.bulan');
+        Route::post('/laporan/ruangan', [LaporanController::class, 'laporanByRuangan'])->name('laporan.ruangan');
         Route::get('/eksportLaporan',[LaporanController::class,'exportLaporan'])->name('eksportLaporan');
         Route::post('/bulananExcel',[LaporanController::class,'bulananExcel'])->name('bulananExcel');
         Route::post('/ruanganExcel',[LaporanController::class,'ruanganExcel'])->name('ruanganExcel');
