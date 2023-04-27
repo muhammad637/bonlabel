@@ -83,36 +83,34 @@
 
     <script>
         $(document).ready(function() {
-            // let lastActivityTime = Date.now();
-            // $(document).on('mousemove',() => {
-            //     lastActivityTime = Date.now();
-            // });
-            // $(document).on('keydown',() => {
-            //     lastActivityTime = Date.now();
-            // });
+            let lastActivityTime = Date.now();
+            $(document).on('mousemove',() => {
+                lastActivityTime = Date.now();
+            });
+            $(document).on('keydown',() => {
+                lastActivityTime = Date.now();
+            });
 
-            // var time = 1
-            // function checkIdleTime(){
-            //     const idletime = Date.now() - lastActivityTime;
-            //     const idletimeSecond = idletime / 1000;
-            //     if (idletimeSecond >= 70) {
-            //         window.location.href = '/sibonlabel/logout'
-            //     }
-            // }
-            // checkIdleTime
+            var time = 1
+            function checkIdleTime(){
+                const idletime = Date.now() - lastActivityTime;
+                const idletimeSecond = idletime / 60000;
+                if (idletimeSecond > 5) {
+                    window.location.href = '/sibonlabel/logout/auto'
+                }
+            }
+            setInterval(checkIdleTime, 1000);
             // setInterval(() => {
             //     time++
             //     console.log(time)
             //     checkIdleTime() }, 1000);
-            // const
             // autoLogout = setTimeout(function() {
             //     let waktu = 5000
-                // location.reload();
+            //     location.reload();
             //     window.location.href = "/sibonlabel/logout"
             // }, this.waktu);
 
             // console.log('/sibonlabel/logout')
-
             // autoLogout
             $('#get-data').click(function() {
                 $.ajax({

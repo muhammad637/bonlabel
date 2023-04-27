@@ -32,6 +32,14 @@ class LaporanController extends Controller
         ]);
     }
 
+    public function laporanAll(){
+        $orders = Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get();
+        session()->flash('orders',$orders);
+        session()->flash('pageTitle','semua');
+        session()->flash('header','list laporan semua');
+        return redirect()->back();
+    }
+
     public function laporanByBulan(Request $request)
     {
         $bulan = Carbon::parse($request->bulanan)->format('m');
@@ -40,18 +48,29 @@ class LaporanController extends Controller
             ->whereYear('created_at', $tahun)
             ->whereNotNull('status')
             ->get();
-        $byBulan = Carbon::parse($request->bulanan)->format('M - Y');
-        session()->flash('orders', $orders);
-        session()->flash('pageTitle','bulan');
-        session()->flash('header',"Bulan $byBulan");
+            
+            session()->flash('pageTitle','bulan');
+            session()->flash('header','orderan pada bulan ini masih kosong');
+            $byBulan = Carbon::parse($request->bulanan)->format('M - Y');
+            session()->flash('orders', 'tidak ada');
+            if (count($orders) > 0) {
+                # code...
+                session()->flash('orders', $orders);
+                session()->flash('header'," List Laporan Bulan $byBulan");
+            }
         return redirect()->back();
     }
     public function laporanByRuangan(Request $request){
         $orders = Order::whereNotNull('status')->where('ruangan_id', $request->ruangan_id)->get();
-        $header = $orders[0]->ruangan->nama_ruangan;
-        session()->flash('orders', $orders);
+        session()->flash('header',"orderan di ruangan ini masih kosong");
+        session()->flash('orders', 'tidak ada');
+        if (count($orders) > 0) {
+            # code...
+            $header = $orders[0]->ruangan->nama_ruangan;
+            session()->flash('orders', $orders);
+            session()->flash('header'," List laporan Ruangan $header");
+        }
         session()->flash('pageTitle', 'ruangan');
-        session()->flash('header',"Ruangan $header");
         return redirect()->back();
     }
 

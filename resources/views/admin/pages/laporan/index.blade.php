@@ -1,3 +1,6 @@
+@php
+    $i = 0;
+@endphp
 @extends('pages.index')
 @section('pagetitle')
     <li class="breadcrumb-item active fs-6">Laporan</li>
@@ -11,9 +14,10 @@
     <div class="font-poppins" style="width: 98%">
         <div class="d-flex mb-3 justify-content-between align-items-end">
             <div class="fs-2 color-black">
-                List Laporan
                 @if (session()->has('header'))
                     <strong>{{ session()->get('header') }}</strong>
+                @else
+                <strong>list laporan</strong>
                 @endif
             </div>
             <div class="d-flex justify-content-end gap-2">
@@ -23,7 +27,7 @@
                         <i class="bi bi-download"></i> Excel
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('eksportLaporan') }}">Semua</a></li>
+                        <li><a class="dropdown-item" href="{{ route('laporan.all') }}">Semua</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#bulanan">Bulanan</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
@@ -69,7 +73,7 @@
                                 @csrf
                                 <div class="modal-body">
                                     <label for="ruangan" class="form-label"> Pilih Ruangan</label>
-                                    <select type="" id="ruangan" name="ruangan_id" class="form-control">
+                                    <select type="" id="ruangan" name="ruangan_id"  class="form-control">
                                         @foreach ($ruangan as $ruang)
                                             <option value="{{ $ruang->id }}">{{ $ruang->nama_ruangan }}</option>
                                         @endforeach
@@ -146,7 +150,7 @@
                 </div>
             </div>
         </div>
-
+        @if (session()->get('orders') != 'tidak ada')
         <div class="table-responsive">
             <table id="example" class="table table-striped border" style="width:100%">
                 <thead>
@@ -165,6 +169,7 @@
                 <tbody>
                     @foreach ($orders as $order)
                         @php
+                            $i += $order->jumlah_order;
                             $nohp = $order->user->no_telephone;
                             if (substr(trim($nohp), 0, 1) == '0') {
                                 $nohp = '62' . substr(trim($nohp), 1);
@@ -229,6 +234,12 @@
                     @endforeach
                 </tbody>
             </table>
+            @if ($i > 0)
+            <p>Total Order : <strong>{{ $i }}</strong> pcs </p>
+            @endif
         </div>
+        @else
+        <h1 class="fs-1 fw-bold">{{session()->get('header')}}</h1>
+        @endif
     </div>
 @endsection

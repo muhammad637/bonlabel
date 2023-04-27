@@ -50,6 +50,9 @@ class LoginController extends Controller
     public function logout(Request $request){
         return  $this->notifLogout($request,'success','logout berhasil');
     }
+    public function autologout(Request $request){
+        return  $this->notifLogout($request,'warning','anda tidak beraktifitas selama 5 menit, mohon login kembali 🙏');
+    }
 
     public function logNonaktif(Request $request){
         return  $this->notifLogout($request,'toast_error','status anda nonaktif');
