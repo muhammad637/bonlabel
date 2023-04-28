@@ -104,7 +104,7 @@
                                                         {{ $order->status ?? 'pending' }}
                                                     </div>
                                                 </td>
-                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('D-M-Y H:i') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d-M-Y H:i') }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
