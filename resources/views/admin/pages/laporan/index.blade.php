@@ -159,7 +159,7 @@
                         <th>Nama User</th>
                         <th>Nama Produk</th>
                         <th>Nama Ruangan</th>
-                        <th>jumlah_order</th>
+                        <th>Jumlah Order</th>
                         <th>No Telp User</th>
                         <th>No Telp Ruangan</th>
                         <th>status</th>

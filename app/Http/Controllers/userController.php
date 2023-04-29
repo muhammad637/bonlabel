@@ -68,20 +68,35 @@ class UserController extends Controller
             Notifikasi::create($notif)->user()->sync(User::adminId());
             $user = User::where('username', $request->username)->first();
             // cek apakah request level adalah admin
-            if ($validatedData['cekLevel'] == 'admin' ) {
-                # kosongkan request->ruangan = []
-                $dataR =  !$request->ruangan;
-            }else{
-                $dataR =  $request->ruangan;
-            }
-            if ($dataR) {
+            // if ($validatedData['cekLevel'] == 'admin' ) {
+            //     # kosongkan request->ruangan = []
+            //     $dataR =  !$request->ruangan;
+            // }else{
+            //     $dataR =  $request->ruangan;
+            // }
+            // if ($dataR) {
+            //     # code...
+            //     foreach ($request->ruangan as $index => $val) {
+            //         // dd($val);
+            //         # code...
+            //         Ruangan::where('id', $val)->update(['user_id' => $user->id]);
+            //     }
+            // }
+            if ($validatedData['cekLevel'] == "admin") {
                 # code...
-                foreach ($request->ruangan as $index => $val) {
-                    // dd($val);
+                return redirect('/master/user')->with('toast_success',$notif['msg']);
+            } else {
+                # code...
+                $cek = count($request->ruangan) > 0;
+                if ($cek) {
                     # code...
-                    Ruangan::where('id', $val)->update(['user_id' => $user->id]);
+                    foreach ($request->ruangan as $key => $index) {
+                        # code...
+                        Ruangan::where('id',$index)->update(['user_id' => $user->id]);
+                    }
                 }
             }
+            
             return redirect('/master/user')->with('toast_success', $notif['msg']);
             //code...
         } catch (\Throwable $th) {
