@@ -79,11 +79,12 @@
                         @foreach ($ruangans as $ruangan)
                             <div class="form-check col-lg-6">
                                 @if ($ruangan->user_id == null && $ruangan->status == 'aktif')
-                                    <input type="checkbox" name="ruangan[]" class="form-check-input"
-                                        id="{{ $ruangan->nama_ruangan }}" value="{{ $ruangan->id }}">
-                                    <label class="form-check-label"
+                                    {{-- <input type="checkbox" name="ruangan[]" class="form-check-input"
+                                        id="{{ $ruangan->nama_ruangan }}" value="{{ $ruangan->id }}"> --}}
+                                        <input type="checkbox" name="ruangan[]"  id="{{ $ruangan->nama_ruangan }}" value="{{ $ruangan->id }}" @if(in_array($ruangan->id, $user->ruangan->pluck('id')->toArray())) checked @endif> 
+                                        <label class="form-check-label"
                                         for="{{ $ruangan->nama_ruangan }}">{{ $ruangan->nama_ruangan }}</label>
-                                @elseif($ruangan->user_id == $user->id)
+                                @elseif($ruangan->user == $user->ruangan)
                                     <input type="checkbox" name="ruangan[]" class="form-check-input" checked
                                         id="{{ $ruangan->nama_ruangan }}" value="{{ $ruangan->id }}">
                                     <label class="form-check-label"

@@ -24,9 +24,9 @@ class UserController extends Controller
 
     public function index()
     {
-
+            // return User::with('ruangan')->get();
         return view('admin.pages.User.listUser', [
-            'users' => User::orderBy('created_at', 'desc')->get(),
+            'users' => User::with('ruangan')->orderBy('created_at', 'desc')->get(),
             'title' => 'user',
         ]);
     }
@@ -87,13 +87,15 @@ class UserController extends Controller
                 return redirect('/master/user')->with('toast_success',$notif['msg']);
             } else {
                 # code...
-                $cek = count($request->ruangan) > 0;
-                if ($cek) {
+                // $cek = count($request->ruangan) > 0;
+                if ($request->ruangan > 0) {
                     # code...
-                    foreach ($request->ruangan as $key => $index) {
-                        # code...
-                        Ruangan::where('id',$index)->update(['user_id' => $user->id]);
-                    }
+                    // $user = 
+                    $user->ruangan()->sync($request->ruangan);
+                    // foreach ($request->ruangan as $key => $index) {
+                    //     # code..
+                    //     // Ruangan::where('id',$index)->update(['user_id' => $user->id]);
+                    // }
                 }
             }
             
@@ -133,8 +135,8 @@ class UserController extends Controller
         return response(view('admin.pages.User.editUser', [
             'ruangans' => Ruangan::all(),
             'user' => $user,
-            'title' => 'Edit User'
-            
+            'title' => 'Edit User',
+            // 'ruanganUser' => $ruanganUser
         ]));
     }
 
@@ -173,12 +175,13 @@ class UserController extends Controller
                 # kosongkan request->ruangan = []
                 return redirect(route('user.index'))->with('toast_success', $notif['msg']);
             }else{
-                $cek = count($request->ruangan) >= 1;
-                if($cek){
-                    foreach ($request->ruangan as $index => $id) {
-                        Ruangan::where('id', $id)->update(['user_id' => $user->id]);
-                        // return Ruangan::where('id', $val)->get();
-                    }
+                // $cek = count($request->ruangan) >= 1;
+                if($request->ruangan > 0){
+                    $user->ruangan()->sync($request->ruangan);
+                    // foreach ($request->ruangan as $index => $id) {
+                    //     Ruangan::where('id', $id)->update(['user_id' => $user->id]);
+                    //     // return Ruangan::where('id', $val)->get();
+                    // }
                 }
             }
             return redirect(route('user.index'))->with('toast_success', $notif['msg']);

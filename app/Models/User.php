@@ -58,7 +58,7 @@ class User extends Authenticatable
         );
     }
     public function ruangan(){
-       return $this->hasMany(Ruangan::class);
+       return $this->belongsToMany(Ruangan::class, 'ruangans_users');
     }
     public function order(){
        return $this->hasMany(Order::class);
