@@ -83,10 +83,10 @@
                                                                 <label for="jumlah_stock" class="form-label">Tambahin
                                                                     Stock</label>
                                                                     <div class="d-flex gap-2">
-                                                                        <button type="button" class="btn btn-success tambah">+</button>
+                                                                        <button type="button" class="btn btn-danger kurang">-</button>
                                                                         <input type="number" min="0" class="form-control counter" id="jumlah_stock"
                                                                         name="jumlah_stock" value="0">
-                                                                        <button type="button" class="btn btn-danger kurang">-</button>
+                                                                        <button type="button" class="btn btn-success tambah">+</button>
                                                                     </div>
                                                             </div>
 
@@ -134,10 +134,10 @@
                                                                 <label for="jumlah_stock" class="form-label">kurangin
                                                                     Stock</label>
                                                                     <div class="d-flex gap-2">
-                                                                        <button type="button" class="btn btn-success tambah">+</button>
+                                                                        <button type="button" class="btn btn-danger kurang">-</button>
                                                                         <input type="number" min="0" class="form-control counter" id="jumlah_stock"
                                                                         name="jumlah_stock" value="0">
-                                                                        <button type="button" class="btn btn-danger kurang">-</button>
+                                                                        <button type="button" class="btn btn-success tambah">+</button>
                                                                     </div>
                                                             </div>
 

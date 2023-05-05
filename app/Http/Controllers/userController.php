@@ -211,7 +211,7 @@ class UserController extends Controller
             //code...
             $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
             $validatedData = $req->validate([
-                'password' => 'required',
+                'password' => 'required|min:8',
                 'newPassword' => 'required|min:8',
             ]);
             $password = Hash::check($validatedData['password'], $user->password);

@@ -1,6 +1,6 @@
 @extends('pages.index')
 @section('pagetitle')
-    <li class="breadcrumb-item active fs-6">Laporan</li>
+    <li class="breadcrumb-item active fs-6">History</li>
 @endsection
 
 @section('container')
@@ -8,7 +8,7 @@
     <div class="font-poppins" style="width: 98%">
         <div class="d-flex mb-3 justify-content-between align-items-end">
             <div class="fs-2 color-black">
-                List Laporan
+                List History
             </div>
 
 

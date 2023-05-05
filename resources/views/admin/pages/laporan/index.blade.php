@@ -27,7 +27,7 @@
                         <i class="bi bi-download"></i> Excel
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('laporan.all') }}">Semua</a></li>
+                        <li><a class="dropdown-item" href="{{ route('eksportLaporan') }}">Semua</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"
                                 data-bs-target="#bulanan">Bulanan</a></li>
                         <li><a class="dropdown-item" href="#" data-bs-toggle="modal"

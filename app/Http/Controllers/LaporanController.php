@@ -100,6 +100,7 @@ class LaporanController extends Controller
         return Excel::download($laporan, 'order.xlsx');
     }
 
+   
     public function bulananExcel(Request $request)
     {
         $bulan = Carbon::parse($request->bulanan)->format('m');

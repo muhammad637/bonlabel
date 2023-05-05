@@ -56,19 +56,16 @@ class User extends Authenticatable
         return new Attribute(
             get: fn($value) => ["user","admin"],
         );
-
     }
     public function ruangan(){
        return $this->hasMany(Ruangan::class);
     }
     public function order(){
        return $this->hasMany(Order::class);
-    }
-    
+    }    
     public function notifikasi(){
        return $this->belongsToMany(Notifikasi::class,'notif_users');
     }
-
     public static function adminId(){
         return User::where('cekLevel','admin')->get()->pluck('id');
     }

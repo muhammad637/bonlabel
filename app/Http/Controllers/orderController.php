@@ -81,13 +81,13 @@ class OrderController extends Controller
             // create order dan notifikasi
             Order::create($validatedData);
             Notifikasi::create($notif)->user()->attach(auth()->user()->id);
-            $notif['msg'] = auth()->user()->nama . " mengorder produk " . $produk->nama_product . ' - ' . $produk->jenis_product;
+            $notif['msg'] = auth()->user()->nama . " mengorder produk " . $produk->nama_product . ' - ' . $produk->jenis_product." sejumlah $request->jumlah_order pcs";
             Notifikasi::create($notif)->user()->sync(User::adminId());
             // foreach ($userAdmin as $admin) {
             //     $notif['user_id'] = $admin->id;
             //     Notifikasi::create($notif);
             // }
-            return redirect()->back()->with('toast_success', "berhasil merngorder produk $produk->nama_product");
+            return redirect()->back()->with('toast_success', "berhasil mengorder produk $produk->nama_product sejumlah $request->jumlah_order pcs");
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('toast_error', $th->getMessage());
@@ -144,7 +144,7 @@ class OrderController extends Controller
             // ambil data order
             $dataOrder = Order::where('id', $request->order_id)->first();
             // jika pesanan ada
-            if ($request->pesan)
+            if ($request->pesan && $request->status == 'tolak')
                 $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, $request->pesan);
             else {
                 $pesanOrder = Order::aksiOrderan($dataOrder->user->nama);
