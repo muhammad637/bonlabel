@@ -39,7 +39,7 @@ class UserController extends Controller
     public function create()
     {
         //
-          $ruangan = Ruangan::all()->sortByDesc('created_at');
+          $ruangan = Ruangan::all()->sortByDesc('nama_ruangan');
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
             'title' => 'Create User'
