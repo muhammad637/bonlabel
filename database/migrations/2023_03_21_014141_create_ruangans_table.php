@@ -20,7 +20,6 @@ class CreateRuangansTable extends Migration
             $table->enum('status', ['aktif', 'nonaktif']);
             $table->string('no_telephone');
             $table->nullableTimestamps();
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -54,6 +54,5 @@ class DatabaseSeeder extends Seeder
             'nama_ruangan' => 'ruangan1',
             'no_telephone' => '0812345678',
         ]);
-
     }
 }
