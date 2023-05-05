@@ -106,13 +106,14 @@ class LaporanController extends Controller
    
     public function bulananExcel(Request $request)
     {
+        $byBulan = Carbon::parse($request->bulanan)->format('M Y');
         $bulan = Carbon::parse($request->bulanan)->format('m');
         $tahun = Carbon::parse($request->bulanan)->format('Y');
         $data = $this->dataLaporan(
             Order::whereMonth('created_at', $bulan)
                 ->whereYear('created_at', $tahun)
                 ->whereNotNull('status')
-                ->get(), "LIST LAPORAN BY BULANAN"
+                ->get(), "LIST LAPORAN BULAN $byBulan"
         );
         return $data;
     }
