@@ -116,7 +116,7 @@
                                                 <div class="col-md-12 text-align-center">
                                                     <h6 class="my-2 fs-6 fw-bold">Konfirmasi : </h6>
                                                     <div class="row mt-2">
-                                                        <div class="col-2 ms-1">
+                                                        <div class="col-lg-2 col-md-6 ms-1">
                                                             <input class="tolak" type="radio" name="status"
                                                                 id="tolak-{{ $order->id }}" hidden value="tolak">
                                                             <label class="form-check-label"

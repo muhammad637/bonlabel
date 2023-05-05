@@ -76,25 +76,28 @@ class LaporanController extends Controller
 
     public function exportLaporan()
     {
-        $data = $this->dataLaporan(Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get());
+        $data = $this->dataLaporan(Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get(), 'LIST LAPORAN');
         return $data;
     }
 
-    private function dataLaporan($orders)
+    private function dataLaporan($orders, $judul = 'LIST LAPORAN')
     {
+    
         $dataLaporan = [];
         foreach ($orders as $order) {
             array_push($dataLaporan, [
+                'tanggal order' => Carbon::parse($order->created_at)->format('d/M/Y'),
                 'nama User' => $order->user->nama,
                 'nama ruangan' => $order->ruangan->nama_ruangan,
                 'nama produk' => $order->product->nama_product,
                 ($order->status == null) ? "pending" : "di$order->status",
-                'jumlah order' => $order->jumlah_order,
-                'tanggal order' => Carbon::parse($order->created_at)->format('Y/M/d')
+                'jumlah order' => $order->jumlah_order
+             
             ]);
         }
         $laporan = new OrdersExport([
-            ['nama User', 'nama_ruangan', 'nama produk', 'status', 'jumlah order', 'tanggal order'],
+            [$judul],
+            ['tanggal order', 'nama User', 'nama_ruangan', 'nama produk', 'status', 'jumlah order', ],
             [...$dataLaporan]
         ]);
         return Excel::download($laporan, 'order.xlsx');
@@ -120,8 +123,10 @@ class LaporanController extends Controller
     {
         try {
             //code...
+            $ruang = Ruangan::find($request->ruangan_id);
+            // return $ruang;
             $ruangan = $this->dataLaporan(
-                Order::whereNotNull('status')->where('ruangan_id', $request->ruangan_id)->get()
+                Order::whereNotNull('status')->where('ruangan_id', $request->ruangan_id)->get(), "LIST LAPORAN BY RUANGAN $ruang->nama_ruangan"
             );
             return $ruangan;
         } catch (\Throwable $th) {

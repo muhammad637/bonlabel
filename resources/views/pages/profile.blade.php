@@ -107,7 +107,7 @@
                                         <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="nama" type="text" class="form-control" id="nama"
-                                                value="{{ auth()->user()->nama }} " >
+                                                value="{{ auth()->user()->nama }} " readonly disabled>
                                         </div>
                                     </div>
                                     @if (auth()->user()->cekLevel == 'user')
