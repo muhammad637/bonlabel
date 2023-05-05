@@ -85,7 +85,7 @@
                                                 <div class="col-md-4">
                                                     <label for="validationDefault02" class="form-label">Nama Ruangan</label>
                                                     <input type="text" class="form-control" id="validationDefault02"
-                                                        disabled value="{{ $order->ruangan_id }}" required>
+                                                        disabled value="{{ $order->ruangan->nama_ruangan }}" required>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label for="validationDefault04" class="form-label">Nama Kertas
