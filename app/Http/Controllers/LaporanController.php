@@ -108,12 +108,11 @@ class LaporanController extends Controller
     {
         $bulan = Carbon::parse($request->bulanan)->format('m');
         $tahun = Carbon::parse($request->bulanan)->format('Y');
-
         $data = $this->dataLaporan(
             Order::whereMonth('created_at', $bulan)
                 ->whereYear('created_at', $tahun)
                 ->whereNotNull('status')
-                ->get()
+                ->get(), "LIST LAPORAN BY BULANAN"
         );
         return $data;
     }
@@ -124,7 +123,7 @@ class LaporanController extends Controller
         try {
             //code...
             $ruang = Ruangan::find($request->ruangan_id);
-            // return $ruang;
+            return $ruang;
             $ruangan = $this->dataLaporan(
                 Order::whereNotNull('status')->where('ruangan_id', $request->ruangan_id)->get(), "LIST LAPORAN BY RUANGAN $ruang->nama_ruangan"
             );
