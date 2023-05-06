@@ -111,23 +111,7 @@
                                                 @if (auth()->user()->cekLevel == 'user') readonly disabled @endif>
                                         </div>
                                     </div>
-                                    @if (auth()->user()->cekLevel == 'user')
-                                        <div class="row mb-3">
-                                            <label for="company" class="col-md-4 col-lg-3 col-form-label">Ruangan</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                @if (count(auth()->user()->ruangan) < 1)
-                                                    <input name="no_telephone" type="text" class="form-control"
-                                                        id="no_telephone" value="-" disabled>
-                                                @else
-                                                    @foreach (auth()->user()->ruangan as $ruangan)
-                                                        <input name="no_telephone" type="text" class="form-control"
-                                                            id="no_telephone" value="{{ $ruangan->nama_ruangan }},"
-                                                            disabled>
-                                                    @endforeach
-                                                @endif
-                                            </div>
-                                        </div>
-                                    @endif
+                                  
                                     <div class="row mb-3">
                                         <label for="no_telephone" class="col-md-4 col-lg-3 col-form-label">No.Telp /
                                             WA</label>
@@ -178,7 +162,7 @@
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
-                                            @enderror 
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -210,12 +194,21 @@
                 </div>
                 <div class="tab-pane fade pt-3" id="profile-change-password">
                     <!-- Change Password Form -->
+                    @if (session()->has('toast_error'))
+                        <div class="alert alert-danger">
+                            {{ session('toast_error') }}
+                        </div>
+                    @endif
+
                     <form action="/user/{{ auth()->user()->id }}/password" method="POST">
                         @csrf
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-lg-3 col-form-label">Password Lama</label>
                             <div class="col-md-8 col-lg-9">
                                 <input name="password" type="password" class="form-control" id="password">
+                                @error('old_password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row mb-3">

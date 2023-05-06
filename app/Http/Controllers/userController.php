@@ -215,7 +215,7 @@ class UserController extends Controller
         $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
         $req->validate([
             'old_password' => ['required', function ($attribute, $value, $fail) {
-                if (!Hash::check($value, Auth::user()->password)) {
+                if (!Hash::check($value, auth()->user()->password)) {
                     return $fail(__('The :attribute is incorrect.'));
                 }
             }],
