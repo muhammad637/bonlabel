@@ -60,6 +60,7 @@
         
         $('#eye').addClass('bi bi-eye-slash-fill')
         $('#eye1').addClass('bi bi-eye-slash-fill')
+        $('#eye2').addClass('bi bi-eye-slash-fill')
         $('#mybutton').click(function() {
             // $('#currentPassword').attr('value','aan')
             var passwordInputan = $('#currentPassword');
@@ -88,6 +89,21 @@
             } else {
                 $('#eye').addClass('bi bi-eye-slash-fill')
                 $('#eye').removeClass('bi bi-eye-fill')
+                passwordInput.attr('type', 'password');
+            }
+        });
+        $('#mybutton3').click(function() {
+            var passwordInput = $('#confirmPassword');
+            var passwordFieldType = passwordInput.attr('type');
+
+            // Toggle tampilan password
+            if (passwordFieldType === 'password') {
+                passwordInput.attr('type', 'text');
+                $('#eye2').removeClass('bi bi-eye-slash-fill')
+                $('#eye2').addClass('bi bi-eye-fill')
+            } else {
+                $('#eye2').addClass('bi bi-eye-slash-fill')
+                $('#eye2').removeClass('bi bi-eye-fill')
                 passwordInput.attr('type', 'password');
             }
         });

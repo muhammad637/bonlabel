@@ -107,7 +107,8 @@
                                         <label for="nama" class="col-md-4 col-lg-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-md-8 col-lg-9">
                                             <input name="nama" type="text" class="form-control" id="nama"
-                                                value="{{ auth()->user()->nama }} " @if(auth()->user()->cekLevel== 'user') readonly disabled @endif>
+                                                value="{{ auth()->user()->nama }} "
+                                                @if (auth()->user()->cekLevel == 'user') readonly disabled @endif>
                                         </div>
                                     </div>
                                     @if (auth()->user()->cekLevel == 'user')
@@ -120,7 +121,8 @@
                                                 @else
                                                     @foreach (auth()->user()->ruangan as $ruangan)
                                                         <input name="no_telephone" type="text" class="form-control"
-                                                            id="no_telephone" value="{{ $ruangan->nama_ruangan }}," disabled>
+                                                            id="no_telephone" value="{{ $ruangan->nama_ruangan }},"
+                                                            disabled>
                                                     @endforeach
                                                 @endif
                                             </div>
@@ -147,31 +149,48 @@
                                     method="POST">
                                     @csrf
 
-
-                                    {{-- teranyar --}}
                                     <div class="row mb-3">
                                         <label for="currentPassword" class="col-md-5 col-lg-4 col-form-label">Password
                                             Lama</label>
-                                        <div class="col-md-7 ">
+                                        <div class="col-md-7">
                                             <div class="d-flex justify-content-start">
                                                 <input type="password" id="currentPassword" class="d-block form-control"
-                                                    style="width: 100%" name="password">
+                                                    style="width: 100%" name="old_password">
                                                 <div class="border rounded-md px-1 pt-2" id="mybutton">
                                                     <i id="eye1"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- teranyar --}}
+
                                     <div class="row mb-3">
                                         <label for="newPassword" class="col-md-5 col-lg-4 col-form-label">Password
                                             Baru</label>
-                                        <div class="col-md-7 ">
+                                        <div class="col-md-7">
                                             <div class="d-flex justify-content-start">
                                                 <input type="password" id="newPassword" class="d-block form-control"
-                                                    style="width: 100%" name="newPassword">
+                                                    style="width: 100%" name="password">
                                                 <div class="border rounded-md px-1 pt-2" id="mybutton2">
                                                     <i id="eye"></i>
+                                                </div>
+                                            </div>
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="confirmPassword" class="col-md-5 col-lg-4 col-form-label">Konfirmasi
+                                            Password</label>
+                                        <div class="col-md-7">
+                                            <div class="d-flex justify-content-start">
+                                                <input type="password" id="confirmPassword" class="d-block form-control"
+                                                    style="width: 100%" name="password_confirmation">
+                                                <div class="border rounded-md px-1 pt-2" id="mybutton3">
+                                                    <i id="eye2"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -180,7 +199,8 @@
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Change Password</button>
                                     </div>
-                                </form><!-- End Change Password Form -->
+                                </form>
+                                <!-- End Change Password Form -->
 
                             </div>
 

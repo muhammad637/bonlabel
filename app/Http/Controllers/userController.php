@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function index()
     {
-            // return User::with('ruangan')->get();
+        // return User::with('ruangan')->get();
         return view('admin.pages.User.listUser', [
             'users' => User::with('ruangan')->orderBy('created_at', 'desc')->get(),
             'title' => 'user',
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function create()
     {
         //
-          $ruangan = Ruangan::all()->sortByDesc('nama_ruangan');
+        $ruangan = Ruangan::all()->sortByDesc('nama_ruangan');
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
             'title' => 'Create User'
@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $notif = Notifikasi::notif('user', "user: $request->nama berhasil di tambahkan by ".auth()->user()->nama, 'tambah', 'berhasil');
+        $notif = Notifikasi::notif('user', "user: $request->nama berhasil di tambahkan by " . auth()->user()->nama, 'tambah', 'berhasil');
         $validatedData = $request->validate([
             'nama' => 'required',
             'username' => 'required|unique:users',
@@ -84,7 +84,7 @@ class UserController extends Controller
             // }
             if ($validatedData['cekLevel'] == "admin") {
                 # code...
-                return redirect('/master/user')->with('toast_success',$notif['msg']);
+                return redirect('/master/user')->with('toast_success', $notif['msg']);
             } else {
                 # code...
                 // $cek = count($request->ruangan) > 0;
@@ -98,7 +98,7 @@ class UserController extends Controller
                     // }
                 }
             }
-            
+
             return redirect('/master/user')->with('toast_success', $notif['msg']);
             //code...
         } catch (\Throwable $th) {
@@ -164,19 +164,19 @@ class UserController extends Controller
             } else {
                 $validatedData['password'] = Hash::make($validatedData['password']);
             }
-            
+
             User::where('id', $user->id)->update($validatedData);
-            $notif = Notifikasi::notif('user', "user: $request->nama berhasil diupdate by ".auth()->user()->nama, 'update', 'berhasil');
+            $notif = Notifikasi::notif('user', "user: $request->nama berhasil diupdate by " . auth()->user()->nama, 'update', 'berhasil');
             Notifikasi::create($notif)->user()->sync(User::adminId());
             foreach ($user->ruangan as $item) {
                 Ruangan::where('id', $item->id)->update(['user_id' => null]);
             }
-            if ($validatedData['cekLevel'] == 'admin' ) {
+            if ($validatedData['cekLevel'] == 'admin') {
                 # kosongkan request->ruangan = []
                 return redirect(route('user.index'))->with('toast_success', $notif['msg']);
-            }else{
+            } else {
                 // $cek = count($request->ruangan) >= 1;
-                if($request->ruangan > 0){
+                if ($request->ruangan > 0) {
                     $user->ruangan()->sync($request->ruangan);
                     // foreach ($request->ruangan as $index => $id) {
                     //     Ruangan::where('id', $id)->update(['user_id' => $user->id]);
@@ -210,30 +210,57 @@ class UserController extends Controller
 
     public function passwordProfile(Request $req, User $user)
     {
-        try {
-            //code...
-            $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
-            $validatedData = $req->validate([
-                'password' => 'required|min:8',
-                'newPassword' => 'required|min:8',
-            ]);
-            $password = Hash::check($validatedData['password'], $user->password);
-            if ($password) {
-                # code...
-                $user->update(['password' => Hash::make($validatedData['newPassword'])]);
-                Auth::logout();
-                $req->session()->invalidate();
-                $req->session()->regenerateToken();
-                return redirect('/login')->with('toast_success', $notif['msg']);
-            } else {
-                $notif['msg'] = 'password gagal diupdate';
-                $notif['status'] = 'gagal';
-                return redirect()->back()->with('toast_error', $notif['msg']);
-            }
-        } catch (\Throwable $th) {
-            //throw $th;
-            return $th->getMessage();
+        // try {
+        //code...
+        $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
+        $req->validate([
+            'old_password' => ['required', function ($attribute, $value, $fail) {
+                if (!Hash::check($value, Auth::user()->password)) {
+                    return $fail(__('The :attribute is incorrect.'));
+                }
+            }],
+            'password' => ['required', 'confirmed', 'min:8'],
+        ], [
+            'password.confirmed' => 'The new password confirmation does not match.',
+        ]);
+        
+        if ($req->password !== $req->password_confirmation) {
+            $req->session()->flash('toast_error', 'New password and confirmation password do not match.');
+            return back();
         }
+        
+        $user->update([
+            'password' => Hash::make($req->password),
+        ]);
+        Auth::logout();
+        $req->session()->invalidate();
+        $req->session()->regenerateToken();
+        $req->session()->flash('toast_success', $notif['msg']);
+        return redirect('/login');
+        
+        
+
+        // $validatedData = $req->validate([
+        //     'password' => 'required|min:8',
+        //     'newPassword' => 'required|min:8',
+        // ]);
+        // $password = Hash::check($validatedData['password'], $user->password);
+        // if ($password) {
+        //     # code...
+        //     $user->update(['password' => Hash::make($validatedData['newPassword'])]);
+        //     Auth::logout();
+        //     $req->session()->invalidate();
+        //     $req->session()->regenerateToken();
+        //     return redirect('/login')->with('toast_success', $notif['msg']);
+        // } else {
+        //     $notif['msg'] = 'password gagal diupdate';
+        //     $notif['status'] = 'gagal';
+        //     return redirect()->back()->with('toast_error', $notif['msg']);
+        // }
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        //     return $th->getMessage();
+        // }
     }
 
     /**
@@ -249,7 +276,7 @@ class UserController extends Controller
 
     public function nonaktif(User $user)
     {
-        $notif = Notifikasi::notif('user', 'user ' . "$user->nama  berhasil dinonaktifkan by ".auth()->user()->nama, 'nonaktif', 'berhasil');
+        $notif = Notifikasi::notif('user', 'user ' . "$user->nama  berhasil dinonaktifkan by " . auth()->user()->nama, 'nonaktif', 'berhasil');
         $status = 'nonaktif';
         User::where('id', $user->id)->update(['status' => $status]);
         Notifikasi::create($notif)->user()->sync(User::adminId());
@@ -258,7 +285,7 @@ class UserController extends Controller
     public function aktif(User $user)
     {
         //code...
-        $notif = Notifikasi::notif('user', 'user ' . "$user->nama berhasil diaktifkan by ".auth()->user()->nama, 'aktif', 'berhasil');
+        $notif = Notifikasi::notif('user', 'user ' . "$user->nama berhasil diaktifkan by " . auth()->user()->nama, 'aktif', 'berhasil');
         Notifikasi::create($notif)->user()->sync(User::adminId());
         $status = 'aktif';
         User::where('id', $user->id)->update(['status' => $status]);

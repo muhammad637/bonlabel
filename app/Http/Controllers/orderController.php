@@ -44,7 +44,7 @@ class OrderController extends Controller
         return view('user.page.order', [
             'products' => Product::all(),
             'title' => 'createOrder',
-            'ruangans' => Ruangan::where('user_id', auth()->user()->id)->get()
+            'ruangans' => auth()->user()->ruangan
         ]);
     }
     public function storeOrder(Request $request)
@@ -143,22 +143,6 @@ class OrderController extends Controller
 
             // ambil data order
             $dataOrder = Order::where('id', $request->order_id)->first();
-            // jika pesanan ada
-            if ($request->pesan && $request->status == 'tolak')
-                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, $request->pesan);
-            else {
-                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama);
-            }
-
-            // value request
-            $value = [
-                'product_id' => $request->product_id,
-                'jumlah_order' => $request->jumlah_order,
-                'status' => $request->status,
-                'pesan' => $pesanOrder
-            ];
-            // value notifikasi
-
             // ambil product order buat update jumlah stock
             $productOrder = Product::where('id', $request->product_id)->first();  
             $sisa =  $dataOrder->product->jumlah_stock - $request->jumlah_order;
@@ -170,6 +154,22 @@ class OrderController extends Controller
             $nama_user = $Orderan->user->nama;
             $jenis_product = $productOrder->jenis_product;
             $nama_ruangan = $Orderan->ruangan->nama_ruangan;
+            // jika pesanan ada
+            if ($request->pesan && $request->status == 'tolak')
+                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, $request->pesan);
+            else {
+                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, "orderan Produk $nama_product dengan jumlah $request->jumlah_order pcs bisa diambil di ruangan admin. tanggal ". now()->format('d-M-Y H:i:s'));
+            }
+
+            // value request
+            $value = [
+                'product_id' => $request->product_id,
+                'jumlah_order' => $request->jumlah_order,
+                'status' => $request->status,
+                'pesan' => $pesanOrder
+            ];
+            // value notifikasi
+
             $msg = "orderan $nama_user ruangan $nama_ruangan | jenis product: $nama_product - $jenis_product berhasil diupdate by " . auth()->user()->nama;
             // pemanggilan fungsi notif di class Notifikasi
             $notif = Notifikasi::notif('order', $msg, 'update', 'berhasil');
