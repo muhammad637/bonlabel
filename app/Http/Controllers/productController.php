@@ -58,6 +58,7 @@ class ProductController extends Controller
             'nama_product' => 'required |unique:products',
             'jenis_product' => 'required',
             'jumlah_stock' => 'required|min:1',
+            'satuan' => ''
         ]);
         // jika requestan tidak falid 
         if ($validatedData->fails()) {
@@ -133,6 +134,7 @@ class ProductController extends Controller
             'nama_product' => 'required |' . Rule::unique('products')->ignore($product->id),
             'jenis_product' => 'required',
             'jumlah_stock' => 'required|min:1',
+            'satuan' => ''
         ]);
         if ($validatedData->fails()) {
             $notif['msg'] = "produk $product->nama_product - $product->jenis_product gagal diupdate";

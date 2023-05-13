@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('limit_order');
             $table->integer('jumlah_stock');
             $table->enum('status',['aktif','nonaktif']);
+            $table->enum('satuan',['Rol','Box'])->nullable();
             $table->timestamps();
         });
     }

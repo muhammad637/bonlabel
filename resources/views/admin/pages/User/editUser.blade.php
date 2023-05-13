@@ -24,6 +24,17 @@
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
+                        <label for="nik" class="form-label">Nomer Induk Keluarga</label>
+                        <input type="text" class="form-control" id="nik" name="nik" value="{{$user->nik ?? old('nik')}}">
+                        @error('nik')
+                            <span class="form-text text-danger">
+                                {{ $message }}
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-lg-4 ">
+                    <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username"
                             value="{{ $user->username }}">

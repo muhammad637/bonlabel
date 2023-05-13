@@ -24,7 +24,7 @@ class Order extends Model
     }
 
 
-    public static function aksiOrderan($pengorder, $msg = "orderan diterima silahkan ambil di ruangan admin"){
+    public static function aksiOrderan($pengorder, $msg = "orderan diterima silahkan ambil di ruangan IT"){
         return [
             'nama_perubah' => auth()->user()->nama,
             'pengorder' => $pengorder,

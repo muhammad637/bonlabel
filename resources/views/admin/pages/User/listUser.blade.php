@@ -19,6 +19,7 @@
                         <th scope="col">no</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Username</th>
+                        <th scope="col">NIK</th>
                         <th scope="col">Level</th>
                         <th scope="col">No Hp</th>
                         <th scope="col">ruangan</th>
@@ -39,6 +40,7 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td>{{ $user->nama }}</td>
                                 <td>{{ $user->username }}</td>
+                                <td>{{ $user->nik }}</td>
                                 <td>{{ $user->cekLevel }}</td>
                                 <td><a href="https://wa.me/{{ $nohp }}" target="_blank"
                                         class="badge bg-info p-2">{{ $user->no_telephone }}</a>
@@ -49,7 +51,7 @@
                                     @elseif(count($user->ruangan) >= 1 && $user->cekLevel == 'user')
                                         @foreach ($user->ruangan as $r)
                                             @if ($r->status == 'aktif')
-                                                <a href="/master/ruangan" class="text-dark">
+                                                <a href="/sibonlabel/master/ruangan" class="text-dark">
                                                     {{ $r->nama_ruangan . ',' }}
                                                 </a>
                                             @endif

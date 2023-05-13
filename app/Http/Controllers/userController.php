@@ -61,6 +61,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'cekLevel' => 'required',
             'no_telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'nik' => 'required|unique:users,nik|max:16'
         ]);
         try {
             $validatedData['password'] = Hash::make($validatedData['password']);
@@ -154,6 +155,7 @@ class UserController extends Controller
             'nama' => 'required',
             'username' => 'required |' . Rule::unique('users')->ignore($user->id),
             'password' => '',
+            'nik' => 'required|max:16'. Rule::unique('users,nik')->ignore($user->id),
             'cekLevel' => 'required',
             'no_telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
         ]);
@@ -214,31 +216,33 @@ class UserController extends Controller
         //code...
         $notif = Notifikasi::notif('user', 'password berhasil diupdate', 'update', 'berhasil');
         $req->validate([
-            'old_password' => ['required', function ($attribute, $value, $fail) {
-                if (!Hash::check($value, auth()->user()->password)) {
-                    return $fail(__('The :attribute is incorrect.'));
-                }
-            }],
-            'password' => ['required', 'confirmed', 'min:8'],
+            'old_password' => ['required'],
+            'password' => ['required', 'min:8'],
         ], [
             'password.confirmed' => 'The new password confirmation does not match.',
         ]);
-        
-        if ($req->password !== $req->password_confirmation) {
-            $req->session()->flash('toast_error', 'New password and confirmation password do not match.');
-            return back();
+        if (!Hash::check($req->old_password, $user->password)) {
+            # code...
+            return redirect()->back()->with('toast_error', 'password lama tidak valid');
         }
-        
-        $user->update([
-            'password' => Hash::make($req->password),
-        ]);
-        Auth::logout();
-        $req->session()->invalidate();
-        $req->session()->regenerateToken();
-        $req->session()->flash('toast_success', $notif['msg']);
-        return redirect('/login');
-        
-        
+        if ($req->password == $req->password_confirmation) {
+            $user->update([
+                'password' => Hash::make($req->password),
+            ]);
+            Auth::logout();
+            $req->session()->invalidate();
+            $req->session()->regenerateToken();
+            $req->session()->flash('toast_success', $notif['msg']);
+            return redirect('/login');
+            // return back();
+        } else {
+            # code...
+            return redirect()->back()->with('toast_error', 'passwrd baru dan konfirmasi password tidak sesuai');
+        }
+
+
+
+
 
         // $validatedData = $req->validate([
         //     'password' => 'required|min:8',
