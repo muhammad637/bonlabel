@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-lg-4 ">
                     <div class="mb-3">
-                        <label for="nik" class="form-label">Nomer Induk Keluarga</label>
+                        <label for="nik" class="form-label">Nomer Induk Kependudukan</label>
                         <input type="text" class="form-control" id="nik" name="nik" value="{{$user->nik ?? old('nik')}}">
                         @error('nik')
                             <span class="form-text text-danger">

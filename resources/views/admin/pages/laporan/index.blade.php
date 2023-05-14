@@ -136,9 +136,9 @@
                         @csrf
                         <div class="modal-body">
                             <label for="ruangan" class="form-label"> Pilih Ruangan</label>
-                            <select type="" id="ruangan" name="ruangan_id" class="form-control">
+                            <select type="" id="ruangan" name="nama_ruangan" class="form-control">
                                 @foreach ($ruangan as $ruang)
-                                    <option value="{{ $ruang->id }}">{{ $ruang->nama_ruangan }}</option>
+                                    <option value="{{ $ruang->nama_ruangan }}">{{ $ruang->nama_ruangan }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -239,7 +239,7 @@
             @endif
         </div>
         @else
-        <h1 class="fs-1 fw-bold">{{session()->get('header')}}</h1>
+        <h1 class="fs-1 fw-bold">{{session()->get('teks')}}</h1>
         @endif
     </div>
 @endsection

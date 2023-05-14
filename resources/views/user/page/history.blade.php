@@ -34,7 +34,7 @@
                             <td>{{ $order->user->nama }}</td>
                             <td>{{ $order->product->nama_product }} -  {{$order->product->jenis_product}}</td>
                             <td>{{ $order->ruangan->nama_ruangan }}</td>
-                            <td>{{ $order->jumlah_order }}</td>
+                            <td>{{ $order->jumlah_order }} {{$order->product->satuan}}</td>
                             <td>{{ $order->ruangan->no_telephone }}</td>
                             <td>
                                 @if ($order->status == 'terima')

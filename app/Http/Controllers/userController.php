@@ -134,7 +134,7 @@ class UserController extends Controller
         //
         // return $user->ruangan;
         return response(view('admin.pages.User.editUser', [
-            'ruangans' => Ruangan::all(),
+            'ruangans' => Ruangan::all()->sortBy('nama_ruangan'),
             'user' => $user,
             'title' => 'Edit User',
             // 'ruanganUser' => $ruanganUser

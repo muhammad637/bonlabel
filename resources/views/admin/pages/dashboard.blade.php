@@ -96,8 +96,8 @@
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $order->ruangan->nama_ruangan }}</td>
                                                 <td>{{ $order->user->nama }}</td>
-                                                <td>{{ $order->product->nama_product }}</td>
-                                                <td>{{ $order->jumlah_order }}</td>
+                                                <td>{{ $order->product->nama_product }}- {{$order->product->jenis_product}}</td>
+                                                <td>{{ $order->jumlah_order }} {{$order->product->satuan}}</td>
                                                 <td>
                                                     <div
                                                         class="badge {{ !$order->status ? 'bg-warning' : ($order->status == 'terima' ? 'bg-success' : 'bg-danger') }}">

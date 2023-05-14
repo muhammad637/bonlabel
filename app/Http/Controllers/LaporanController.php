@@ -17,7 +17,7 @@ class LaporanController extends Controller
     //
     public  function index()
     {
-        $ruangan = Ruangan::all();
+        $ruangan = Ruangan::all()->sortBy('nama_ruangan');
         // return $users;
         $orders = Order::whereNotNull('status')->orderBy('updated_at', 'desc')->get();
         if (session()->has('orders')) {
@@ -61,8 +61,10 @@ class LaporanController extends Controller
         return redirect()->back();
     }
     public function laporanByRuangan(Request $request){
-        $orders = Order::whereNotNull('status')->where('ruangan_id', $request->ruangan_id)->get();
-        session()->flash('header',"orderan di ruangan ini masih kosong");
+        $ruangan = Ruangan::where('nama_ruangan', $request->nama_ruangan)->first();
+        $orders = Order::whereNotNull('status')->where('ruangan_id', $ruangan->id)->get();
+        session()->flash('header',"orderan di ruangan $request->nama_ruangan");
+        session()->flash('teks',"orderan di ruangan $request->nama_ruangan masih kosong");
         session()->flash('orders', 'tidak ada');
         if (count($orders) > 0) {
             # code...

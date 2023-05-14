@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Ruangan;
 use App\Models\Notifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -21,7 +22,7 @@ class RuanganController extends Controller
     {
         //
         return view('admin.pages.Ruangan.listRuangan', [
-            'ruangans' => Ruangan::orderBy('updated_at','desc')->orderBy('created_at','desc')->get(),
+            'ruangans' => Ruangan::orderBy('updated_at', 'desc')->orderBy('created_at', 'desc')->get(),
             'title' => 'ruangan'
         ]);
     }
@@ -44,13 +45,13 @@ class RuanganController extends Controller
      */
     public function store(Request $request)
     {
-        $notif = Notifikasi::notif('ruangan', "$request->nama_ruangan berhasil di tambahkan by ".auth()->user()->nama, 'tambah', 'berhasil');
+        $notif = Notifikasi::notif('ruangan', "$request->nama_ruangan berhasil di tambahkan by " . auth()->user()->nama, 'tambah', 'berhasil');
         $validatedData = Validator::make($request->all(), [
-            'nama_ruangan' => 'required',
+            'nama_ruangan' => 'required|unique:ruangans,nama_ruangan',
             'no_telephone' => 'required|unique:ruangans',
         ]);
         if ($validatedData->fails()) {
-            $notif['msg'] = "$request->nama_ruangan gagal di tambahkan by ".auth()->user()->nama;
+            $notif['msg'] = "$request->nama_ruangan gagal di tambahkan by " . auth()->user()->nama;
             $notif['status'] = 'gagal';
             Notifikasi::create($notif)->user()->sync(User::adminId());
             return redirect()
@@ -104,17 +105,17 @@ class RuanganController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Ruangan  $ruangan
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, Ruangan $ruangan)
     {
 
         //
-        $notif = Notifikasi::notif('ruangan',"$request->nama_ruangan berhasil di update by ".auth()->user()->nama, 'update', 'berhasil');
+        $notif = Notifikasi::notif('ruangan', "$request->nama_ruangan berhasil di update by " . auth()->user()->nama, 'update', 'berhasil');
         //code...
         $validatedData = Validator::make($request->all(), [
-            'nama_ruangan' => 'required',
-            'no_telephone' => 'required|'.Rule::unique('users')->ignore($ruangan->id),
+            'nama_ruangan' => 'required|' . Rule::unique('ruangans')->ignore($ruangan->id),
+            'no_telephone' => 'required|' . Rule::unique('ruangans')->ignore($ruangan->id),
         ]);
         if ($validatedData->fails()) {
             $notif['msg'] = 'data gagal dimasukkan';
@@ -153,7 +154,7 @@ class RuanganController extends Controller
 
         // return "tes";
         //code...
-        $notif = Notifikasi::notif('ruangan', "$ruangan->nama_ruangan berhasil dinonaktifkan by ".auth()->user()->nama, 'nonaktif', 'berhasil');
+        $notif = Notifikasi::notif('ruangan', "$ruangan->nama_ruangan berhasil dinonaktifkan by " . auth()->user()->nama, 'nonaktif', 'berhasil');
         Notifikasi::create($notif)->user()->sync(User::adminId());
         $status = 'nonaktif';
         Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
@@ -162,7 +163,7 @@ class RuanganController extends Controller
     public function aktif(Ruangan $ruangan)
     {
         //code...
-        $notif = Notifikasi::notif('ruangan', "$ruangan->nama_ruangan berhasil diaktifkan by ".auth()->user()->nama, 'aktif', 'berhasil');
+        $notif = Notifikasi::notif('ruangan', "$ruangan->nama_ruangan berhasil diaktifkan by " . auth()->user()->nama, 'aktif', 'berhasil');
         $status = 'aktif';
         Ruangan::where('id', $ruangan->id)->update(['status' => $status]);
         Notifikasi::create($notif)->user()->sync(User::adminId());

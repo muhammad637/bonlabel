@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $order->user->nama }}</td>
-                            <td>{{ $order->product->nama_product }}</td>
+                            <td>{{ $order->product->nama_product }} - {{$order->product->jenis_product}}</td>
                             <td>{{ $order->ruangan->nama_ruangan }}</td>
                             <td><a href="https://wa.me/{{ $nohp }}" target="_blank"
                                     class="badge bg-info p-2">{{ $order->user->no_telephone }}</a>
