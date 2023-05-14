@@ -21,10 +21,10 @@
                         <th>Nama User</th>
                         <th>Nama Produk</th>
                         <th>Nama Ruangan</th>
-                        <th>jumlah_order</th>
+                        <th>Jumlah Order</th>
                         <th>No Telp Ruangan</th>
-                        <th>status</th>
-                        <th>msg</th>
+                        <th>Status</th>
+                        <th>Pesan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $order->user->nama }}</td>
-                            <td>{{ $order->product->nama_product }}</td>
+                            <td>{{ $order->product->nama_product }} -  {{$order->product->jenis_product}}</td>
                             <td>{{ $order->ruangan->nama_ruangan }}</td>
                             <td>{{ $order->jumlah_order }}</td>
                             <td>{{ $order->ruangan->no_telephone }}</td>

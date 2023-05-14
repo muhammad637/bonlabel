@@ -27,7 +27,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->nama_product }}</td>
                                 <td>{{ $data->jenis_product }}</td>
-                                <td>{{ $data->jumlah_stock }}</td>
+                                <td>{{ $data->jumlah_stock }} {{$data->satuan}} </td>
                                 <td>
                                     @if ($data->status == 'aktif')
                                         <button type="button" class="border-0 badge bg-success"><i class="bi bi-check-circle"></i> {{ $data->status }}</button>

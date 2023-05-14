@@ -162,8 +162,8 @@
                         <th>Jumlah Order</th>
                         <th>No Telp User</th>
                         <th>No Telp Ruangan</th>
-                        <th>status</th>
-                        <th>msg</th>
+                        <th>Status</th>
+                        <th>Pesan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -217,7 +217,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item">pengubah : {{ $array['nama_perubah'] }}</li>
+                                            <li class="list-group-item">konfirm by : {{ $array['nama_perubah'] }}</li>
                                             <li class="list-group-item">pengorder : {{ $array['pengorder'] }}</li>
                                             <li class="list-group-item mt-5">pesan :
                                                 <p>{{ $array['msg'] }}</p>
@@ -235,7 +235,7 @@
                 </tbody>
             </table>
             @if ($i > 0)
-            <p>Total Order : <strong>{{ $i }}</strong> pcs </p>
+            <p>Total Order : <strong>{{ $i }}</strong>  </p>
             @endif
         </div>
         @else

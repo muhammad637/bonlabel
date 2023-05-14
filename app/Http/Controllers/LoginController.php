@@ -42,7 +42,7 @@ class LoginController extends Controller
             
         } catch (\Throwable $th) {
             //throw $th;
-            return $th->getMessage();
+            return redirect()->back()->with('toast_error',$th->getMessage());
         }
         return redirect('/login')->with('toast_error', 'user atau password anda salah');
     }

@@ -9,19 +9,19 @@
 
             @if (count($errors) > 0)
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                   <ul class="list-group"></ul>
-                   @error('nama_product')
-                   <li class="list-group-item">{{$message}}</li>
-                   @enderror
-                   @error('jenis_product')
-                   <li class="list-group-item">{{$message}}</li>
-                   @enderror
-                   @error('limit_order')
-                   <li class="list-group-item">{{$message}}</li>
-                   @enderror
-                   @error('jumlah_stock')
-                   <li class="list-group-item">{{$message}}</li>
-                   @enderror
+                    <ul class="list-group"></ul>
+                    @error('nama_product')
+                        <li class="list-group-item">{{ $message }}</li>
+                    @enderror
+                    @error('jenis_product')
+                        <li class="list-group-item">{{ $message }}</li>
+                    @enderror
+                    @error('limit_order')
+                        <li class="list-group-item">{{ $message }}</li>
+                    @enderror
+                    @error('jumlah_stock')
+                        <li class="list-group-item">{{ $message }}</li>
+                    @enderror
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
@@ -73,13 +73,22 @@
                                     <div class="mb-3">
                                         <label for="jumlah_stock" class="form-label">jumlah Stock</label>
                                         <input type="number" class="form-control" id="jumlah_stock" name="jumlah_stock">
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="satuan" class="form-label">Satuan</label>
+                                        <select name="satuan" id="satuan" class="form-select">
+                                            <option value="Rol">Rol</p>
+                                            </option>
+                                            <option value="Box">Box</p>
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </div>
+
                                 </form>
 
                             </div>
@@ -95,7 +104,7 @@
                             <th scope="col">Nama Product</th>
                             <th scope="col">Jenis Product</th>
                             <th scope="col">Limit Order</th>
-                            <th scope="col">Jumlah Stock</th>
+                            <th scope="col">Jumlah Stok</th>
                             <th scope="col">Status Product</th>
                             <th scope="col">Aksi</th>
                         </tr>
@@ -106,8 +115,8 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->nama_product }}</td>
                                 <td>{{ $data->jenis_product }}</td>
-                                <td>{{ $data->limit_order }}</td>
-                                <td>{{ $data->jumlah_stock }}</td>
+                                <td>{{ $data->limit_order }} {{$data->satuan}}</td>
+                                <td>{{ $data->jumlah_stock }} {{ $data->satuan }}</td>
                                 <td>
                                     @if ($data->status == 'aktif')
                                         <button type="button" class="btn btn-success">{{ $data->status }}</button>
@@ -137,8 +146,9 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{route('product.update',['product' => $data->id])}}" method="post"
-                                                            class="container m-1 p-2">
+                                                        <form
+                                                            action="{{ route('product.update', ['product' => $data->id]) }}"
+                                                            method="post" class="container m-1 p-2">
                                                             @method('put')
                                                             @csrf
                                                             <div class="mb-3">
@@ -159,7 +169,6 @@
                                                                     id="jenis_product" name="jenis_product"
                                                                     value="{{ $data->jenis_product }}">
                                                             </div>
-
                                                             <div class="mb-3">
                                                                 <label for="limit_order" class="form-label">Limit
                                                                     Order</label>
@@ -174,6 +183,16 @@
                                                                     id="jumlah_stock" name="jumlah_stock"
                                                                     value="{{ $data->jumlah_stock }}">
                                                             </div>
+                                                            <div class="mb-3">
+                                                                <label for="satuan" class="form-label">Satuan</label>
+                                                                <select name="satuan" id="satuan"
+                                                                    class="form-select">
+                                                                    <option value="Rol">Rol</p>
+                                                                    </option>
+                                                                    <option value="Box">Box</p>
+                                                                    </option>
+                                                                </select>
+                                                            </div>
 
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
@@ -183,21 +202,21 @@
                                                             </div>
                                                         </form>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
 
                                         @if ($data->status == 'aktif')
-                                            <form action="{{route('master.product.nonaktif',['product' => $data->id])}}" method="post"
-                                                class="inline-block">
+                                            <form action="{{ route('master.product.nonaktif', ['product' => $data->id]) }}"
+                                                method="post" class="inline-block">
                                                 @method('put')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger inline-block"><i
                                                         class="bi bi-x-circle"></i></button>
                                             </form>
                                         @else
-                                            <form action="{{route('master.product.aktif',['product' => $data->id])}}" method="post">
+                                            <form action="{{ route('master.product.aktif', ['product' => $data->id]) }}"
+                                                method="post">
                                                 @method('put')
                                                 @csrf
                                                 <button type="submit" class="btn btn-success"><i

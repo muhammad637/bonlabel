@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id('id');
             $table->string('username');
             $table->string('password');
+            $table->string('nik')->nullable();
             $table->string('nama');
             $table->enum('cekLevel',['admin','user'])->default('admin');
             // $table->tinyInteger('cekLevel')->default(0);

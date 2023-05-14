@@ -49,7 +49,7 @@
                                     @elseif(count($user->ruangan) >= 1 && $user->cekLevel == 'user')
                                         @foreach ($user->ruangan as $r)
                                             @if ($r->status == 'aktif')
-                                                <a href="/master/ruangan" class="text-dark">
+                                                <a href="/sibonlabel/master/ruangan" class="text-dark">
                                                     {{ $r->nama_ruangan . ',' }}
                                                 </a>
                                             @endif

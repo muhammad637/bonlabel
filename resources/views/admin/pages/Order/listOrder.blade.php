@@ -18,7 +18,7 @@
                         <th>Nama Ruangan</th>
                         <th>No Telp User</th>
                         <th>No Telp Ruangan</th>
-                        <th>status</th>
+                        <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>

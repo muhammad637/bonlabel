@@ -26,7 +26,7 @@
                     <div class="col-md-3">
                         <div class="mb-1">
                             <label for="jumlah_order" class="form-label fw-bold">Jumlah Order</label>
-                            <input type="number" min="1" id="jumlah_order" name="jumlah_order" class="form-control">
+                            <input type="number" min="1" id="jumlah_order" name="jumlah_order" class="form-control"> 
                         </div>
                     </div>
 

@@ -81,13 +81,13 @@ class OrderController extends Controller
             // create order dan notifikasi
             Order::create($validatedData);
             Notifikasi::create($notif)->user()->attach(auth()->user()->id);
-            $notif['msg'] = auth()->user()->nama . " mengorder produk " . $produk->nama_product . ' - ' . $produk->jenis_product." sejumlah $request->jumlah_order pcs";
+            $notif['msg'] = auth()->user()->nama . " mengorder produk " . $produk->nama_product . ' - ' . $produk->jenis_product." sejumlah $request->jumlah_order $produk->satuan";
             Notifikasi::create($notif)->user()->sync(User::adminId());
             // foreach ($userAdmin as $admin) {
             //     $notif['user_id'] = $admin->id;
             //     Notifikasi::create($notif);
             // }
-            return redirect()->back()->with('toast_success', "berhasil mengorder produk $produk->nama_product sejumlah $request->jumlah_order pcs");
+            return redirect()->back()->with('toast_success', "berhasil mengorder produk $produk->nama_product sejumlah $request->jumlah_order $produk->satuan");
         } catch (\Throwable $th) {
             //throw $th;
             return redirect()->back()->with('toast_error', $th->getMessage());
@@ -156,9 +156,9 @@ class OrderController extends Controller
             $nama_ruangan = $Orderan->ruangan->nama_ruangan;
             // jika pesanan ada
             if ($request->pesan && $request->status == 'tolak')
-                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, $request->pesan);
+                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, "$request->pesan. tanggal " .now()->format('d-M-Y H:i:s'));
             else {
-                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, "orderan Produk $nama_product dengan jumlah $request->jumlah_order pcs bisa diambil di ruangan admin. tanggal ". now()->format('d-M-Y H:i:s'));
+                $pesanOrder = Order::aksiOrderan($dataOrder->user->nama, "orderan Produk $nama_product || $jenis_product dengan jumlah $request->jumlah_order $productOrder->satuan bisa diambil di ruangan IT. tanggal ". now()->format('d-M-Y H:i:s'));
             }
 
             // value request
