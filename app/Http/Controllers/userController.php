@@ -39,7 +39,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        $ruangan = Ruangan::all()->sortByDesc('nama_ruangan');
+        $ruangan = Ruangan::all()->sortBy('nama_ruangan');
         return response(view('admin.pages.User.createUser', [
             'ruangans' => $ruangan,
             'title' => 'Create User'
@@ -61,6 +61,7 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'cekLevel' => 'required',
             'no_telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'nik' => 'required|unique:users,nik|max:16'
         ]);
         try {
             $validatedData['password'] = Hash::make($validatedData['password']);
@@ -154,6 +155,7 @@ class UserController extends Controller
             'nama' => 'required',
             'username' => 'required |' . Rule::unique('users')->ignore($user->id),
             'password' => '',
+            'nik' => 'required|max:16'. Rule::unique('users,nik')->ignore($user->id),
             'cekLevel' => 'required',
             'no_telephone' => 'required|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
         ]);

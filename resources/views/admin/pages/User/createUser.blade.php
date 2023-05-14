@@ -23,6 +23,17 @@
                             @enderror
                         </div>
                     </div>
+                      <div class="col-lg-4 ">
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nomer Induk Keluarga</label>
+                            <input type="text" class="form-control" id="nik" name="nik" value="{{old('nik')}}">
+                            @error('nik')
+                                <span class="form-text text-danger">
+                                    {{ $message }}
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-lg-4 ">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
