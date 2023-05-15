@@ -50,8 +50,9 @@ class LaporanController extends Controller
             ->get();
             
             session()->flash('pageTitle','bulan');
-            session()->flash('header','orderan pada bulan ini masih kosong');
             $byBulan = Carbon::parse($request->bulanan)->format('M - Y');
+            session()->flash('header',"list laporan  bulan $byBulan");
+            session()->flash('teks',"orderan pada bulan $byBulan ini masih kosong");
             session()->flash('orders', 'tidak ada');
             if (count($orders) > 0) {
                 # code...
@@ -63,14 +64,14 @@ class LaporanController extends Controller
     public function laporanByRuangan(Request $request){
         $ruangan = Ruangan::where('nama_ruangan', $request->nama_ruangan)->first();
         $orders = Order::whereNotNull('status')->where('ruangan_id', $ruangan->id)->get();
-        session()->flash('header',"orderan di ruangan $request->nama_ruangan");
+        session()->flash('header'," List laporan Ruangan $request->nama_ruangan");
         session()->flash('teks',"orderan di ruangan $request->nama_ruangan masih kosong");
         session()->flash('orders', 'tidak ada');
         if (count($orders) > 0) {
             # code...
             $header = $orders[0]->ruangan->nama_ruangan;
             session()->flash('orders', $orders);
-            session()->flash('header'," List laporan Ruangan $header");
+            
         }
         session()->flash('pageTitle', 'ruangan');
         return redirect()->back();
