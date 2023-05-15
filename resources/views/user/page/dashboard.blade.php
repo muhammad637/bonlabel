@@ -16,7 +16,7 @@
                         <div data-aos="zoom-in-left">
                             <div class="card info-card sales-card shadow">
                                 <div class="card-body">
-                                    <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }} {{$product->satuan}}
+                                    <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }} 
                                     </h5>
                                     <h5 class="fs-6 color-primary font-poppins fw-semibold ">
                                         {{ $product->jenis_product }}
@@ -27,7 +27,7 @@
                                             {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
                                             <span class="color-black size-number  font-poppins mb-n3 purecounter"
                                                 data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->jumlah_stock }}"
+                                                data-purecounter-end="{{ $product->jumlah_stock }}  {{$product->satuan}}"
                                                 data-purecounter-duration="1"></span>
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@
 
                                         <h5 class="color-primary font-poppins">limit order :
                                             <span class="  font-poppins mb-n3 purecounter" data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->limit_order }}"
+                                                data-purecounter-end="{{ $product->limit_order }} {{$product->satuan}}"
                                                 data-purecounter-duration="1"></span>
                                         </h5>
                                     </div>
