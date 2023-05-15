@@ -27,16 +27,17 @@
                                             {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
                                             <span class="color-black size-number  font-poppins mb-n3 purecounter"
                                                 data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->jumlah_stock }}  {{$product->satuan}}"
+                                                data-purecounter-end="{{ $product->jumlah_stock }}  "
                                                 data-purecounter-duration="1"></span>
+                                                <span class="color-black size-number  font-poppins">{{$product->satuan}}</span>
                                         </div>
                                     </div>
                                     <div class="">
 
                                         <h5 class="color-primary font-poppins">limit order :
                                             <span class="  font-poppins mb-n3 purecounter" data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->limit_order }} {{$product->satuan}}"
-                                                data-purecounter-duration="1"></span>
+                                                data-purecounter-end="{{ $product->limit_order }}"
+                                                data-purecounter-duration="1"></span> {{$product->satuan}}
                                         </h5>
                                     </div>
                                 </div>
