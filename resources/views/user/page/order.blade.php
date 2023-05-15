@@ -16,7 +16,7 @@
                             <label for="product_id" class="form-label fw-bold ">Pilih produk</label>
                             <select name="product_id" id="product_id" class="form-select">
                                 @foreach ($products as $prod)
-                                    <option value="{{ $prod->id }}">{{ $prod->nama_product }} || <p value="{{ $prod->id}}">{{ $prod->jenis_product }}</p></option>
+                                    <option value="{{ $prod->id }}">{{ $prod->nama_product }} || {{ $prod->jenis_product }} || limit order : {{$prod->limit_order}} {{$prod->satuan}}</option>
                                     <
                                 @endforeach
                             </select>

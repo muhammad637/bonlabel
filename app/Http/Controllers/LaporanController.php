@@ -126,7 +126,6 @@ class LaporanController extends Controller
         try {
             //code...
             $ruang = Ruangan::find($request->ruangan_id);
-            return $ruang;
             $ruangan = $this->dataLaporan(
                 Order::whereNotNull('status')->where('ruangan_id', $request->ruangan_id)->get(), "LIST LAPORAN BY RUANGAN $ruang->nama_ruangan"
             );
