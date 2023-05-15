@@ -22,7 +22,7 @@ class RuanganController extends Controller
     {
         //
         return view('admin.pages.Ruangan.listRuangan', [
-            'ruangans' => Ruangan::orderBy('updated_at', 'desc')->orderBy('created_at', 'desc')->get(),
+            'ruangans' => Ruangan::orderBy('nama_ruangan', 'asc')->orderBy('created_at', 'desc')->get(),
             'title' => 'ruangan'
         ]);
     }
