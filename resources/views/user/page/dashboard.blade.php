@@ -16,7 +16,7 @@
                         <div data-aos="zoom-in-left">
                             <div class="card info-card sales-card shadow">
                                 <div class="card-body">
-                                    <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }}
+                                    <h5 class="fs-3 font-poppins color-primary fw-bold mt-3">{{ $product->nama_product }} {{$product->satuan}}
                                     </h5>
                                     <h5 class="fs-6 color-primary font-poppins fw-semibold ">
                                         {{ $product->jenis_product }}
