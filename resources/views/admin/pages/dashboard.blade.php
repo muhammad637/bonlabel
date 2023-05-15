@@ -16,10 +16,10 @@
                         <div data-aos="zoom-in-left">
                             <div class="card info-card sales-card shadow">
                                 <div class="card-body">
-                                    <h5 class="fs-4 font-poppins color-primary fw-bold mt-2">{{ $product->nama_product }}
+                                    <h5 class="fs-4 font-poppins color-primary fw-bold mt-2">{{ $product->nama_product }} {{ $product->satuan}}
                                     </h5>
                                     <h5 class="fs-12 color-primary font-poppins fw-regular ">
-                                        {{ $product->jenis_product }}
+                                        {{ $product->jenis_product }} 
                                     </h5>
                                     <div class="row ">
                                         <div class="col-12">
@@ -32,11 +32,11 @@
                                         </div>
                                     </div>
                                     <div class="">
-
                                         <h5 class="color-primary font-poppins">limit order :
                                             <span class="  font-poppins mb-n3 purecounter" data-purecounter-start="0"
                                                 data-purecounter-end="{{ $product->limit_order }}"
                                                 data-purecounter-duration="1"></span>
+                                            
                                         </h5>
                                     </div>
                                 </div>
