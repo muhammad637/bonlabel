@@ -27,7 +27,7 @@
                                             {{-- <div class="size-number font-poppins mb-n4 color-black">{{ $product->jumlah_stock }}</div> --}}
                                             <span class="color-black size-number font-poppins mb-n3 purecounter"
                                                 data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->jumlah_stock }} {{$product->satuan}}"
+                                                data-purecounter-end="{{ $product->jumlah_stock }} "
                                                 data-purecounter-duration="1"></span>
                                         </div>
                                     </div>
