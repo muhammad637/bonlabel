@@ -94,8 +94,8 @@
             var time = 1
             function checkIdleTime(){
                 const idletime = Date.now() - lastActivityTime;
-                const idletimeSecond = idletime / 60000;
-                if (idletimeSecond > 5) {
+                const idletimeSecond = idletime / 360000;
+                if (idletimeSecond > 8) {
                     window.location.href = '/sibonlabel/logout/auto'
                 }
             }

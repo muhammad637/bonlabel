@@ -61,6 +61,7 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Ruangan</th>
+                                            <th scope="col">Nama</th>
                                             <th scope="col">Nama Produk</th>
                                             <th scope="col">jumlah order</th>
                                             <th scope="col">status</th>
@@ -73,6 +74,7 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $order->ruangan->nama_ruangan }}</td>
+                                                <td>{{ $order->user->nama }}</td>
                                                 <td>{{ $order->product->nama_product }} - {{$order->product->jenis_product}}</td>
                                                 <td>{{ $order->jumlah_order }} {{$order->product->satuan}}</td>
                                                 <td>

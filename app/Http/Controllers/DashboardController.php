@@ -59,7 +59,21 @@ class DashboardController extends Controller
     public function dashboardUser()
     {
         $products = Product::all();
-        $orders = Order::where('user_id',auth()->user()->id)->latest()->get();
+        // $orders = Order::where('user_id',auth()->user()->id)->latest()->get();
+        $ruangans = auth()->user()->ruangan;
+        $dataOrder = [];
+        foreach($ruangans as $ruangan){
+            array_push($dataOrder,Order::where('ruangan_id',$ruangan->id)->orderBy('created_at','desc')->get());
+        }
+        $orders = [];
+        foreach($dataOrder as $order){
+            array_push($orders,...$order);
+        }
+
+        usort($orders, function($a, $b) {
+            return $a['created_at'] < $b['created_at'];
+        });
+        // return $orders;
         // Carbon::parse();
 
         return view('user.page.dashboard', [
