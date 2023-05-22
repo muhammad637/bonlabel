@@ -27,16 +27,17 @@
                                             {{-- <div class="size-number font-poppins mb-n3 color-black">{{ $product->jumlah_stock }}</div> --}}
                                             <span class="color-black size-number  font-poppins mb-n3 purecounter"
                                                 data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->jumlah_stock }}  {{$product->satuan}}"
+                                                data-purecounter-end="{{ $product->jumlah_stock }}  "
                                                 data-purecounter-duration="1"></span>
+                                                <span class="color-black size-number  font-poppins">{{$product->satuan}}</span>
                                         </div>
                                     </div>
                                     <div class="">
 
                                         <h5 class="color-primary font-poppins">limit order :
                                             <span class="  font-poppins mb-n3 purecounter" data-purecounter-start="0"
-                                                data-purecounter-end="{{ $product->limit_order }} {{$product->satuan}}"
-                                                data-purecounter-duration="1"></span>
+                                                data-purecounter-end="{{ $product->limit_order }}"
+                                                data-purecounter-duration="1"></span> {{$product->satuan}}
                                         </h5>
                                     </div>
                                 </div>
@@ -61,6 +62,7 @@
                                         <tr>
                                             <th scope="col">No</th>
                                             <th scope="col">Nama Ruangan</th>
+                                            <th scope="col">Nama</th>
                                             <th scope="col">Nama Produk</th>
                                             <th scope="col">jumlah order</th>
                                             <th scope="col">status</th>
@@ -73,6 +75,7 @@
                                             <tr>
                                                 <th scope="row">{{ $loop->iteration }}</th>
                                                 <td>{{ $order->ruangan->nama_ruangan }}</td>
+                                                <td>{{ $order->user->nama }}</td>
                                                 <td>{{ $order->product->nama_product }} - {{$order->product->jenis_product}}</td>
                                                 <td>{{ $order->jumlah_order }} {{$order->product->satuan}}</td>
                                                 <td>
